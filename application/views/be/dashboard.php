@@ -49,7 +49,7 @@
                                                 <th>Beneficiado</th>
                                                 <th>Especialidad</th>
                                                 <th>Fecha</th>
-                                                <th></th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -61,7 +61,7 @@
                                                 <th>Beneficiado</th>
                                                 <th>Especialidad</th>
                                                 <th>Fecha</th>
-                                                <th></th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -104,18 +104,10 @@
                                                     <td><?= $u->uni_specialty ?></td>
                                                     <td><?= fecha($u->uni_create_date) ?></td>
                                                     <td>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn  dropdown-toggle text-black" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="ti-view-list-alt"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu animated" >
-                                                                <a href="<?= base_url('das/pdf-universidad/' . $u->id_univ); ?>" target="_blank" class="btn dropdown-item" type="button" style="color: black;" title="Mostrar PDF"> <i class="far fa-file-pdf text-danger"></i>&nbsp; Mostrar PDF </a>
-                                                                <a class="dropdown-item" href="javascript:void(0)"><i class="far fa-envelope text-info"></i>&nbsp; Enviar Email</a>
-                                                                <a class="dropdown-item" href="javascript:void(0)"><i class="fab fa-whatsapp-square text-primary"></i>&nbsp; Enviar WhatsApp</a>
-                                                                <a class="btn btn dropdown-item" type="button" style="color: black;" title="Eliminar"> <i class="far fa-trash-alt text-warning"></i>&nbsp; Eliminar</a>
-                                                            </div>
-                                                        </div>
-
+                                                        <a href="<?= base_url('das/pdf-universidad/' . $u->id_univ); ?>" class="btn btn-danger waves-effect waves-light" type="button" data-toggle="tooltip" data-placement="right" title="Mostrar PDF" target="_blank"> <i class="far fa-file-pdf text-white"></i></a>
+                                                        <button class="btn btn-info waves-effect waves-light" type="button" data-toggle="tooltip" data-placement="right" title="Enviar Correo"><i class="far fa-envelope text-dark"></i></button>
+                                                        <button class="btn btn-primary waves-effect waves-light" type="button" data-toggle="tooltip" data-placement="right" title="Enviar Whatsapp"><i class="fab fab fa-whatsapp text-white"></i></button>
+                                                        <button onclick="resolution(<?= $u->id_univ ?> , 1)" class="btn btn-success waves-effect waves-light" type="button" data-toggle="tooltip" data-placement="right" title="Emitir Resolución"> <i class=" far fa-file-alt text-white"></i></button>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -160,7 +152,7 @@
                                                             <button type="button" class="btn  dropdown-toggle text-black" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <i class="ti-view-list-alt"></i>
                                                             </button>
-                                                            <div class="dropdown-menu animated" >
+                                                            <div class="dropdown-menu animated">
                                                                 <a href="<?= base_url('das/pdf-instituto/' . $i->id_ins); ?>" target="_blank" class="btn dropdown-item" type="button" style="color: black;" title="Mostrar PDF"> <i class="far fa-file-pdf text-danger"></i>&nbsp; Mostrar PDF </a>
                                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="far fa-envelope text-info"></i>&nbsp; Enviar Email</a>
                                                                 <a class="dropdown-item" href="javascript:void(0)"><i class="fab fa-whatsapp-square text-primary"></i>&nbsp; Enviar WhatsApp</a>
@@ -224,6 +216,8 @@
                                     </table>
                                 </div>
                             </div>
+
+
                             <div id="navpills-2" class="tab-pane">
                                 <div class="table-responsive m-t-40">
                                     <table id="data-dace" class="table table-striped border">
@@ -283,3 +277,133 @@
         <!-- ============================================================== -->
         <!-- Right sidebar -->
         <!-- ============================================================== -->
+
+        <style>
+            .modal {
+                background-color: rgba(0, 0, 0, 0.247);
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: 0;
+
+            }
+
+            #contenedor {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 10px;
+
+            }
+
+            #principal {
+                width: 50%;
+                padding: 10px;
+
+            }
+
+            #sidebar {
+                width: 50%;
+                padding: 30px;
+
+            }
+
+            li {
+                padding-bottom: 3px;
+                font-size: 15px;
+
+            }
+
+            p {
+                font-size: 18px;
+                line-height: 30px;
+                letter-spacing: 1px;
+                text-decoration: underline;
+                text-transform: capitalize;
+                text-align: left;
+            }
+
+            @media screen and (max-width: 1200px) {
+                #contenedor {
+                    display: flex;
+
+                }
+
+                #principal {
+                    width: 100%;
+                }
+
+                #sidebar {
+                    width: 100%;
+                }
+            }
+        </style>
+
+        <div id="mdl_res" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl animated zoomIn">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Datos Restantes para Emitir Resolución</h4>
+                        <button type="button" class="btn-close btn_close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="contenedor">
+                            <div id="principal">
+                                <form class="form p-t-20" id="frm-res">
+                                    <div class="form-group">
+                                        <label for="exampleInputuname">Nombre al que se dirije</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
+                                            <input type="text" class="form-control" id="name">
+                                            <input type="hidden" class="form-control" id="id_tramite">
+                                            <input type="hidden" class="form-control" id="type">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputuname">Cargo al que se dirije</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1"><i class="ti-medall"></i></span>
+                                            <input type="text" class="form-control" id="rang">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Asunto</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon2"><i class="ti-comment-alt"></i></span>
+                                            <input type="text" class="form-control" id="mess">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pwd1">Ref.</label>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3"><i class="ti-briefcase"></i></span>
+                                            <input type="text" class="form-control" id="ref">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info waves-effect text-white btn_close">Cerrar</button>
+                                        <button type="button" class="btn btn-primary waves-effect text-white btn_save">Generar Resolución</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="sidebar">
+                                <p>Datos del Alumno (a)</p>
+                                <ul>
+                                    <li>Apellidos y Nombres: <label id="name_student"></label> </li>
+                                    <li>Especialidad: <label id="speciality"></label> </li>
+                                    <li>DNI: <label id="dni"></label> </li>
+                                </ul>
+                                <p>Datos del Titular</p>
+                                <ul>
+                                    <li>Grado: <label id="range"></label> </li>
+                                    <li>Apellidos y Nombres: <label id="name_titular"></label> </li>
+                                    <li>Parentesco: <label id="parentesco"></label> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>

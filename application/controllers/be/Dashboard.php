@@ -42,7 +42,56 @@ class Dashboard extends CI_Controller
 		$this->template->load('be/template', 'be/dashboard', $data);
 	}
 
+	public function resolution($id)
+	{
+		$a = $this->Be_model->getRes(array("id_resolution" => $id));
 
+		if ($a->type = 1) {
+			$b = $this->Be_model->get_univ_list(array("id_univ" => $a->id_procedure));
+			$data['a'] = $a;
+			$data['b'] = $b;
+		}
+
+		$this->load->view("be/pages/resolution", $data);
+	}
+
+	public function getTramite()
+	{
+		$id = $this->input->post('id');
+		$type = $this->input->post('type');
+		$jsonData = array();
+
+
+		if ($type == 1) {
+			$row =  $this->Be_model->get_univ_list(array('id_univ' => $id));
+			$jsonData['row'] = $row;
+			$jsonData['dni'] = $this->encryption->decrypt($row->dni_user);
+			$jsonData['dni_p'] = $this->encryption->decrypt($row->dni_user);
+		}
+
+		header('Content-type: application/json; charset=utf-8');
+		echo json_encode($jsonData);
+	}
+
+	public function upResolution()
+	{
+		$data = array(
+			"id_procedure" => $this->input->post('id'),
+			"adress_name" => $this->input->post('a'),
+			"range_res" => $this->input->post('b'),
+			"issue_res" => $this->input->post('c'),
+			"ref_res" => $this->input->post('d'),
+			"date" => date(DATE_W3C),
+			"type_res" => $this->input->post('type'),
+		);
+		$q = $this->Be_model->insert($data, 'tbl_resolution');
+
+		$jsonData["id"] = $q;
+		$jsonData["col"] = $this->input->post('id');
+
+		header('Content-type: application/json; charset=utf-8');
+		echo json_encode($jsonData);
+	}
 
 	public function logout()
 	{

@@ -24,9 +24,6 @@ class Site extends CI_Controller
 			redirect(base_url() . 'be/admin', 'refresh');
 
 		}
-
-
-
 		$this->load->view('login');
 	}
 
@@ -54,12 +51,14 @@ class Site extends CI_Controller
 				'user_img_dni' => $rowData->dni_image_user,
 				'user_img_cip' => $rowData->cip_image_user,
 				'user_img_profile' => $rowData->img_user,
-				'val_user' => $rowData->val_user
+				'val_user' => $rowData->val_user,
+				'condition_user' => $rowData->condition_user
 
 			);
 			$this->session->set_userdata($data);
 
 			redirect(base_url() . 'be/admin', 'refresh');
+			
 		} elseif ($rowData->rol == "2") {
 
 			$data = array(
@@ -77,7 +76,9 @@ class Site extends CI_Controller
 				'user_img_dni' => $rowData->dni_image_user,
 				'user_img_cip' => $rowData->cip_image_user,
 				'user_img_profile' => $rowData->img_user,
-				'val_user' => $rowData->val_user
+				'val_user' => $rowData->val_user,
+				'condition_user' => $rowData->condition_user
+
 
 			);
 			$this->session->set_userdata($data);
@@ -87,6 +88,9 @@ class Site extends CI_Controller
 			} else {
 				redirect(base_url() . 'admin', 'refresh');
 			}
+		}else {
+			redirect(base_url(),'refresh');
+
 		}
 
 		$this->load->view('login');
@@ -149,10 +153,9 @@ class Site extends CI_Controller
 	}
 	public function token($code)
 	{
-		$dcode = $code;
-		$data['code'] =  $dcode;
+		$data['code'] =  $code;
 
-		$rowData = $this->Admin_model->auth_user_login(array('rol' => '2', 'phone_user' => $dcode));
+		$rowData = $this->Admin_model->auth_user_login(array('phone_user' => $code));
 
 		$data = array(
 			'condition_user' => 1
@@ -172,15 +175,14 @@ class Site extends CI_Controller
 				'user_phone' => $rowData->phone_user,
 				'user_cip' => $this->encryption->decrypt($rowData->cip_user),
 				'user_dni' => $rowData->dni_user,
-				'is_user_login' => TRUE,
+				'is_user_login' => "2",
 				'user_range' => $rowData->range_user,
 				'user_signature' => $rowData->signature_user,
 				'user_img_dni' => $rowData->dni_image_user,
 				'user_img_cip' => $rowData->cip_image_user,
 				'user_img_profile' => $rowData->img_user,
-				'cod_validation' => $rowData->cod_validation_user
-
-
+				'val_user' => $rowData->val_user,
+				'condition_user' => $rowData->condition_user
 			);
 
 			$this->session->set_userdata($data);
@@ -361,6 +363,7 @@ class Site extends CI_Controller
 			//Si hay datos entonces retornas algo
 			$row = $this->Admin_model->auth_user_login(array('encrypt_cip' => md5($mail)));
 			$phone = $row->phone_user;
+			$jsonData['status'] = $row->val_user;
 			$jsonData['phone'] = $phone;
 			$jsonData['success'] = 1;
 			$jsonData['message'] = '';

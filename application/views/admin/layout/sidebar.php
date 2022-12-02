@@ -1,4 +1,4 @@
-<body class="skin-default fixed-layout" id="body_system">
+<body class="skin-default-dark fixed-layout" id="body_system">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -175,17 +175,17 @@
                         </li>
                         <li>
                             <a class="waves-effect waves-dark" href="<?= base_url('Das/universidad'); ?>">
-                                Formulario Universidad
+                                Solicitud Universidad
                             </a>
                         </li>
                         <li>
                             <a class="waves-effect waves-dark" href="<?= base_url('Das/Instituto'); ?>">
-                                Formulario Instituto - Academia
+                                Solicitud Instituto - Academia
                             </a>
                         </li>
                         <li>
                             <a class="waves-effect waves-dark" href="<?= base_url('Das/Britanico'); ?>">
-                                Formulario Inst. Britanico
+                                Solicitud Inst. Britanico
                             </a>
                         </li>
                     </ul>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!--Toaster Popup message CSS -->
-    <link href="<?= base_url(); ?>/assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(); ?>/assets/images/cob.png">
     <title>COBIENE | Login</title>
@@ -162,7 +162,20 @@
                     data: dataCip,
                     dataType: "JSON",
                     success: function(data) {
-                        if (data.success == 1) {
+                        if(data.status == 1 ){
+                            $("#response").html('<p style="color:red;"><strong>CUENTA SUSPENDIDA<strong></p>');    
+                            $.toast({
+                                heading: '<h4>CUENTA SUSPENDIDA</h4>',
+                                text: 'Su cuenta ha sido suspendida, si esto es un error puede comunicarse al <a href="https://wa.link/gvxg0q" target="_blank">929 054 672</a>',
+                                position: 'top-center',
+                                loaderBg:'#ff6849',
+                                icon: 'error',
+                                hideAfter: false, 
+                                stack: false,
+                            });
+
+                        }else if (data.success == 1) {
+                            console.log(data.id);
                             $("#response").html(data.message);
                             $("#nxt-aut").attr('disabled', false);
                             $("#number-lbl").html("+51 " + data.phone);
@@ -171,6 +184,7 @@
                         } else {
                             $("#response").html(data.message);
                             $("#nxt-aut").attr('disabled', true);
+                            $.toast().reset('all');
 
                         }
                     },

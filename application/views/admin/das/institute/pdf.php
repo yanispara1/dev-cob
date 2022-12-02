@@ -15,7 +15,7 @@ class PDF extends FPDF
   }
 }
 $path = base_url() . "assets/images/docInstitute/";
-$path2 = base_url() . "assets/images/cip/";
+$path2 = base_url() . "";
 if ($request->person == "2") {
   $fam = $request->relationship . " con Nombre " .  $request->ins_name_fam . " " .  $request->ins_last_fam. " y CIF " . $request->ins_cift_fam;
 } elseif ($request->person == "1") {

@@ -78,8 +78,6 @@ $pdf->Ln();
 $pdf->Cell(180, 5, ' Lima, ' . fecha($request->uni_create_date), '', 1, 'R', false);
 
 
-
-
 if ($request->person == "2") {
   $pdf->Ln();
   $pdf->Ln();
@@ -134,8 +132,6 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', 'BU', 10);
 
 
-
-
 $pdf->Cell(201, 5, utf8_decode('Documentos Ingresante:'), '', 1, '', false);
 $pdf->Ln();
 
@@ -187,9 +183,5 @@ if ($request->person == "2") {
   $pdf->Image($url,  170,262,-90);
 
 }
-
-
-
-
 
 $pdf->Output();

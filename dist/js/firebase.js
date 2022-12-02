@@ -23,13 +23,6 @@ function phoneAuth() {
 			coderesult = confirmationResult;
 			let btn = document.getElementById("sendC");
 			btn.disabled = true;
-			btn.value = "Enviando Código ...";
-
-			setTimeout(function () {
-				btn.disabled = false;
-				btn.value = "Enviar";
-			}, 10000);
-
 			console.log(coderesult);
 
 			okAlert();
@@ -65,20 +58,13 @@ function codeverifys() {
 	var code = document.getElementById("verificationCode").value;
 	var phoneuser = document.getElementById("phoneUser").value;
 	let btn = document.getElementById("btnV");
-	btn.disabled = true;
-	btn.value = "Verificando ...";
-
-	setTimeout(function () {
-		btn.disabled = false;
-		btn.value = "Enviar";
-	}, 10000);
 
 	coderesult
 		.confirm(code)
 		.then(function (result) {
 			var user = result.user;
 			console.log(user);
-			location.href = "https://tramites.cobiene.mil.pe/site/token/" + phoneuser;
+			location.href = "https://tramites.cobiene.mil.pe/site/login/" + phoneuser;
 		})
 		.catch(function (error) {
 			errorFirebaseAuth(error.code);
@@ -95,7 +81,7 @@ function codeverify() {
 		.then(function (result) {
 			var user = result.user;
 			console.log(user);
-			location.href = "https://tramites.cobiene.mil.pe/site/token/" + phoneuser;
+			location.href = "https://tramites.cobiene.mil.pe/site/login/" + phoneuser;
 		})
 		.catch(function (error) {
 			errorFirebaseAuth(error.code);

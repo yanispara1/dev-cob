@@ -198,8 +198,8 @@
 		{
 			$vld = $this->input->post('vld');
 
-			$row = $this->Admin_model->update(array('cod_validation_user' => $vld), $this->session->userdata('user_id'), 'tbl_users');
-			$this->session->set_userdata('cod_validation', $vld);
+			$row = $this->Admin_model->update(array('condition_user' => $vld), $this->session->userdata('user_id'), 'tbl_users');
+			$this->session->set_userdata('condition_user', $vld);
 
 			
 			$jsonData['status'] = 200;

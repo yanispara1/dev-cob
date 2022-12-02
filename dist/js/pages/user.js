@@ -11,7 +11,7 @@ $(function () {
 		$(".mdl_status").fadeOut();
 		$("#slct_sts").empty();
 	});
-	
+
 	$(".buttons-pdf, .buttons-excel").addClass("btn btn-success me-1");
 
 	$("#btn_modify").on("click", function () {
@@ -40,7 +40,7 @@ $(function () {
 
 				successMsg(
 					"Rol Modificado",
-                    "Rol Modificado del usuario "+ name ,
+					"Rol Modificado del usuario " + name,
 					"#ff6849",
 					"success"
 				);
@@ -61,28 +61,28 @@ $(function () {
 			dataType: "json",
 		}).done((res) => {
 			if (res.success == 1) {
-				$("#data-users")
-					.find("tbody")
-					.find("td")
-					.each(function () {
-						if ($(this).attr("id") == "d" + user) {
-							$("#f" + user).text(selecttext);
-						}
-					});
+				if (select == 1) {
+					color = "badge bg-warning rounded-pill";
+				} else if (select == 2) {
+					color = "badge bg-success rounded-pill";
+				} else {
+					color = "badge bg-danger rounded-pill";
+				}
+				$("#g" + user).text(selecttext);
+				$("#g" + user).removeClass();
+				$("#g" + user).addClass(color);
 				$(".mdl_status").fadeOut();
 				$("#slct_sts").empty();
 
 				successMsg(
 					"Estado Modificado",
-                    "Estado Modificado del usuario "+ name ,
+					"Estado Modificado del usuario " + name,
 					"#ff6849",
 					"success"
 				);
 			}
 		});
 	});
-
-	
 });
 
 function range(a) {
@@ -109,7 +109,7 @@ function range(a) {
 				select.append('<option value="' + id + '">' + name + "</option>");
 			}
 		}
-	});
+	}); 
 
 	$(".select2").select2({
 		dropdownParent: $(".mdl_range .modal-body"),

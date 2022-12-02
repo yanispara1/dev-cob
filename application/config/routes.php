@@ -112,8 +112,7 @@ $route['eliminar-solicitud-britanico'] = 'admin/das/deleteBri';
 
 $route['be/admin'] = 'be/dashboard';
 $route['be/usuarios'] = 'be/users';
-
-
+$route['be/resolucion/(:any)'] = 'be/dashboard/resolution/$1';
 
 
 

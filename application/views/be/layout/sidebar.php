@@ -1,4 +1,4 @@
-<body class="skin-default fixed-layout">
+<body class="skin-default-dark fixed-layout">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->

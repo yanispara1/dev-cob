@@ -47,7 +47,7 @@
                                                     <th>CIP</th>
                                                     <th>Rol</th>
                                                     <th>Estado</th>
-                                                    <th>Fecha</th>
+                                                    <th>Fecha de registro</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -55,7 +55,14 @@
                                             <tbody>
                                                 <?php
                                                 foreach ($rows as $key => $row) {
-                                                    $n = $row->id_user
+                                                    $n = $row->id_user;
+                                                    if ($row->id_status == "1") {
+                                                        $color = "badge bg-warning rounded-pill";
+                                                    } elseif ($row->id_status == "2") {
+                                                        $color = "badge bg-success rounded-pill";
+                                                    } else {
+                                                        $color = "badge bg-danger rounded-pill";
+                                                    }
                                                 ?>
 
                                                     <tr id="u<?= $n ?>">
@@ -64,12 +71,13 @@
                                                         <td><?= $this->encryption->decrypt($row->cip_user) ?></td>
                                                         <td id="d<?= $n ?>"><?= $row->name_rol; ?></td>
                                                         <td id="f<?= $n ?>">
-                                                            <?= $row->name_status ?>
+                                                            <span id="g<?= $n ?>" class="<?= $color ?>"><?= $row->name_status ?></span>
                                                         </td>
                                                         <td><?= fecha($row->create_user) ?></td>
                                                         <td>
                                                             <button onclick="range(<?= $row->id_user ?>)" class="btn btn-warning waves-effect waves-light" type="button" style="color: black;" data-toggle="tooltip" data-placement="right" title="Modificar Rol"> <i class="fas fa-id-card-alt"></i> </button>
                                                             <button onclick="status(<?= $row->id_user ?>)" class="btn btn-info waves-effect waves-light" type="button" style="color: black;" data-toggle="tooltip" data-placement="right" title="Modificar Estado"> <i class="fas fa-unlock-alt"></i> </button>
+                                                            <a href="https://api.whatsapp.com/send?phone=51<?= str_replace('', '', $row->phone_user) ?>" target="_blank" class="btn btn-primary waves-effect waves-light" type="button" style="color: black;" data-toggle="tooltip" data-placement="right" title="Enviar WhatsApp"> <i class=" fab fa-whatsapp-square"></i> </a>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
@@ -116,7 +124,7 @@
                     </div>
 
                     <div class="modal mdl_status" role="dialog">
-                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-dialog modal-dialog-centered zoomIn animated">
                             <div class="modal-content">
                                 <div class="modal-header bg-secondary">
                                     <h4 class="modal-title">
@@ -145,6 +153,3 @@
                             </div>
                         </div>
                     </div>
-
-
-                    

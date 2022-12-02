@@ -485,7 +485,7 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
 
-    <input type="hidden" value="<?=$this->session->userdata('cod_validation')?>" id="cod_val">
+    <input type="hidden" value="<?=$this->session->userdata('condition_user')?>" id="cod_val">
 
     <div class="modal" id="modalP">
         <div class="modal-content" id="modal-content">
