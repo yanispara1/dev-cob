@@ -162,7 +162,7 @@
                     data: dataCip,
                     dataType: "JSON",
                     success: function(data) {
-                        if(data.status == 1 ){
+                        if(data.status == 3 ){
                             $("#response").html('<p style="color:red;"><strong>CUENTA SUSPENDIDA<strong></p>');    
                             $.toast({
                                 heading: '<h4>CUENTA SUSPENDIDA</h4>',

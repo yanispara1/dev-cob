@@ -53,7 +53,7 @@ class Users extends CI_Controller
         $user = $this->input->post('id_user');
         $jsonData = array();
         
-        $row = $this->Be_model->update(array('rol' => $slc), $user, 'tbl_users');
+        $row = $this->Be_model->update(array('rol' => $slc), array("id_user" => $user), 'tbl_users');
         $jsonData['success'] = 1;
 
 
@@ -83,7 +83,7 @@ class Users extends CI_Controller
         $user = $this->input->post('id_user');
         $jsonData = array();
         
-        $row = $this->Be_model->update(array('val_user' => $slc), $user, 'tbl_users');
+        $row = $this->Be_model->update(array('val_user' => $slc), array("id_user" => $user), 'tbl_users');
         $jsonData['success'] = 1;
 
 
