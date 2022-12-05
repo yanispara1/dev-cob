@@ -62,7 +62,7 @@ class Be_model extends CI_Model
 
   public function update($action, $id, $table)
   {
-    $this->db->where('id_user', $id);
+    $this->db->where($id);
     $this->db->update($table, $action);
     return $this->db->insert_id();
   }
@@ -99,6 +99,19 @@ class Be_model extends CI_Model
 
   public function get_inst_list($where = null)
   {
+    if ($where) {
+      $this->db->select('table.*');
+      $this->db->select('user.*');
+      $this->db->select('ins.*');
+      $this->db->select('rg.*');
+      $this->db->from('tbl_data_institute table');
+      $this->db->join('tbl_users user', 'user.id_user = table.user', 'LEFT');
+      $this->db->join('tbl_institute ins', 'ins.id_institute = table.institute', 'LEFT');
+      $this->db->join('tbl_ranges rg', 'rg.id_range = table.ins_grade', 'LEFT');
+      $this->db->where($where);
+      $query = $this->db->get();
+      return $query->row();
+    }
     $this->db->select('table.*');
     $this->db->select('user.*');
     $this->db->select('ins.*');
@@ -110,6 +123,17 @@ class Be_model extends CI_Model
 
   public function get_brit_list($where = null)
   {
+    if ($where) {
+      $this->db->select('table.*');
+      $this->db->select('user.*');
+      $this->db->select('rg.*');
+      $this->db->from('tbl_data_britanico table');
+      $this->db->join('tbl_users user', 'user.id_user = table.user', 'LEFT');
+      $this->db->join('tbl_ranges rg', 'rg.id_range = table.bri_grade', 'LEFT');
+      $this->db->where($where);
+      $query = $this->db->get();
+      return $query->row();
+    }
     $this->db->select('table.*');
     $this->db->select('user.*');
     $this->db->from('tbl_data_britanico table');
@@ -124,5 +148,14 @@ class Be_model extends CI_Model
     $this->db->where($where);
     $query = $this->db->get();
     return $query->row();
+  }
+
+  public function getResNum($where)
+  {
+    $this->db->select('*');
+    $this->db->from('tbl_resolution');
+    $this->db->where($where);
+    $query = $this->db->get();
+    return $query->num_rows();
   }
 }

@@ -95,7 +95,7 @@ $pdf->SetFont('Helvetica', '', 11);
 $pdf->Cell(180, 5, ' San Borja, ' . fecha($a->date), '', 1, 'R', false);
 $pdf->Cell(10, 5, '', '', 0, '', false);
 
-$pdf->Cell(100, 5, utf8_decode('Oficio N° 0066 S-3/a,2'), '', 1, '', false);
+$pdf->Cell(100, 5, utf8_decode('Oficio N° '.str_pad($a->id_resolution, 4, '0', STR_PAD_LEFT) .' S-3/a,2'), '', 1, '', false);
 $pdf->Ln(2);
 
 $pdf->SetFont('Helvetica', '', 11);
@@ -143,17 +143,17 @@ $pdf->SetFont('Helvetica', '', 12);
 $pdf->Cell(10, 10, '', '', 0, '', false);
 
 $pdf->Cell(45, 5, 'Apellidos Y Nombres', '', 0, '', false);
-$pdf->Cell(145, 5, utf8_decode(': '.$r  = ($b->person == 1) ? $b->lastname_user . ' ' .$b->name_user : $b->uni_name_fam . ' ' .$b->uni_last_fam), '', 1, '', false);
+$pdf->Cell(145, 5, utf8_decode(': '.$r  = ($b->person == 1) ? $b->lastname_user . ' ' .$b->name_user : $name_fam . ' ' .$last_fam), '', 1, '', false);
 
 $pdf->Cell(10, 10, '', '', 0, '', false);
 
 $pdf->Cell(45, 5, 'Especialidad', '', 0, '', false);
-$pdf->Cell(145, 5, utf8_decode(': '.$b->uni_specialty), '', 1, '', false);
+$pdf->Cell(145, 5, utf8_decode(': '.$specialty), '', 1, '', false);
 
 $pdf->Cell(10, 10, '', '', 0, '', false);
 
 $pdf->Cell(45, 5, 'DNI', '', 0, '', false);
-$pdf->Cell(145, 5, utf8_decode(': '.$r  = ($b->person == 1) ? $b->dni_user: $b->uni_cift_fam ), '', 1, '', false);
+$pdf->Cell(145, 5, utf8_decode(': '.$r  = ($b->person == 1) ? $this->encryption->decrypt($b->dni_user): $cift_fam ), '', 1, '', false);
 
 $pdf->Ln(3);
 
@@ -235,12 +235,5 @@ $pdf->Image($url,  21,262,-90);
 
 // Número de página
 // $pdf->Cell(0,5,utf8_decode('Pagína').' '.$pdf->PageNo().' de {nb}',0,0,'C');
-
-
-
-
-
-
-
 
 $pdf->Output('I', 'Resolución'.$a->id_resolution.'.pdf');
