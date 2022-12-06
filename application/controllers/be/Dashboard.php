@@ -180,10 +180,10 @@ class Dashboard extends CI_Controller
 	public function example()
 	{
 		/* Load PHPMailer library */
-		$this->load->library('phpmailer_lib');
+		$this->load->library('PHPMailer_Lib');
 
 		/* PHPMailer object */
-		$mail = $this->phpmailer_lib->load();
+		$mail = $this->PHPMailer_Lib->load();
 
 		/* SMTP configuration */
 		$mail->isSMTP();
