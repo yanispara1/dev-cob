@@ -199,7 +199,6 @@ class Dashboard extends CI_Controller
 		if ($this->email->send(FALSE)) {
 			echo "enviado<br/>";
 		} else {
-			echo 'Mail has been sent';
 			echo "fallo <br/>";
 			echo "error: " . $this->email->print_debugger(array('headers'));
 		}
