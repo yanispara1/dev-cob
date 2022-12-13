@@ -179,48 +179,29 @@ class Dashboard extends CI_Controller
 	}
 	public function example()
 	{
-		/* Load PHPMailer library */
-		$this->load->library('phpmailer_lib');
-
-		/* PHPMailer object */
-		$mail = $this->phpmailer_lib->load();
-
-		/* SMTP configuration */
-		$mail->isSMTP();
-		$mail->Host     = 'smtp.gmail.com';
-		$mail->SMTPAuth = true;
-		$mail->Username = 'valenestradam1@gmail.com';
-		$mail->Password = 'd3v3m3rs0n';
-		$mail->SMTPSecure = 'ssl';
-		$mail->Port     = 465;
-
-		$mail->setFrom('accwarzone02@gmail.com', 'CodexWorld');
-		$mail->addReplyTo('info@example.com', 'CodexWorld');
-
-		/* Add a recipient */
-		$mail->addAddress('valenzuelaestradam@gmail.com');
-
-		/* Add cc or bcc */
-		$mail->addCC('cc@example.com');
-		$mail->addBCC('bcc@example.com');
-
-		/* Email subject */
-		$mail->Subject = 'Send Email via SMTP using PHPMailer in CodeIgniter';
-
-		/* Set email format to HTML */
-		$mail->isHTML(true);
-
-		/* Email body content */
-		$mailContent = "<h1>Send HTML Email using SMTP in CodeIgniter</h1>
- 		<p>This is a test email sending using SMTP mail server with PHPMailer.</p>";
-		$mail->Body = $mailContent;
-
-		/* Send email */
-		if (!$mail->send()) {
-			echo 'Mail could not be sent.';
-			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		$config = array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.example.com',
+			'smtp_user' => 'valenzuelaestradam@gmail.com', //Su Correo de Gmail Aqui
+			'smtp_pass' => 'd3v3m3rs0n', // Su Password de Gmail aqui
+			'smtp_port' => '465',
+			'smtp_crypto' => 'ssl',
+			'mailtype' => 'html',
+			'wordwrap' => TRUE,
+			'charset' => 'utf-8'
+		);
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		$this->email->from('correo@example.com');
+		$this->email->subject('Asunto del correo');
+		$this->email->message('Hola desde correo');
+		$this->email->to('valenestradam1@gmail.com');
+		if ($this->email->send(FALSE)) {
+			echo "enviado<br/>";
 		} else {
 			echo 'Mail has been sent';
+			echo "fallo <br/>";
+			echo "error: " . $this->email->print_debugger(array('headers'));
 		}
 	}
 }
