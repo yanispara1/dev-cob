@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=es_MX">
 
 <head>
     <meta charset="utf-8">
@@ -12,13 +12,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(); ?>/assets/images/cob.png">
     <title>COBIENE | Registrate </title>
     <!-- page css -->
-    <link href="<?= base_url(); ?>/assets/node_modules/register-steps/steps.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/node_modules/register-steps/steps.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/node_modules/dropify/dist/css/dropify.min.css">
-    <link href="<?= base_url(); ?>/dist/css/pages/register3.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>dist/css/pages/register3.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/node_modules/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
-    <link href="<?= base_url(); ?>/dist/css/style.min.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>/assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>dist/css/style.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,22 +57,44 @@
                     <fieldset>
                         <h2 class="fs-title">Datos de Accesso</h2>
                         <h3 class="fs-subtitle">Paso 1</h3>
-                        <input type="text" name="cip" placeholder="Ingrese  CIP"  id="cip" />
-                        <div id="respuesta"></div>
-                        <input type="button" name="next" class="next action-button" value="Siguiente" id="btnone" />
+                        <div class="form-floating mb-3">
+                            <input class="form-control input_numb" type="text" name="cip" placeholder="Ingrese  CIP" id="cip"  maxlength="9" />
+                            <label for="cip">Ingrese CIP</label>
+                            <div id="respuesta"></div>
+                        </div>
+
+                        <input type="button" name="next" class="next action-button" value="Siguiente" id="btnone" disabled/>
                     </fieldset>
                     <fieldset>
                         <h2 class="fs-title">Datos Personales</h2>
                         <h3 class="fs-subtitle">Paso 2</h3>
-                        <input type="text" name="name" placeholder="Nombres"  />
-                        <input type="text" name="lastname" placeholder="Apellidos"  />
-                        <input type="text" name="dni" placeholder="DNI"  id="dni" />
-                        <div id="respuestadni"></div>
-                        <input type="text" name="email" placeholder="Correo Electrónico" id="mail" />
-                        <div id="respuestamail"></div>
-                        <input type="text" name="phone" placeholder="N° Celular"  id="phone" />
-                        <div id="respuestaphone"></div>
-                        <select name="range_user" class="select2 form-control form-select" style="width: 100%; height:36px;">
+
+                        <div class="form-floating">
+                            <input class="form-control input_txt" type="text" name="name" placeholder="Ingrese Nombres" />
+                            <label for="">Ingrese Nombres</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input class="form-control input_txt" type="text" name="lastname" placeholder="Ingrese Apellidos" />
+                            <label for="">Ingrese Apellidos</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input class="form-control input_numb" type="text" name="dni" placeholder="DNI" id="dni" maxlength="8"/>
+                            <div id="respuestadni"></div> <label for="">Ingrese DNI</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input class="form-control" type="text" name="email" placeholder="Correo Electrónico" id="mail" />
+                            <div id="respuestamail"></div> <label for="">Ingrese Correo Electrónico</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input class="form-control input_numb" type="text" name="phone" placeholder="N° Celular" id="phone" maxlength="9"/>
+                            <div id="respuestaphone"></div> <label for="">Ingrese N° Celular</label>
+                        </div>
+
+                        <select name="range_user" id="slct_rg" class="select2 form-control form-select" style="width: 100%; height:36px;">
                             <option>Seleccionar Grado</option>
                             <optgroup label="Personal de Oficiales">
                                 <?php
@@ -96,17 +118,19 @@
                                 ?>
                             </optgroup>
                         </select>
+
                         <input type="button" name="previous" class="previous action-button" value="Anterior" />
-                        <input type="button" name="next" class="next action-button" value="Siguiente" id="cip" />
+                        <input type="button" name="next" class="next action-button" value="Siguiente" id="nxt_2" disabled/>
                     </fieldset>
                     <fieldset>
                         <h2 class="fs-title">Políticas de Privacidad</h2>
                         <h3 class="fs-subtitle">Paso Final</h3>
-                        <p id="prv"><input type="checkbox" class="form-check-input" id="chk" style="width:auto; appearance:auto;"> He leído y acepto la <a href="#">Política de Privacidad</a> </p>
+                        <p id="prv"><input type="checkbox" class="form-check-input" id="chk" style="width:auto; appearance:auto;">
+                            He leído y acepto la <a href="#">Política de Privacidad</a> </p>
 
 
                         <input type="button" name="previous" class="previous action-button white" value="Anterior" id="anterior" />
-                        <input type="submit" name="submit" class="action-button" value="Registrarme" id="register" />
+                        <input type="submit" name="submit" class="action-button" value="Registrar" id="register" />
                     </fieldset>
 
                 </form>
@@ -136,17 +160,7 @@
     <script src="<?= base_url(); ?>/assets/node_modules/toast-master/js/jquery.toast.js"></script>
 
     <script src="<?= base_url(); ?>dist/js/pages/register.js"></script>
-
-
-    <script>
-        $(function() {
-            $(".preloader").fadeOut();
-        });
-
-        $(function() {
-            $(".select2").select2();
-        });
-    </script>
+    <script src="<?= base_url(); ?>dist/js/utilities.js"></script>
 </body>
 
 </html>

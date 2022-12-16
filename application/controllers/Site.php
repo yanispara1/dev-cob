@@ -22,7 +22,6 @@ class Site extends CI_Controller
 			}
 		} elseif ($this->session->userdata('is_user_login') == "1") {
 			redirect(base_url() . 'be/admin', 'refresh');
-
 		}
 		$this->load->view('login');
 	}
@@ -58,7 +57,6 @@ class Site extends CI_Controller
 			$this->session->set_userdata($data);
 
 			redirect(base_url() . 'be/admin', 'refresh');
-			
 		} elseif ($rowData->rol == "2") {
 
 			$data = array(
@@ -88,9 +86,8 @@ class Site extends CI_Controller
 			} else {
 				redirect(base_url() . 'admin', 'refresh');
 			}
-		}else {
-			redirect(base_url(),'refresh');
-
+		} else {
+			redirect(base_url(), 'refresh');
 		}
 
 		$this->load->view('login');
@@ -111,6 +108,8 @@ class Site extends CI_Controller
 
 
 		$rowData = $this->Admin_model->auth_user_login(array('rol' => '2', 'cip_user' => $cip));
+
+
 
 		if (empty($rowData)) {
 			$data = array(
@@ -354,8 +353,6 @@ class Site extends CI_Controller
 
 		//Validamos que la consulta haya retornado información
 		if ($rowData <= 0) {
-
-
 			$jsonData['success'] = 0;
 			// $jsonData['message'] = 'No existe Cédula ' .$cedula;
 			$jsonData['message'] = '<p style="color:red;"><strong>CIP no se encuentra registrado<strong></p>';

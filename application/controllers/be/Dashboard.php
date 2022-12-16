@@ -179,28 +179,6 @@ class Dashboard extends CI_Controller
 	}
 	public function example()
 	{
-		$config = array(
-			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.example.com',
-			'smtp_user' => 'valenzuelaestradam@gmail.com', //Su Correo de Gmail Aqui
-			'smtp_pass' => 'd3v3m3rs0n', // Su Password de Gmail aqui
-			'smtp_port' => '465',
-			'smtp_crypto' => 'ssl',
-			'mailtype' => 'html',
-			'wordwrap' => TRUE,
-			'charset' => 'utf-8'
-		);
-		$this->load->library('email', $config);
-		$this->email->set_newline("\r\n");
-		$this->email->from('correo@example.com');
-		$this->email->subject('Asunto del correo');
-		$this->email->message('Hola desde correo');
-		$this->email->to('valenestradam1@gmail.com');
-		if ($this->email->send(FALSE)) {
-			echo "enviado<br/>";
-		} else {
-			echo "fallo <br/>";
-			echo "error: " . $this->email->print_debugger(array('headers'));
-		}
+		$this->load->view('email');
 	}
 }

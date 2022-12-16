@@ -1,4 +1,6 @@
 $(function () {
+	$(".preloader").fadeOut();
+	$(".select2").select2();
 
 	//Validando si existe la Cedula en BD antes de enviar el Form
 	$("#cip").on("keyup", function () {
@@ -15,10 +17,12 @@ $(function () {
 					$("input").attr("disabled", true); //Desabilito el input nombre
 					$("input#cip").attr("disabled", false); //Habilitando el input cedula
 					$("#btnone").attr("disabled", true); //Desabilito el Botton
+					$("#cip").focus();
 				} else {
 					$("#respuesta").html(data.message);
 					$("input").attr("disabled", false); //Habilito el input nombre
 					$("#btnone").attr("disabled", false); //Habilito el Botton
+					$("#cip").focus();
 				}
 			},
 			error: function (data) {
@@ -40,10 +44,12 @@ $(function () {
 					$("input").attr("disabled", true); //Desabilito el input nombre
 					$("input#dni").attr("disabled", false); //Habilitando el input cedula
 					$("button").attr("disabled", true); //Desabilito el Botton
+					$("#dni").focus();
 				} else {
 					$("#respuestadni").html(data.message);
 					$("input").attr("disabled", false); //Habilito el input nombre
 					$("button").attr("disabled", false); //Habilito el Botton
+					$("#dni").focus();
 				}
 			},
 			error: function (data) {
@@ -65,10 +71,12 @@ $(function () {
 					$("input").attr("disabled", true); //Desabilito el input nombre
 					$("input#mail").attr("disabled", false); //Habilitando el input cedula
 					$("button").attr("disabled", true); //Desabilito el Botton
+					$("#mail").focus();
 				} else {
 					$("#respuestamail").html(data.message);
 					$("input").attr("disabled", false); //Habilito el input nombre
 					$("button").attr("disabled", false); //Habilito el Botton
+					$("#mail").focus();
 				}
 			},
 			error: function (data) {
@@ -77,6 +85,7 @@ $(function () {
 		});
 	});
 	$("#phone").on("keyup", function () {
+		2;
 		var phone = $("#phone").val();
 		var dataPhone = "phone=" + phone;
 		$.ajax({
@@ -90,10 +99,13 @@ $(function () {
 					$("input").attr("disabled", true); //Desabilito el input nombre
 					$("input#phone").attr("disabled", false); //Habilitando el input cedula
 					$("button").attr("disabled", true); //Desabilito el Botton
+					$("#phone").focus();
 				} else {
 					$("#respuestaphone").html(data.message);
 					$("input").attr("disabled", false); //Habilito el input nombre
 					$("button").attr("disabled", false); //Habilito el Botton
+					$("#nxt_2").attr("disabled", false); //Habilito el Botton
+					$("#phone").focus();
 				}
 			},
 			error: function (data) {
@@ -104,7 +116,6 @@ $(function () {
 });
 
 $(document).ready(() => {
-
 	$("#msform").on("submit", (e) => {
 		e.preventDefault();
 		var f = $(this);
@@ -113,55 +124,72 @@ $(document).ready(() => {
 		let formData = new FormData(document.getElementById("msform"));
 		formData.append("dato", "valor");
 		let check = $("#chk").prop("checked"),
+			txt = $("#msform").find(':input[type="text"]'),
 			phone = $("#phone").val();
 
 		if (check) {
-			$.ajax({
-				url: "site/initReg",
-				type: "post",
-				dataType: "json",
-				data: formData,
-				cache: false,
-				contentType: false,
-				processData: false,
-				beforeSend: () => {
-					$("#anterior").attr("disabled", "disabled");
-					$("#anterior").attr("type", "hidden");
-					$("#register").attr("disabled", "disabled");
-					$("#register").attr("value", "Guardando .....");
-				},
-			})
-				.done((res) => {
-					if ((res.status = 1)) {
-                        $(location).attr('href',window.location.origin);
+			if (
+				!$("#name").val() ||
+				!$("#lastname").val() ||
+				!$("#dni").val() ||
+				!$("#email").val() ||
+				!$("#phone").val() ||
+				$("#slct_rg").val() == "Seleccionar Grado"
+			) {
+				txth.each(function (i, e) {
+					if ($(e).val().length <= 0) {
+						$(e).css("border", "1px solid red");
 					} else {
-						alert(res.error);
+						$(e).css("border", "1px solid green");
 					}
-				})
-				.fail((res) => {
-					alert(res);
 				});
+				Msg(
+					"Todos los datos son requeridos",
+					'Faltan datos para rellenar "Click Anterior"',
+					"#FFD849",
+					"warning"
+				);
+			} else {
+				$.ajax({
+					url: "site/initReg",
+					type: "post",
+					dataType: "json",
+					data: formData,
+					cache: false,
+					contentType: false,
+					processData: false,
+					beforeSend: () => {
+						$("#anterior").attr("disabled", "disabled");
+						$("#anterior").attr("type", "hidden");
+						$("#register").attr("disabled", "disabled");
+						$("#register").attr("value", "Guardando .....");
+					},
+				})
+					.done((res) => {
+						if ((res.status = 1)) {
+							$(location).attr("href", window.location.origin);
+						} else {
+							alert(res.error);
+						}
+					})
+					.fail((res) => {
+						alert(res);
+					});
+			}
 		} else {
-			successMsg(
-				"Error",
-				"Acepte la Política de Privacidad",
-				"#ff6849",
-				"error"
-			);
+			Msg("Error", "Acepte la Política de Privacidad", "#ff6849", "error");
 		}
 	});
-
 });
 
-
-function successMsg(d, f, g, h) {
+function Msg(d, f, g, h) {
 	$.toast({
 		heading: d,
 		text: f,
 		position: "top-right",
 		loaderBg: g,
 		icon: h,
-		hideAfter: 3500,
-		stack: 6,
+		hideAfter: 3600,
+		stack: 1,
 	});
 }

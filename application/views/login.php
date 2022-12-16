@@ -17,7 +17,7 @@
     <!-- page css -->
     <link href="<?= base_url(); ?>/dist/css/pages/login-register-lock.css" rel="stylesheet">
     <link href="<?= base_url(); ?>/assets/node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link href="<?= base_url(); ?>/dist/css/style.min.css" rel="stylesheet">
 
@@ -57,18 +57,22 @@
                         <h3 class="text-center m-b-20">Inicie Sesión COBIENE</h3>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" required="" placeholder="CIP" name="cip" value="" id="cip_user">
-                                <div id="response"></div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control input_numb" type="text" required="" placeholder="Ingrese CIP" name="cip" value="" id="cip_user" maxlength="9" minlength="9">
+                                    <label for="tb-fname">CIP</label>
+                                    <div id="response"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group text-center">
                             <div class="col-xs-12 p-b-20">
                                 <input type="submit" id="nxt-aut" class="btn w-100 btn-lg btn-info btn-rounded text-white" disabled>
                             </div>
-                        </div>
-                        <div class="form-group m-b-0">
-                            <div class="col-sm-12 text-center">
-                                ¿No tienes una cuenta? <a href="<?= base_url('registrate') ?>" title="Registrate" class="text-info m-l-5"><b>Registrate</b></a>
+                            <div class="form-group m-b-0">
+                                <div class="col-sm-12 text-center">
+                                    ¿No tienes una cuenta? <a href="<?= base_url('registrate') ?>" title="Registrate" class="text-info m-l-5">
+                                        <b>Registrate</b></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,7 +107,7 @@
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" required="" id="verificationCode" placeholder="Ingresa el Codido de Verificación">
+                                <input class="form-control input_numb" type="text" required="" id="verificationCode" placeholder="Ingresa el Codido de Verificación">
                                 <input type="hidden" id="phoneUser" value="">
                             </div>
                         </div>
@@ -130,6 +134,7 @@
     <!--Custom JavaScript -->
     <script src="<?= base_url(); ?>/assets/node_modules/toast-master/js/jquery.toast.js"></script>
     <script src="<?= base_url(); ?>/assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="<?= base_url(); ?>dist/js/utilities.js"></script>
     <script src="<?= base_url(); ?>/dist/js/firebase.js" type="text/javascript"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase.js"></script>
     <script type="module" src="<?= base_url(); ?>dist/js/pages/firebase.js" type="text/javascript"></script>
@@ -162,19 +167,19 @@
                     data: dataCip,
                     dataType: "JSON",
                     success: function(data) {
-                        if(data.status == 3 ){
-                            $("#response").html('<p style="color:red;"><strong>CUENTA SUSPENDIDA<strong></p>');    
+                        if (data.status == 3) {
+                            $("#response").html('<p style="color:red;"><strong>CUENTA SUSPENDIDA<strong></p>');
                             $.toast({
                                 heading: '<h4>CUENTA SUSPENDIDA</h4>',
                                 text: 'Su cuenta ha sido suspendida, si esto es un error puede comunicarse al <a href="https://wa.link/gvxg0q" target="_blank">929 054 672</a>',
                                 position: 'top-center',
-                                loaderBg:'#ff6849',
+                                loaderBg: '#ff6849',
                                 icon: 'error',
-                                hideAfter: false, 
+                                hideAfter: false,
                                 stack: false,
                             });
 
-                        }else if (data.success == 1) {
+                        } else if (data.success == 1) {
                             console.log(data.id);
                             $("#response").html(data.message);
                             $("#nxt-aut").attr('disabled', false);
