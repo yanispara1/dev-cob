@@ -136,7 +136,7 @@ $(document).ready(() => {
 				!$("#phone").val() ||
 				$("#slct_rg").val() == "Seleccionar Grado"
 			) {
-				txth.each(function (i, e) {
+				txt.each(function (i, e) {
 					if ($(e).val().length <= 0) {
 						$(e).css("border", "1px solid red");
 					} else {
