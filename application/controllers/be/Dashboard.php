@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'Registros';
+		$data['title'] = 'Inicio Administrador';
 		$data['links'] = array();
 		$data['scripts'] = array(
 			'<script src="' . base_url() . 'dist/js/pages/dashboard-be.js"></script>'
