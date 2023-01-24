@@ -38391,6 +38391,8 @@ html body .navbar-dark .mailbox .message-center a .mail-contnet .time {
 		overflow: hidden;
 	}
 }
+
+
 #whatsapp-chat {
 	position: fixed;
 	background: #fff;
@@ -38398,7 +38400,7 @@ html body .navbar-dark .mailbox .message-center a .mail-contnet .time {
 	border-radius: 10px;
 	box-shadow: 0 1px 15px rgba(32, 33, 36, 0.28);
 	bottom: 90px;
-	right: 30px;
+	left: 30px;
 	overflow: hidden;
 	z-index: 99;
 	animation-name: showchat;
@@ -38411,7 +38413,7 @@ html body .navbar-dark .mailbox .message-center a .mail-contnet .time {
 	position: fixed;
 	z-index: 98;
 	bottom: 25px;
-	right: 30px;
+	left: 30px;
 	font-size: 15px;
 	padding: 10px 20px;
 	border-radius: 30px;
@@ -38567,9 +38569,6 @@ html body .navbar-dark .mailbox .message-center a .mail-contnet .time {
   }
   .show {
 	display: block;
-	animation-name: showhide;
-	animation-duration: 1.5s;
-	transform: scale(1);
 	opacity: 1;
   }
   

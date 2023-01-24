@@ -50,6 +50,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+$route['default_controller'] = 'site';
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
+
+
 $route['registrate'] = 'site/register';
 $route['registrarse'] = 'site/insert_register';
 $route['reenviar-correo'] = 'site/resend_mail';
@@ -119,10 +124,9 @@ $route['email'] = 'be/dashboard/example';
 
 $route['Das/Lista'] = 'admin/das';
 
+/*
+    /ROUTES BE CORRESPONDENCE
+*/
 
-
-
-
-$route['default_controller'] = 'site';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['be/correspondecias-recibidas'] = 'be/correspondence/received';
+$route['be/correspondecias-remitidas'] = 'be/correspondence/forwarded';

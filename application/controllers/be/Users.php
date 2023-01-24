@@ -14,7 +14,7 @@ class Users extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Registros';
+        $data['title'] = 'Usuarios';
 
 
         $data['links'] = array(

@@ -210,14 +210,4 @@ function upResolution(a, b) {
 	});
 	$("#mdl_resup1").fadeIn();
 }
-function successMsg(d, f, g, h) {
-	$.toast({
-		heading: d,
-		text: f,
-		position: "top-right",
-		loaderBg: g,
-		icon: h,
-		hideAfter: 3500,
-		stack: 6,
-	});
-}
+

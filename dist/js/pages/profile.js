@@ -1,3 +1,11 @@
+$(function () {
+	let demo2 = $("#smoothed").signaturePad({
+		drawOnly: true,
+		drawBezierCurves: true,
+		lineTop: 200,
+	});
+});
+
 let cropper = null;
 
 $("#input-file").on("change", () => {
@@ -225,7 +233,7 @@ $("#cut-dni").on("click", () => {
 					wrapp.fadeIn();
 					img.fadeOut();
 
-					$("#modal-dni").addClass("remove")	;
+					$("#modal-dni").addClass("remove");
 					$("#content-dni").addClass("remove");
 
 					$("#modal-dni").removeClass("active");
@@ -717,7 +725,6 @@ if ($("#cod_val").val() == "") {
 			})
 				.done((data) => {
 					if (data.status == 200) {
-						
 					}
 				})
 				.fail((err) => {
@@ -765,21 +772,4 @@ function rotate(cropper, degree) {
 	cropper.rotateTo(degree);
 }
 
-function dangerAlert() {
-	Swal.fire({
-		type: "error",
-		title: "Oops...",
-		text: "Seleccione una Imagen por favor",
-	});
-}
-function successMsg(d, f, g, h) {
-	$.toast({
-		heading: d,
-		text: f,
-		position: "top-right",
-		loaderBg: g,
-		icon: h,
-		hideAfter: 3500,
-		stack: 6,
-	});
-}
+

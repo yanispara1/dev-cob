@@ -33,8 +33,35 @@ class Site extends CI_Controller
 
 		$rowData = $this->Admin_model->auth_user_login(array('phone_user' => $cip));
 
-		if ($rowData->rol == "1") {
+		if ($rowData->rol == "2") {
+			$data = array(
+				'user_id' => $rowData->id_user,
+				'user_type' => $rowData->rol,
+				'user_name' => $rowData->name_user,
+				'user_lastname' => $rowData->lastname_user,
+				'user_email' => $rowData->email_user,
+				'user_phone' => $rowData->phone_user,
+				'user_cip' => $this->encryption->decrypt($rowData->cip_user),
+				'user_dni' => $rowData->dni_user,
+				'is_user_login' => "2",
+				'user_range' => $rowData->range_user,
+				'user_signature' => $rowData->signature_user,
+				'user_img_dni' => $rowData->dni_image_user,
+				'user_img_cip' => $rowData->cip_image_user,
+				'user_img_profile' => $rowData->img_user,
+				'val_user' => $rowData->val_user,
+				'condition_user' => $rowData->condition_user
+			);
+			$this->session->set_userdata($data);
 
+			if ($rowData->signature_user == "assets/images/no-photo.jpg" || $rowData->dni_image_user == "assets/images/no-photo.jpg" || $rowData->cip_image_user == "assets/images/no-photo.jpg") {
+				redirect(base_url() . 'mi-perfil', 'refresh');
+			} else {
+				redirect(base_url() . 'admin', 'refresh');
+			}
+
+			redirect(base_url() . 'be/admin', 'refresh');
+		} elseif ($rowData->rol != "2") {
 			$data = array(
 				'user_id' => $rowData->id_user,
 				'user_type' => $rowData->rol,
@@ -57,35 +84,6 @@ class Site extends CI_Controller
 			$this->session->set_userdata($data);
 
 			redirect(base_url() . 'be/admin', 'refresh');
-		} elseif ($rowData->rol == "2") {
-
-			$data = array(
-				'user_id' => $rowData->id_user,
-				'user_type' => $rowData->rol,
-				'user_name' => $rowData->name_user,
-				'user_lastname' => $rowData->lastname_user,
-				'user_email' => $rowData->email_user,
-				'user_phone' => $rowData->phone_user,
-				'user_cip' => $this->encryption->decrypt($rowData->cip_user),
-				'user_dni' => $rowData->dni_user,
-				'is_user_login' => "2",
-				'user_range' => $rowData->range_user,
-				'user_signature' => $rowData->signature_user,
-				'user_img_dni' => $rowData->dni_image_user,
-				'user_img_cip' => $rowData->cip_image_user,
-				'user_img_profile' => $rowData->img_user,
-				'val_user' => $rowData->val_user,
-				'condition_user' => $rowData->condition_user
-
-
-			);
-			$this->session->set_userdata($data);
-
-			if ($rowData->signature_user == "assets/images/no-photo.jpg" || $rowData->dni_image_user == "assets/images/no-photo.jpg" || $rowData->cip_image_user == "assets/images/no-photo.jpg") {
-				redirect(base_url() . 'mi-perfil', 'refresh');
-			} else {
-				redirect(base_url() . 'admin', 'refresh');
-			}
 		} else {
 			redirect(base_url(), 'refresh');
 		}
@@ -108,8 +106,6 @@ class Site extends CI_Controller
 
 
 		$rowData = $this->Admin_model->auth_user_login(array('rol' => '2', 'cip_user' => $cip));
-
-
 
 		if (empty($rowData)) {
 			$data = array(
@@ -134,7 +130,7 @@ class Site extends CI_Controller
 
 			$data = $this->security->xss_clean($data);
 			$result = $this->Admin_model->insert($data, 'tbl_users');
-			
+
 			if ($result) {
 				$jsonData['status'] = 1;
 				//Mostrando mi respuesta en formato Json
@@ -256,6 +252,7 @@ class Site extends CI_Controller
 		else
 			redirect('/', 'refresh');
 	}
+	
 	public function validateCip()
 	{
 		$cip    = md5($_GET['cip']);

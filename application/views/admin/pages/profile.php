@@ -323,24 +323,29 @@
                 <div class="card" id="step1">
                     <div class="card-body">
                         <center class="m-t-30">
-                            <img src="<?= base_url() ?><?= $this->session->userdata('user_img_profile') ?>" class="img-circle" width="150" id="crop-image" />
-                            <div class="spinner-grow text-primary" style="width: 0; height: 0;" role="status" id="spinner_profile">
+                            <img src="<?= base_url() ?><?= $this->session->userdata('user_img_profile') ?>"
+                                class="img-circle" width="150" id="crop-image" />
+                            <div class="spinner-grow text-primary" style="width: 0; height: 0;" role="status"
+                                id="spinner_profile">
                                 <span class="sr-only">Loading...</span>
                             </div>
-                            <h4 class="card-title m-t-10"><?= $this->session->userdata('user_name') ?></h4>
+                            <h4 class="card-title m-t-10">
+                                <?= $this->session->userdata('user_name') ?>
+                            </h4>
                             <h4 class="card-title m-t-10"><?= $this->session->userdata('user_lastname') ?></h4>
-                            <h4 class="card-title m-t-10"><?= "CIP: " . $this->session->userdata('user_cip') ?></h4>
-                            <h4 class="card-title m-t-10"><?= "DNI: " . $this->encryption->decrypt($this->session->userdata('user_dni')) ?></h4>
-                            
+                            <h4 class="card-title m-t-10">
+                                <?="CIP: " . $this->session->userdata('user_cip') ?>
+                            </h4>
+                            <h4 class="card-title m-t-10"><?="DNI: " . $this->encryption->decrypt($this->session->userdata('user_dni')) ?></h4>
+
                             <div class="fileupload btn btn-primary btn-rounded waves-effect waves-light">
                                 <span><i class="fas fa-upload"></i> &nbsp; Subir Imagen de Perfil</span>
-                                <input type="file" class="upload" name="input-file" id="input-file" accept=".png,.jpg,.jpeg">
+                                <input type="file" class="upload" name="input-file" id="input-file"
+                                    accept=".png,.jpg,.jpeg">
                             </div>
 
                             <hr>
-
-
-                        </center>
+                            </center>
                     </div>
                 </div>
             </div>
@@ -350,43 +355,53 @@
                 <div class="card">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#profile" role="tab" id="step2"><strong>Editar Perfil</strong> </a> </li>
-                        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#imge" role="tab" id="step4"><strong>Imagen DNI, CIP y Firma</strong></a> </li>
+                        <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#profile" role="tab"
+                                id="step2"><strong>Editar Perfil</strong> </a> </li>
+                                
+                        <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#imge" role="tab"
+                                id="step4"><strong>Imagen DNI, CIP y Firma</strong></a> </li>
                     </ul>
                     <!-- Tab panes -->
-                    <div class="tab-content" >
-                        <div class="tab-pane active" id="profile" role="tabpanel" >
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="profile" role="tabpanel">
                             <div class="card-body">
-                                <form class="form-horizontal form-material" id="form-profile" enctype="multipart/form-data">
+                                <form class="form-horizontal form-material" id="form-profile"
+                                    enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="col-md-12">Nombres</label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control form-control-line" value="<?= $r->name_user ?>" name="name">
+                                            <input type="text" class="form-control form-control-line"
+                                                value="<?= $r->name_user ?>" name="name">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Apellidos</label>
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control form-control-line" value="<?= $r->lastname_user ?>" name="lastname">
+                                            <input type="text" class="form-control form-control-line"
+                                                value="<?= $r->lastname_user ?>" name="lastname">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Correo Electronico</label>
                                         <div class="col-md-12">
-                                            <input type="email" class="form-control email-inputmask" id="email-mask" value="<?= $r->email_user ?>" name="correo">
+                                            <input type="email" class="form-control email-inputmask" id="email-mask"
+                                                value="<?= $r->email_user ?>" name="correo">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Número de celular</label>
                                         <div class="col-md-12">
-                                            <input disabled type="text" class="form-control form-control-line" value="<?= $r->phone_user ?>">
+                                            <input disabled type="text" class="form-control form-control-line"
+                                                value="<?= $r->phone_user ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button type="submit" class="btn btn-success text-white">Guardar Cambios</button>
+                                            <button type="submit" class="btn btn-success text-white">Guardar
+                                                Cambios</button>
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
                         </div>
@@ -406,12 +421,14 @@
                                             </div>
                                         </div>
                                         <div id="img_wrapp">
-                                            <img src="<?= base_url($this->session->userdata('user_img_dni')); ?>" alt="" class="img-fluid rounded" id="img-dni">
+                                            <img src="<?= base_url($this->session->userdata('user_img_dni')); ?>" alt=""
+                                                class="img-fluid rounded" id="img-dni">
                                         </div>
 
                                         <div class="fileupload btn btn-primary btn-rounded waves-effect waves-light">
                                             <span><i class="fas fa-upload"></i> &nbsp; Subir Imagen de DNI</span>
-                                            <input type="file" class="upload" name="input-dni" id="input-dni" accept=".png,.jpg,.jpeg">
+                                            <input type="file" class="upload" name="input-dni" id="input-dni"
+                                                accept=".png,.jpg,.jpeg">
                                         </div>
                                     </div>
                                     <hr>
@@ -428,11 +445,13 @@
                                             </div>
                                         </div>
                                         <div id="img_wrapp_cip">
-                                            <img src="<?= base_url($this->session->userdata('user_img_cip')); ?>" alt="" class="img-fluid rounded" id="img-cip"><br>
+                                            <img src="<?= base_url($this->session->userdata('user_img_cip')); ?>" alt=""
+                                                class="img-fluid rounded" id="img-cip"><br>
                                         </div>
                                         <div class="fileupload btn btn-primary btn-rounded waves-effect waves-light">
                                             <span><i class="fas fa-upload"></i> &nbsp; Subir Imagen de CIP</span>
-                                            <input type="file" class="upload" name="input-cip" id="input-cip" accept=".png,.jpg,.jpeg">
+                                            <input type="file" class="upload" name="input-cip" id="input-cip"
+                                                accept=".png,.jpg,.jpeg">
                                         </div>
 
                                     </div>
@@ -451,13 +470,15 @@
                                             </div>
                                         </div>
                                         <div id="img_wrapp_sign">
-                                            <img src="<?= base_url($this->session->userdata('user_signature')); ?>" alt="" class="img-fluid rounded" id="img-sign">
+                                            <img src="<?= base_url($this->session->userdata('user_signature')); ?>"
+                                                alt="" class="img-fluid rounded" id="img-sign">
                                         </div>
 
                                         <br>
                                         <div class="fileupload btn btn-primary btn-rounded waves-effect waves-light">
                                             <span><i class="fas fa-upload"></i> &nbsp; Subir Imagen de Firma</span>
-                                            <input type="file" class="upload" name="input-sign" id="input-sign" accept=".png,.jpg,.jpeg">
+                                            <input type="file" class="upload" name="input-sign" id="input-sign"
+                                                accept=".png,.jpg,.jpeg">
                                         </div>
 
                                     </div>
@@ -485,7 +506,7 @@
     <!-- End Page wrapper  -->
     <!-- ============================================================== -->
 
-    <input type="hidden" value="<?=$this->session->userdata('condition_user')?>" id="cod_val">
+    <input type="hidden" value="<?= $this->session->userdata('condition_user') ?>" id="cod_val">
 
     <div class="modal" id="modalP">
         <div class="modal-content" id="modal-content">
@@ -527,8 +548,10 @@
             <div class="modal-footer">
                 <div> <input id="upload-photo-image-rotate-value" type="hidden" name="rangeInputValue" value="0">
                     <label for="" id="lblrt"></label>
-                    <input id="upload-photo-image-rotate-value-text" class="image-rotate-value" type="text" name="rangeInputValueText" value="0°" readonly>
-                    <input id="upload-photo-image-rotate" class="image-rotate" type="range" name="rangeInput" step="1" min="-180" max="180" value="0">
+                    <input id="upload-photo-image-rotate-value-text" class="image-rotate-value" type="text"
+                        name="rangeInputValueText" value="0°" readonly>
+                    <input id="upload-photo-image-rotate" class="image-rotate" type="range" name="rangeInput" step="1"
+                        min="-180" max="180" value="0">
                 </div>
 
                 <button class="btn primary" id="cut-dni">Recortar</button>
@@ -552,8 +575,10 @@
             <div class="modal-footer">
                 <div> <input id="upload-photo-image-rotate-value" type="hidden" name="rangeInputValue" value="0">
                     <label for="" id="lblrt"></label>
-                    <input id="upload-photo-image-rotate-value-text" class="image-rotate-value" type="text" name="rangeInputValueText" value="0°" readonly>
-                    <input id="upload-photo-image-rotate" class="image-rotate" type="range" name="rangeInput" step="1" min="-180" max="180" value="0">
+                    <input id="upload-photo-image-rotate-value-text" class="image-rotate-value" type="text"
+                        name="rangeInputValueText" value="0°" readonly>
+                    <input id="upload-photo-image-rotate" class="image-rotate" type="range" name="rangeInput" step="1"
+                        min="-180" max="180" value="0">
                 </div>
 
                 <button class="btn primary" id="cut-cip">Recortar</button>
@@ -576,8 +601,10 @@
             <div class="modal-footer">
                 <div> <input id="upload-photo-image-rotate-value" type="hidden" name="rangeInputValue" value="0">
                     <label for="" id="lblrt"></label>
-                    <input id="upload-photo-image-rotate-value-text" class="image-rotate-value" type="text" name="rangeInputValueText" value="0°" readonly>
-                    <input id="upload-photo-image-rotate" class="image-rotate" type="range" name="rangeInput" step="1" min="-180" max="180" value="0">
+                    <input id="upload-photo-image-rotate-value-text" class="image-rotate-value" type="text"
+                        name="rangeInputValueText" value="0°" readonly>
+                    <input id="upload-photo-image-rotate" class="image-rotate" type="range" name="rangeInput" step="1"
+                        min="-180" max="180" value="0">
                 </div>
 
                 <button class="btn primary" id="cut-sign">Recortar</button>

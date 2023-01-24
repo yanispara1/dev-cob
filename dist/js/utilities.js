@@ -1,5 +1,6 @@
 $(function () {
 	"use strict";
+	let base_url = '<?= base_url(); ?>';
 	$(".input_numb").on("input", function () {
 		this.value = this.value.replace(/[^0-9.]/g, "");
 	});
@@ -48,3 +49,23 @@ $(document).on("click", "#send-it", function () {
 	$(document).on("click", ".blantershow-chat", function () {
 		$("#whatsapp-chat").addClass("show").removeClass("hide");
 	});
+
+function dangerAlert() {
+	Swal.fire({
+		type: "error",
+		title: "Oops...",
+		text: "Seleccione una Imagen por favor",
+	});
+}
+function successMsg(d, f, g, h) {
+	$.toast({
+		heading: d,
+		text: f,
+		position: "top-right",
+		loaderBg: g,
+		icon: h,
+		hideAfter: 3500,
+		stack: 1,
+	});
+}
+

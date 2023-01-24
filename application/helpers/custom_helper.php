@@ -1,6 +1,4 @@
 <?php
-
-
 if (!function_exists('check_login_user')) {
   function check_login_user()
   {
@@ -107,4 +105,5 @@ if (!function_exists('get_random_password')) {
     return $password;
   }
 }
+
 

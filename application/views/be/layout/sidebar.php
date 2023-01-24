@@ -55,14 +55,14 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
 
-                        <?php if ($this->session->userdata('is_user_login') == "1"){
+                        <?php if ($this->session->userdata('is_user_login') == "1") {
 
                         ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link waves-effect waves-dark" href="<?= base_url('admin'); ?>" aria-expanded="false" title="Ingresar Modo Usuario"> <i class="fas fa-location-arrow text-dark"></i>
-                            </a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link waves-effect waves-dark" href="<?= base_url('admin'); ?>" aria-expanded="false" title="Ingresar Modo Usuario"> <i class="fas fa-location-arrow text-dark"></i>
+                                </a>
 
-                        </li>
+                            </li>
                         <?php
                         }
                         ?>
@@ -133,6 +133,7 @@
                                 <span class="hide-menu">TABLERO</span>
                             </a>
                         </li>
+                        <?php if($this->session->userdata('user_type') == 1) { ?>
                         <li>
                             <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="fas fa-cogs"></i>
@@ -147,8 +148,27 @@
                                 </li>
                             </ul>
                         </li>
-
-
+                            <?php } ?>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="fas fa-clipboard-list"></i>
+                                <span class="hide-menu">Correspondencias</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li>
+                                    <a class="waves-effect waves-dark" href="<?= base_url('be/correspondecias-recibidas'); ?>">
+                                        <i class="fas fa-clipboard"></i>
+                                        &nbsp; Recibidos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="waves-effect waves-dark" href="<?= base_url('be/correspondecias-remitidas'); ?>">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        &nbsp; Emitidas
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                     </ul>
                 </nav>
