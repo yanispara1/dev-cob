@@ -106,4 +106,80 @@ if (!function_exists('get_random_password')) {
   }
 }
 
+if (!function_exists('check_user')) {
+  function check_user()
+  {
+    $ci = get_instance();
 
+    if ($ci->session->userdata('user_type') != 1) {
+
+      return true;
+    }
+  }
+}
+function viewExtension($extension, $name, $id_frwrd)
+{
+  $files_ext = [
+    [
+      'pdf',
+      'fa fa-file-pdf-o text-danger'
+    ],
+    [
+      'zip',
+      'fa fa-file-zip-o text-primary'
+    ],
+    [
+      'rar',
+      'fa fa-file-zip-o text-primary'
+    ],
+    [
+      'ppt',
+      'fa fa-file-powerpoint-o text-warning'
+    ],
+    [
+      'xlsx',
+      'fa fa-file-excel-o text-success'
+    ],
+    [
+      'xls',
+      'fa fa-file-excel-o text-success'
+    ],
+    [
+      'docx',
+      'fa fa-file-word-o text-info'
+    ],
+    [
+      'txt',
+      'fa fa-file-code-o text-primary'
+    ],
+  ];
+
+  $files_img = [
+    [
+      'jpg',
+    ],
+    [
+      'png',
+    ],
+    [
+      'jpeg',
+    ],
+    [
+      'svg',
+    ],
+  ];
+
+
+
+  foreach ($files_ext as list($ext, $font)) {
+    if ($extension == $ext) {
+      echo '<i class="' . $font . '"></i>';
+    } else {
+      foreach ($files_img as list($ext_img)) {
+        if ($extension == $ext_img) {
+          echo '<img src="">';
+        }
+      }
+    }
+  }
+}

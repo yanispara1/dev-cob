@@ -1,6 +1,6 @@
 $(function () {
 	"use strict";
-	let base_url = '<?= base_url(); ?>';
+	let base_url = "<?= base_url(); ?>";
 	$(".input_numb").on("input", function () {
 		this.value = this.value.replace(/[^0-9.]/g, "");
 	});
@@ -8,8 +8,11 @@ $(function () {
 		this.value = this.value.replace(/[^a-zA-Z ]/g, "");
 	});
 });
+var base_url = 'http://localhost/dev-cob/';
+
 
 /* Whatsapp Chat Widget by www.idblanter.com */
+
 $(document).on("click", "#send-it", function () {
 	var a = document.getElementById("chat-input");
 	if ("" != a.value) {
@@ -50,6 +53,10 @@ $(document).on("click", "#send-it", function () {
 		$("#whatsapp-chat").addClass("show").removeClass("hide");
 	});
 
+function getFileExt(filename) {
+	return filename.slice(((filename.lastIndexOf(".") - 1) >>> 0) + 2);
+}
+
 function dangerAlert() {
 	Swal.fire({
 		type: "error",
@@ -68,4 +75,3 @@ function successMsg(d, f, g, h) {
 		stack: 1,
 	});
 }
-

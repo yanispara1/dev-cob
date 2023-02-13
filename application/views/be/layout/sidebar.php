@@ -133,24 +133,41 @@
                                 <span class="hide-menu">TABLERO</span>
                             </a>
                         </li>
-                        <?php if($this->session->userdata('user_type') == 1) { ?>
+                        <?php if ($this->session->userdata('user_type') == 1) { ?>
+                            <li>
+                                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                    <i class="fas fa-cogs"></i>
+                                    <span class="hide-menu">Administración</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="<?= base_url('be/usuarios'); ?>">
+                                            <i class="fas fa-users"></i>
+                                            &nbsp; Usuarios
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="<?= base_url('be/equipos'); ?>">
+                                            <i class="fas fa-sitemap"></i>
+                                            &nbsp; Equipos
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        <?php }
+
+                        if (check_user() == true) {
+                        ?>
+                            <li>
+                                <a class="waves-effect waves-dark" href="<?= base_url('be/mi-equipo'); ?>" aria-expanded="false">
+                                    <i class="fas fa-users"></i>
+                                    <span class="hide-menu">Mi Equipo</span>
+                                </a>
+                            </li>
+                        <?php } ?>
                         <li>
-                            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                <i class="fas fa-cogs"></i>
-                                <span class="hide-menu">Administración</span>
-                            </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li>
-                                    <a class="waves-effect waves-dark" href="<?= base_url('be/usuarios'); ?>">
-                                        <i class="fas fa-users"></i>
-                                        &nbsp; Usuarios
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                            <?php } ?>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <a class="has-arrow wav)es-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="fas fa-clipboard-list"></i>
                                 <span class="hide-menu">Correspondencias</span>
                             </a>

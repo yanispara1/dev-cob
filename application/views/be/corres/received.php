@@ -103,109 +103,111 @@
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
-        <div class="row">
-            <div class="col-12">
-                <form id="send_rcvd" enctype="multipart/form-data">
-                    <div class="card" id="data_fam">
-                        <div class="card-header text-white bg-info">
-                            <b>Agregar Nueva Correspondencia Recibida</b>
-                            <div class="card-actions">
-                                <a class="text-white" data-action="collapse"><i class="ti-plus"></i></a>
+        <?php if ($this->session->userdata('user_type') == 11) { ?>
+            <div class="row">
+                <div class="col-12">
+                    <form id="send_rcvd" enctype="multipart/form-data">
+                        <div class="card" id="data_fam">
+                            <div class="card-header text-white bg-info">
+                                <b>Agregar Nueva Correspondencia Recibida</b>
+                                <div class="card-actions">
+                                    <a class="text-white" data-action="collapse"><i class="ti-plus"></i></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body collapse" id="crd_form">
-                            <h3 class="card-title">Correspondencia Recibida</h3>
-                            <hr>
-                            <div class="row p-t-20">
-                                <div class="col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" required name="tb_r" id="tb_r" placeholder="Enter Name here">
-                                        <label for="tb-r">Remitente</label>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" required name="tb_c" id="tb_c" placeholder="Enter Name here">
-                                        <label for="tb-c">Clase</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" required name="tb_i" id="tb_i" placeholder="Enter Name here">
-                                        <label for="tb-i">Indicativo</label>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-
-                                <!--/span-->
-                                <div class="col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" required name="tb_d" id="tb_d" value="">
-                                        <label for="tb-d">Fecha</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" required name="tb_cl" id="tb_cl" placeholder="Enter Name here">
-                                        <label for="tb-cl">Clasificación</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" required name="tb_rp" id="tb_rp" placeholder="Enter Name here">
-                                        <label for="tb-rp">Recibido Por</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <textarea type="text" class="form-control" name="tb_as" id="tb_as" placeholder="Asunto"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="form">
-                                    <div class="grid">
-                                        <div class="form-element">
-                                            <input type="file" id="file-1" accept="image/*" name="file_1">
-                                            <label for="file-1" id="file-1-preview">
-                                                <img id="img_r" src="<?= base_url() ?>assets/images/square_p.jpg" alt="">
-                                                <div>
-                                                    <span>+</span>
-                                                </div>
-                                            </label>
+                            <div class="card-body collapse" id="crd_form">
+                                <h3 class="card-title">Correspondencia Recibida</h3>
+                                <hr>
+                                <div class="row p-t-20">
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" required name="tb_r" id="tb_r" placeholder="Enter Name here">
+                                            <label for="tb-r">Remitente</label>
                                         </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" required name="tb_c" id="tb_c" placeholder="Enter Name here">
+                                            <label for="tb-c">Clase</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" required name="tb_i" id="tb_i" placeholder="Enter Name here">
+                                            <label for="tb-i">Indicativo</label>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <div class="row">
 
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" required name="tb_d" id="tb_d" value="">
+                                            <label for="tb-d">Fecha</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" required name="tb_cl" id="tb_cl" placeholder="Enter Name here">
+                                            <label for="tb-cl">Clasificación</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" required name="tb_rp" id="tb_rp" placeholder="Enter Name here">
+                                            <label for="tb-rp">Recibido Por</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <textarea type="text" class="form-control" name="tb_as" id="tb_as" placeholder="Asunto"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <div class="row">
+                                    <div class="form">
+                                        <div class="grid">
+                                            <div class="form-element">
+                                                <input type="file" id="file-1" accept="image/*" name="file_1">
+                                                <label for="file-1" id="file-1-preview">
+                                                    <img id="img_r" src="<?= base_url() ?>assets/images/square_p.jpg" alt="">
+                                                    <div>
+                                                        <span>+</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                    </div>
+                                    <div class="offset-sm-10 col-md-2">
+                                        <button type="submit" class="btn waves-effect waves-light w-100 btn-success text-white" id="btn_rcvd">ENVIAR</button>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                </div>
-                                <div class="offset-sm-10 col-md-2">
-                                    <button type="submit" class="btn waves-effect waves-light w-100 btn-success text-white" id="btn_rcvd">ENVIAR</button>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+
+                </div>
+                <!-- ============================================================== -->
+                <!-- Start Card User -->
+                <!-- ============================================================== -->
 
             </div>
-            <!-- ============================================================== -->
-            <!-- Start Card User -->
-            <!-- ============================================================== -->
 
-        </div>
-
+        <?php } ?>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -222,11 +224,14 @@
                                         <th style="min-width: 100px;">CLASIF. </th>
                                         <th style="min-width: 200px;">ASUNTO</th>
                                         <th style="min-width: 100px;">RECIBIDO POR</th>
-                                        <th style="min-width: 130px;">DECRETADO</th>
+                                        <?php if ($type_user == true) { ?>
+                                            <th style="min-width: 130px;">DECRETADO</th>
+                                        <?php } else { ?>
+                                            <th style="min-width: 130px;">ACCIONES</th>
+                                        <?php } ?>
                                     </tr>
                                 </thead>
-                                <tfoo t>
-                                </tfoo>
+
                                 <tbody id="tbody">
                                     <?php
                                     foreach ($rows as $key => $row) {
@@ -240,21 +245,25 @@
                                             <td><?= $row->clasif_rcvd ?></td>
                                             <td><?= $row->issue_rcvd ?></td>
                                             <td><?= $row->rcvd_by ?></td>
-                                            <td id="d<?= $row->id_rcvd_cr ?>">
-                                                <?php
-                                                if ($row->decree == "0") {
-                                                ?>
-                                                    <button OnClick="decree( 0, <?= $row->id_rcvd_cr ?>)"> No Decretado</button>
-                                                <?php
+                                            <?php if ($type_user) { ?>
+                                                <td id="d<?= $row->id_rcvd_cr == true ?>">
+                                                    <?php
+                                                    if ($row->decree == "0") {
+                                                    ?>
+                                                        <button OnClick="decree( 0, <?= $row->id_rcvd_cr ?>)"> No Decretado</button>
+                                                    <?php
 
-                                                } else {
-                                                ?>
-                                                    <button OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>)"><?= $row->name_rol ?></button>
-                                                <?php
+                                                    } else {
+                                                    ?>
+                                                        <button OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>)"><?= $row->name_rol ?></button>
+                                                    <?php
 
-                                                }
-                                                ?>
-                                            </td>
+                                                    }
+                                                    ?>
+                                                </td>
+                                            <?php } else { ?>
+                                                <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="label label-success">Responder</a></td>
+                                            <?php } ?>
                                         </tr>
 
                                     <?php

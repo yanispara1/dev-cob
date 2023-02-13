@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -119,6 +119,8 @@ $route['be/admin'] = 'be/dashboard';
 $route['be/usuarios'] = 'be/users';
 $route['be/resolucion/(:any)'] = 'be/dashboard/resolution/$1';
 $route['email'] = 'be/dashboard/example';
+$route['be/equipos'] = 'be/team';
+$route['be/mi-equipo'] = 'be/team/solo';
 
 
 
@@ -130,3 +132,5 @@ $route['Das/Lista'] = 'admin/das';
 
 $route['be/correspondecias-recibidas'] = 'be/correspondence/received';
 $route['be/correspondecias-remitidas'] = 'be/correspondence/forwarded';
+$route['be/archivos-adjuntos'] = 'be/correspondence/driveFrwrd';
+$route['be/descargar'] = 'be/correspondence/donwload';

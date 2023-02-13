@@ -5,27 +5,82 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Correspondence_model extends CI_Model
 {
 
+    public function get_rol($where)
+    {
+        if ($where) {
+            $this->db->select('*');
+            $this->db->from('tbl_rol');
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->row();
+        }
+        $this->db->select('*');
+        $this->db->from('tbl_rol');
+        return $this->db->get()->result();
+    }
+
+    public function dataDrive($where)
+    {
+
+        $this->db->select('d.*');
+        $this->db->select('c.*');
+        $this->db->from('tbl_drive d');
+        $this->db->join('tbl_forwarded_corr  c', 'c.id_frwd = d.frwrd_id');
+        $this->db->where('d.frwrd_id', $where);
+        return $this->db->get()->result();
+    }
+
     public function dataReceived($where)
     {
         // ubicación JSON online
-        if($where != 1){
+        if ($where == 1 || $where == 12) {
             $this->db->select('c.*');
             $this->db->select('d.*');
             $this->db->from('tbl_received_corr c');
             $this->db->join('tbl_rol d', 'd.id_rol = c.decree');
-            $this->db->where('c.decree', $where);
             return $this->db->get()->result();
         }
         $this->db->select('c.*');
         $this->db->select('d.*');
         $this->db->from('tbl_received_corr c');
         $this->db->join('tbl_rol d', 'd.id_rol = c.decree');
+        $this->db->where('c.decree', $where);
         return $this->db->get()->result();
     }
-
+    public function dataForwarded($where)
+    {
+        // ubicación JSON online
+        if ($where != null) {
+            $this->db->select('f.*');
+            $this->db->select('d.*');
+            $this->db->select('r.*');
+            $this->db->from('tbl_forwarded_corr f');
+            $this->db->join('tbl_rol d', 'd.id_rol = f.team_id');
+            $this->db->join('tbl_received_corr r', 'r.id_rcvd_cr = f.rcvd_corr');
+            $this->db->where('f.team_id', $where);
+            return $this->db->get()->result();
+        }
+    }
+    public function getFiles($limit, $where)
+    {
+        $this->db->select("*");
+        $this->db->from("tbl_drive");
+        $this->db->where("frwrd_id", $where);
+        $this->db->order_by('id_file', "DESC");
+        $this->db->limit($limit);
+        return $this->db->get()->result();
+    }
+    function dataCorr($where)
+    {
+        $this->db->select('c.*');
+        $this->db->select('d.*');
+        $this->db->from('tbl_received_corr c');
+        $this->db->join('tbl_rol d', 'd.id_rol = c.decree');
+        $this->db->where($where);
+        return $this->db->get()->result();
+    }
     public function get_record($where, $table)
     {
-
         if ($where != null) {
             $this->db->select('*');
             $this->db->from($table);
@@ -37,8 +92,6 @@ class Correspondence_model extends CI_Model
         $this->db->from($table);
         return $this->db->get()->result();
     }
-
-
     public function insert($data, $table)
     {
         $this->db->insert($table, $data);
@@ -49,5 +102,21 @@ class Correspondence_model extends CI_Model
         $this->db->where($id);
         $this->db->update($table, $action);
         return $this->db->insert_id();
+    }
+    public function delete($table, $id, $colum)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($colum, $id);
+        $this->db->limit(1);
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) {
+
+            $this->db->where($colum, $id);
+            $this->db->delete($table);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

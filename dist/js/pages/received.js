@@ -138,6 +138,8 @@ $(function () {
 
 				$(".mdl_range").fadeOut();
 				$(".select2").empty();
+		$("#decree").modal("hide");
+
 			}
 		});
 	});
