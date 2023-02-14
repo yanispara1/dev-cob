@@ -120,7 +120,6 @@ $(document).ready(() => {
 		e.preventDefault();
 		var f = $(this);
 
-		let base_url = window.location.origin;
 		let formData = new FormData(document.getElementById("msform"));
 		formData.append("dato", "valor");
 		let check = $("#chk").prop("checked"),
@@ -128,54 +127,31 @@ $(document).ready(() => {
 			phone = $("#phone").val();
 
 		if (check) {
-			if (
-				!$("#name").val() ||
-				!$("#lastname").val() ||
-				!$("#dni").val() ||
-				!$("#email").val() ||
-				!$("#phone").val() ||
-				$("#slct_rg").val() == "Seleccionar Grado"
-			) {
-				txt.each(function (i, e) {
-					if ($(e).val().length <= 0) {
-						$(e).css("border", "1px solid red");
+			$.ajax({
+				url: "site/initReg",
+				type: "post",
+				dataType: "json",
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: () => {
+					$("#anterior").attr("disabled", "disabled");
+					$("#anterior").attr("type", "hidden");
+					$("#register").attr("disabled", "disabled");
+					$("#register").attr("value", "Guardando .....");
+				},
+			})
+				.done((res) => {
+					if ((res.status = 1)) {
+						$(location).attr("href", window.location.origin);
 					} else {
-						$(e).css("border", "1px solid green");
+						alert(res.error);
 					}
-				});
-				Msg(
-					"Todos los datos son requeridos",
-					'Faltan datos para rellenar "Click Anterior"',
-					"#FFD849",
-					"warning"
-				);
-			} else {
-				$.ajax({
-					url: "site/initReg",
-					type: "post",
-					dataType: "json",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					beforeSend: () => {
-						$("#anterior").attr("disabled", "disabled");
-						$("#anterior").attr("type", "hidden");
-						$("#register").attr("disabled", "disabled");
-						$("#register").attr("value", "Guardando .....");
-					},
 				})
-					.done((res) => {
-						if ((res.status = 1)) {
-							$(location).attr("href", window.location.origin);
-						} else {
-							alert(res.error);
-						}
-					})
-					.fail((res) => {
-						alert(res);
-					});
-			}
+				.fail((res) => {
+					alert(res);
+				});
 		} else {
 			Msg("Error", "Acepte la Política de Privacidad", "#ff6849", "error");
 		}
