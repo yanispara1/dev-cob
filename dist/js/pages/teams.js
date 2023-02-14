@@ -29,7 +29,7 @@ $(function () {
 			dataType: "json",
 			data: data,
 			beforeSend: () => {
-				$('#btn_send').button('loading');
+				$('#btn_send').attr('disabled', true);
 			},
 		})
 			.done((r) => {
@@ -83,7 +83,8 @@ $(function () {
 				console.error(err.responseText);
 			})
 			.always(() => {
-				$('#btn_send').button('reset');
+				$('#btn_send').attr('disabled', false);
+
 			});
 	});
 

@@ -111,10 +111,10 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-xs-12">
-                                            <button id="btn_send" type="button" class="btn btn-success float-end  btn-rounded text-white" data-loading-text="<i class='fa fa-spinner fa-spin'></i>">
+                                            <button id="btn_send" type="button" class="btn btn-success float-end  btn-rounded text-white" >
                                                 Guardar
                                             </button>
-                                            <button style="display: none;" id="btn_modify" type="button" class="btn btn-success float-end  btn-rounded text-white" data-loading-text="<i class='fa fa-spinner fa-spin'></i>">
+                                            <button style="display: none;" id="btn_modify" type="button" class="btn btn-success float-end  btn-rounded text-white">
                                                 Modificar
                                             </button>
 
