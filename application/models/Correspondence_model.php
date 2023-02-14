@@ -33,7 +33,7 @@ class Correspondence_model extends CI_Model
     public function dataReceived($where)
     {
         // ubicación JSON online
-        if ($where == 1 || $where == 12) {
+        if ($where == 1 || $where == 13) {
             $this->db->select('c.*');
             $this->db->select('d.*');
             $this->db->from('tbl_received_corr c');
