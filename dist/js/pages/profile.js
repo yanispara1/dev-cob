@@ -771,3 +771,4 @@ function rotate(cropper, degree) {
 	rotateValueText.value = degree.replace(".", ",") + "°";
 	cropper.rotateTo(degree);
 }
+

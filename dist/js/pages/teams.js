@@ -22,14 +22,15 @@ $(function () {
 			d = $("#d_dp").val(),
 			j = $("#j_dp").val(),
 			m = $("#m_dp").val();
-
 		let data = { n: n, d: d, j: j, m: m };
 		$.ajax({
 			url: "team/teamIn",
 			type: "post",
 			dataType: "json",
 			data: data,
-			beforeSend: () => {},
+			beforeSend: () => {
+				$('#btn_send').button('loading');
+			},
 		})
 			.done((r) => {
 				if (r.rsp == 200) {
@@ -80,6 +81,9 @@ $(function () {
 			})
 			.fail((err) => {
 				console.error(err.responseText);
+			})
+			.always(() => {
+				$('#btn_send').button('reset');
 			});
 	});
 
@@ -313,3 +317,4 @@ function deleteTeam(id_rol) {
 		}
 	});
 }
+function prebtn() {}
