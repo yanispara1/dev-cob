@@ -117,6 +117,32 @@ if (!function_exists('check_user')) {
     }
   }
 }
+
+function viewReportes($url)
+{
+  $subject = "Consultas COBIENE CONVENIOS";
+
+  $emailsSend = ["beto1perk@gmail.com", "valenestradam1@gmail.com"];
+
+  $to = "$emailsSend[0],$emailsSend[1]";
+
+  $message = "
+  <html>
+  <head><meta charset='gb18030'>
+      <title>Consultas COEDE</title>
+  </head>
+  <body>
+  <p>Este <strong>mensaje es de una consulta de convenios</strong> Visualiza el documento con la siguiente URL: ".base_url(). $url ."</p>
+  </body>
+  </html>
+  ";
+  $headers =  'MIME-Version: 1.0' . "\r\n";
+  $headers .= 'From: Your name <info@address.com>' . "\r\n";
+  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+  mail($to, $subject, $message, $headers);
+}
+
 function viewExtension($extension, $name, $id_frwrd)
 {
   $files_ext = [
@@ -168,8 +194,6 @@ function viewExtension($extension, $name, $id_frwrd)
       'svg',
     ],
   ];
-
-
 
   foreach ($files_ext as list($ext, $font)) {
     if ($extension == $ext) {

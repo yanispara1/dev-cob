@@ -86,7 +86,7 @@ class Das extends CI_Controller
 
 	public function addUniversity()
 	{
-	//Data family
+		//Data family
 		$uni_name_fam = $this->input->post('uni_name_fam');
 		$uni_last_fam = $this->input->post('uni_last_fam');
 		$uni_cift_fam = $this->input->post('uni_cift_fam');
@@ -214,10 +214,9 @@ class Das extends CI_Controller
 			$image_uni_cif_fam = "";
 			$image_uni_dni_fam = "";
 		}
-		if($type_process == "1"){
+		if ($type_process == "1") {
 			$image_uni_grades = "";
-
-		}elseif($type_process == "2"){
+		} elseif ($type_process == "2") {
 			$image_uni_settlement = "";
 		}
 		$data_university = array(
@@ -465,10 +464,9 @@ class Das extends CI_Controller
 			$image_uni_dni_fam = "";
 			$relationship = "";
 		}
-		if($type_process == "1"){
+		if ($type_process == "1") {
 			$image_uni_grades = "";
-
-		}elseif($type_process == "2"){
+		} elseif ($type_process == "2") {
 			$image_uni_settlement = "";
 		}
 
@@ -770,6 +768,7 @@ class Das extends CI_Controller
 		);
 
 		$last_id = $this->Das_model->insert($data_institute, 'tbl_data_institute');
+		viewReportes('das/pdf-instituto/' . $last_id);
 
 		redirect(base_url('das/pdf-instituto/' . $last_id));
 	}
@@ -1100,7 +1099,7 @@ class Das extends CI_Controller
 		$this->load->view('admin/das/britanico/pdf', $data);
 	}
 
-	
+
 	public function deleteUni()
 	{
 
@@ -1141,7 +1140,7 @@ class Das extends CI_Controller
 			unlink($path . $r->ins_cif_fam);
 		}
 		if ($r->ins_dni_fam) {
-			unlink($path . $r->ins_dni_fam	);
+			unlink($path . $r->ins_dni_fam);
 		}
 
 		$this->Das_model->delete('tbl_data_institute', $id, 'id_ins');
