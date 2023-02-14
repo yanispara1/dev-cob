@@ -14,7 +14,7 @@ class Correspondence extends CI_Controller
 
     public function received()
     {
-        if ($this->session->userdata('user_type') == 11 || $this->session->userdata('user_type') == 12) {
+        if ($this->session->userdata('user_type') == 11 || $this->session->userdata('user_type') == 13) {
             $data['type_user'] = true;
         } else {
             $data['type_user'] = false;
