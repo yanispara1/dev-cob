@@ -244,6 +244,8 @@ class Das extends CI_Controller
 
 		$last_id = $this->Das_model->insert($data_university, 'tbl_data_univ');
 		$data['rlt'] = $this->Das_model->relation();
+		viewReportes('das/pdf-universidad/' . $last_id);
+
 
 		redirect(base_url('das/pdf-universidad/' . $last_id));
 	}
@@ -923,6 +925,7 @@ class Das extends CI_Controller
 		);
 
 		$last_id = $this->Das_model->insert($data_britanico, 'tbl_data_britanico');
+		viewReportes('das/pdf-britanico/' . $last_id);
 
 		redirect(base_url('das/pdf-britanico/' . $last_id));
 	}

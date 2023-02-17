@@ -167,11 +167,17 @@
                             </li>
                         <?php } ?>
                         <li>
-                            <a class="has-arrow wav)es-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="fas fa-clipboard-list"></i>
                                 <span class="hide-menu">Correspondencias</span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
+                                <li>
+                                    <a class="waves-effect waves-dark" href="<?= base_url('be/ordenes-de-servicio'); ?>">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        &nbsp; Ordenes de Servicio
+                                    </a>
+                                </li>
                                 <li>
                                     <a class="waves-effect waves-dark" href="<?= base_url('be/correspondecias-recibidas'); ?>">
                                         <i class="fas fa-clipboard"></i>

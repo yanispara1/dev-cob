@@ -55,14 +55,14 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
 
-                        <?php if ($this->session->userdata('is_user_login') == "1"){
+                        <?php if ($this->session->userdata('is_user_login') == "1") {
 
                         ?>
-                        <li class="nav-item">
-                            <a class="nav-link waves-effect waves-dark" href="<?= base_url('be/admin'); ?>"  aria-expanded="false" title="Ingresar Modo Administrador"> <i class="fas fa-location-arrow text-dark"></i>
-                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect waves-dark" href="<?= base_url('be/admin'); ?>" aria-expanded="false" title="Ingresar Modo Administrador"> <i class="fas fa-location-arrow text-dark"></i>
+                                </a>
 
-                        </li>
+                            </li>
                         <?php
                         }
                         ?>
@@ -80,7 +80,7 @@
                                     <li>
                                         <div class="message-center">
                                             <!-- Message -->
-                                            <a href="<?= base_url('mi-perfil')?>">
+                                            <a href="<?= base_url('mi-perfil') ?>">
                                                 <div class="btn btn-danger btn-circle text-white"><i class="fa fa-user"></i></div>
                                                 <div class="mail-contnet">
                                                     <h5> Mi Perfil</h5>
@@ -131,38 +131,19 @@
                                 <i class="ti-layout-media-right-alt"></i>
                                 <span class="hide-menu">TABLERO</span>
                             </a>
-                        </li>
-                        <!--<li>
-                            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="hide-menu"> Consultas DACE</span>
-                            </a>
-                            <ul aria-expanded="false" class="collapse">t
-                                <li>
-                                    <a href="<?= base_url('lista-DACE'); ?>">
-                                        Registros DACE
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?= base_url('formulario-DACE'); ?>">
-                                        Formulario DACE
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>-->
-                        <?php
-                        if ($this->session->userdata('cod_validation') == "") :
+                            <?php
+                            if ($this->session->userdata('cod_validation') == "") :
 
-                            $in = "in";
-                            $active = "active";
+                                $in = "in";
+                                $active = "active";
 
-                        else :
+                            else :
 
-                            $in = "";
-                            $active = "";
+                                $in = "";
+                                $active = "";
 
-                        endif;
-                        ?>
+                            endif;
+                            ?>
                         <li id="step6">
                             <a class="has-arrow waves-effect waves-dark <?= $active ?>" href="javascript:void(0)" aria-expanded="false">
                                 <i class="fas fa-university"></i>

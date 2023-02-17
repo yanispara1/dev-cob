@@ -103,7 +103,6 @@
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
-        <?php if ($this->session->userdata('user_type') == 11) { ?>
             <div class="row">
                 <div class="col-12">
                     <form id="send_rcvd" enctype="multipart/form-data">
@@ -207,7 +206,6 @@
 
             </div>
 
-        <?php } ?>
         <div class="row">
             <div class="col-12">
                 <div class="card">

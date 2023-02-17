@@ -111,7 +111,7 @@ if (!function_exists('check_user')) {
   {
     $ci = get_instance();
 
-    if ($ci->session->userdata('user_type') != 1) {
+    if ($ci->session->userdata('user_type') != 1 || $ci->session->userdata('user_type') != 26) {
 
       return true;
     }
@@ -132,12 +132,15 @@ function viewReportes($url)
       <title>Consultas COEDE</title>
   </head>
   <body>
-  <p>Este <strong>mensaje es de una consulta de convenios</strong> Visualiza el documento con la siguiente URL: ".base_url(). $url ."</p>
+  <h3>Actualemente en la plataforma de convenios del COBIENE, han solicitado un tramite, Ingrese a la siguiente URL: " . base_url() . $url . "</h3><br>
+  <center>
+  <img src='https://tramites.cobiene.mil.pe/assets/images/cob.png' width='50%' heigth='50%'>
+  </center>
   </body>
   </html>
   ";
   $headers =  'MIME-Version: 1.0' . "\r\n";
-  $headers .= 'From: Your name <info@address.com>' . "\r\n";
+  $headers .= 'From: CONVENIOS COBIENE <contacto@cobiene.mil.pe>' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
   mail($to, $subject, $message, $headers);
@@ -205,5 +208,18 @@ function viewExtension($extension, $name, $id_frwrd)
         }
       }
     }
+  }
+}
+
+function status_order($status)
+{
+  if ($status == '01') {
+    echo '<span class="label label-info">Pendiente</span>';
+  } elseif ($status == '02') {
+    echo '<span class="label label-warning">En Proceso</span>';
+  } elseif ($status == '03') {
+    echo '<span class="label label-success">Finalizado</span>';
+  } elseif ($status == '04') {
+    echo '<span class="label label-danger">Cancelado</span>';
   }
 }

@@ -50,7 +50,10 @@ class Site extends CI_Controller
 				'user_img_cip' => $rowData->cip_image_user,
 				'user_img_profile' => $rowData->img_user,
 				'val_user' => $rowData->val_user,
-				'condition_user' => $rowData->condition_user
+				'condition_user' => $rowData->condition_user,
+				'img_signature' => $rowData->signature_user,
+				'img_dni' => $rowData->dni_image_user,
+				'img_cip' => $rowData->cip_image_user,
 			);
 			$this->session->set_userdata($data);
 
