@@ -123,6 +123,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="" id="url_base" value="<?=base_url()?>">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
@@ -155,17 +156,17 @@
                                 </a>
                         </li>
                         <li>
-                            <a class="waves-effect waves-dark" href="<?= base_url('Das/universidad'); ?>">
+                            <a id="a_uni" class="waves-effect waves-dark" data-user="<?=img_users()?>" data-url="<?= base_url('Das/universidad'); ?>">
                                 Solicitud Universidad
                             </a>
                         </li>
                         <li>
-                            <a class="waves-effect waves-dark" href="<?= base_url('Das/Instituto'); ?>">
+                            <a id="a_ins" data-url="<?= base_url('Das/Instituto'); ?>"  data-user="<?=img_users()?>" class="waves-effect waves-dark">
                                 Solicitud Instituto - Academia
                             </a>
                         </li>
                         <li>
-                            <a class="waves-effect waves-dark" href="<?= base_url('Das/Britanico'); ?>">
+                            <a  id="a_bri" data-url="<?= base_url('Das/Britanico'); ?>"  data-user="<?=img_users()?>" class="waves-effect waves-dark">
                                 Solicitud Inst. Britanico
                             </a>
                         </li>

@@ -1,11 +1,68 @@
 $(function () {
 	"use strict";
-	let base_url = "<?= base_url(); ?>";
+
+	let mybase_url = $("#url_base").val();
 	$(".input_numb").on("input", function () {
 		this.value = this.value.replace(/[^0-9.]/g, "");
 	});
 	$(".input_txt").on("input", function () {
 		this.value = this.value.replace(/[^a-zA-Z ]/g, "");
+	});
+	$("#a_uni").on("click", (e) => {
+		e.preventDefault();
+
+		if ($("#a_uni").data("user") == "1") {
+			Swal.fire({
+				type: "error",
+				title: "Error de Datos",
+				text: "Al parecer no has rellenado todos los datos en perfil. Importante agregar las imagenes de FIRMA, DNI y CIP!",
+				confirmButtonText: "Dirigirme a Perfil",
+			}).then((result) => {
+				if (result.value) {
+					location.href = mybase_url + "mi-perfil";
+				}
+			});
+		} else {
+			location.href = $("#a_uni").data("url");
+		}
+	});
+
+	$("#a_ins").on("click", (e) => {
+		e.preventDefault();
+
+		if ($("#a_ins").data("user") == "1") {
+			Swal.fire({
+				type: "error",
+				title: "Error de Datos",
+				text: "Al parecer no has rellenado todos los datos en perfil. Importante agregar las imagenes de FIRMA, DNI y CIP!",
+				confirmButtonText: "Dirigirme a Perfil",
+			}).then((result) => {
+				if (result.value) {
+					location.href = mybase_url + "mi-perfil";
+				}
+			});
+		} else {
+			location.href = $("#a_ins").data("url");
+		}
+	});
+
+	$("#a_bri").on("click", (e) => {
+		e.preventDefault();
+
+		if ($("#a_bri").data("user") == "1") {
+			Swal.fire({
+				type: "error",
+				title: "Error de Datos",
+				text: "Al parecer no has rellenado todos los datos en perfil. Importante agregar las imagenes de FIRMA, DNI y CIP!",
+				confirmButtonText: "Dirigirme a Perfil",
+			}).then((result) => {
+				if (result.value) {
+					location.href = mybase_url + "mi-perfil";
+				}
+			});
+		} else {
+			location.href = $("#a_bri").data("url");
+		}
 	});
 });
 var base_url = "http://localhost/dev-cob/";

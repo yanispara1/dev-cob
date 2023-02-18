@@ -223,3 +223,14 @@ function status_order($status)
     echo '<span class="label label-danger">Cancelado</span>';
   }
 }
+
+function img_users()
+{
+  $ci = get_instance();
+
+  if($ci->session->userdata('img_signature') == 'assets/images/no-photo.jpg' || $ci->session->userdata('img_cip') == 'assets/images/no-photo.jpg' || $ci->session->userdata('img_dni') == 'assets/images/no-photo.jpg'){
+    echo "1";
+  }else{
+    echo "2";
+  }
+}
