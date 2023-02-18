@@ -5,6 +5,9 @@ $(function () {
 		order: [[0, "desc"]],
 	});
 
+	$("#tb_c").select2();
+	$("#tb_cl").select2();
+
 	let date = moment().format("DD/MM/YYYY");
 	$("#tb_d").bootstrapMaterialDatePicker({
 		weekStart: 0,
@@ -38,11 +41,11 @@ $(function () {
 				if (res.key == 200) {
 					t.row
 						.add([
-							'<button OnClick="viewRcvd(' +
+							'<button class="btn btn-info" OnClick="viewRcvd(' +
 								res.id +
 								", " +
 								res.ext +
-								')">' +
+								')"><i class="fas fa-file-image"></i>' +
 								res.rsp +
 								"</button>",
 							rowfrm[0].value,
@@ -52,7 +55,7 @@ $(function () {
 							rowfrm[4].value,
 							rowfrm[6].value,
 							rowfrm[5].value,
-							'<button OnClick="decree(0,' +
+							'<button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree(0,' +
 								res.id +
 								')"> No Decretado</button>',
 						])
@@ -85,8 +88,8 @@ $(function () {
 					$("#btn_rcvd").removeAttr("disabled");
 				}
 			})
-			.fail(() => {
-				alert("error");
+			.fail((error) => {
+				console.log(error.responseText);
 			});
 	});
 
@@ -119,7 +122,7 @@ $(function () {
 					.each(function () {
 						if ($(this).attr("id") == "d" + id_cr) {
 							$("#d" + id_cr).html(
-								'<button Onclick="decree(' +
+								'<button class="btn waves-effect waves-light w-100 btn-info" Onclick="decree(' +
 									val +
 									"," +
 									id_cr +
@@ -130,16 +133,15 @@ $(function () {
 						}
 					});
 				successMsg(
-					"Modificación Correcto",
-					"La correspondencia se modifico correctamente",
+					"Modificación Correcta",
+					"La correspondencia se decreto correctamente",
 					"#ff6849",
 					"success"
 				);
 
 				$(".mdl_range").fadeOut();
 				$(".select2").empty();
-		$("#decree").modal("hide");
-
+				$("#decree").modal("hide");
 			}
 		});
 	});

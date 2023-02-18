@@ -56,6 +56,7 @@ class Correspondence extends CI_Controller
                 'rcvd_by' => $this->input->post('tb_rp'),
                 'ext_rcvd' => $ext,
                 'decree' => "0",
+                'status' => "1",
             );
             $qy = $this->Correspondence_model->insert($data, 'tbl_received_corr');
             $id = str_pad($qy, 3, '0', STR_PAD_LEFT);
@@ -89,7 +90,7 @@ class Correspondence extends CI_Controller
         if ($this->session->userdata('user_id') != $qy->jefe_rol) {
             $jsonData['rsp'] = 400;
         } else {
-            $row = $this->Correspondence_model->update(array('decree' => $val), array('id_rcvd_cr ' => $id), 'tbl_received_corr');
+            $row = $this->Correspondence_model->update(array('decree' => $val, 'status' => '2'), array('id_rcvd_cr ' => $id), 'tbl_received_corr');
             $jsonData['rsp'] = 200;
         }
         header('Content-type: application/json; charset=utf-8');

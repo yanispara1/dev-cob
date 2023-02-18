@@ -103,7 +103,9 @@
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
-            <div class="row">
+        <div class="row">
+            <?php if ($this->session->userdata('user_type') == 11) { ?>
+
                 <div class="col-12">
                     <form id="send_rcvd" enctype="multipart/form-data">
                         <div class="card" id="data_fam">
@@ -125,15 +127,30 @@
                                     </div>
                                     <!--/span-->
                                     <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" required name="tb_c" id="tb_c" placeholder="Enter Name here">
-                                            <label for="tb-c">Clase</label>
+                                        <div class="form-group mb-3">
+                                            <label for="tb-d">Clase</label>
+                                            <select id="tb_c" name="tb_c" class="select2 form-control form-select" style="width: 100%; height:36px;position:fixed">
+                                                <option value="Oficios">Oficios</option>
+                                                <option value="Fax">Fax</option>
+                                                <option value="Solicitud">Solicitud</option>
+                                                <option value="Directiva">Directiva</option>
+                                                <option value="Informe">Informe</option>
+                                                <option value="Hoja de Tramite">Hoja de Tramite</option>
+                                                <option value="O.G.E">O.G.E</option>
+                                                <option value="Hoja de coordinación">Hoja de coordinación</option>
+                                                <option value="Oficio Multiple">Oficio Multiple</option>
+                                                <option value="Fax Multiple">Fax Multiple</option>
+                                                <option value="Otros">Otros</option>
+                                                <optgroup label="Empresas">
+                                                    <option value="Canta">Canta</option>
+                                                </optgroup>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control" required name="tb_i" id="tb_i" placeholder="Enter Name here">
-                                            <label for="tb-i">Indicativo</label>
+                                            <label for="tb-d">Inidicativo</label>
                                         </div>
                                     </div>
                                     <!--/span-->
@@ -148,9 +165,17 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" required name="tb_cl" id="tb_cl" placeholder="Enter Name here">
-                                            <label for="tb-cl">Clasificación</label>
+                                        <div class="form-group mb-3">
+                                            <label for="tb-d">Clasificación</label>
+
+                                            <select id="tb_cl" name="tb_cl" class="select2 form-control form-select" style="width: 100%; height:36px;position:fixed">
+                                                <option value="Olaya">Olaya</option>
+                                                <option value="O.P.E">O.P.E</option>
+                                                <option value="E. Inf.">E. Inf.</option>
+                                                <option value="Urgente">Urgente</option>
+                                                <option value="Muy urgente">Muy urgente</option>
+                                            </select>
+
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -198,13 +223,12 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
                 <!-- ============================================================== -->
                 <!-- Start Card User -->
                 <!-- ============================================================== -->
-
-            </div>
+            <?php } ?>
+        </div>
 
         <div class="row">
             <div class="col-12">
@@ -214,7 +238,7 @@
                             <table id="table_rcvd" class="table table-responsive table-striped border">
                                 <thead>
                                     <tr>
-                                        <th> N° DE ORDEN</th>
+                                        <th style="min-width: 80px;"> N° DE ORDEN</th>
                                         <th style="min-width: 100px;">REMITENTE</th>
                                         <th style="min-width: 100px;">CLASE</th>
                                         <th style="min-width: 100px;">INDICATIVO</th>
@@ -227,6 +251,8 @@
                                         <?php } else { ?>
                                             <th style="min-width: 130px;">ACCIONES</th>
                                         <?php } ?>
+                                        <th style="min-width: 130px;">ESTADO</th>
+
                                     </tr>
                                 </thead>
 
@@ -235,7 +261,7 @@
                                     foreach ($rows as $key => $row) {
                                     ?>
                                         <tr id="r<?= $row->id_rcvd_cr ?>">
-                                            <td> <button OnClick="viewRcvd(<?= $row->id_rcvd_cr . ", '" . $row->ext_rcvd . "'" ?>)"> <?= str_pad($row->id_rcvd_cr, 3, '0', STR_PAD_LEFT) ?></button></td>
+                                            <td> <button class="btn btn-info" OnClick="viewRcvd(<?= $row->id_rcvd_cr . ", '" . $row->ext_rcvd . "'" ?>)"><i class="fas fa-file-image"></i> <?= str_pad($row->id_rcvd_cr, 3, '0', STR_PAD_LEFT) ?></button></td>
                                             <td><?= $row->sender_rcvd ?></td>
                                             <td><?= $row->class_rcvd ?></td>
                                             <td><?= $row->indicative_rcvd ?></td>
@@ -244,24 +270,27 @@
                                             <td><?= $row->issue_rcvd ?></td>
                                             <td><?= $row->rcvd_by ?></td>
                                             <?php if ($type_user) { ?>
-                                                <td id="d<?= $row->id_rcvd_cr == true ?>">
+                                                <td id="d<?= $row->id_rcvd_cr ?>">
+
                                                     <?php
                                                     if ($row->decree == "0") {
                                                     ?>
-                                                        <button OnClick="decree( 0, <?= $row->id_rcvd_cr ?>)"> No Decretado</button>
-                                                    <?php
-
-                                                    } else {
-                                                    ?>
-                                                        <button OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>)"><?= $row->name_rol ?></button>
-                                                    <?php
-
-                                                    }
-                                                    ?>
+                                                        <button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree( 0, <?= $row->id_rcvd_cr ?>)"> No Decretado</button>
                                                 </td>
-                                            <?php } else { ?>
-                                                <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="label label-success">Responder</a></td>
-                                            <?php } ?>
+                                            <?php
+                                                    } else {
+                                            ?>
+                                                <button class="btn waves-effect waves-light w-100 btn-info" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>)"><?= $row->name_rol ?></button>
+                                            <?php
+                                                    } 
+                                            ?>
+                                            
+
+                                        <?php }
+                                        status_received($row->status);
+                                            if ($this->session->userdata('user_type') == $row->decree) { ?>
+                                            <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="btn btn-success">Responder</a></td>
+                                        <?php } ?>
                                         </tr>
 
                                     <?php

@@ -224,13 +224,28 @@ function status_order($status)
   }
 }
 
+function status_received($status)
+{
+  if ($status == 1) {
+    echo '<td><span class="btn btn-danger">No Decretado</span></td>';
+  } elseif ($status == 2) {
+    echo '<td><span class="btn btn-warning">Pendiente</span></td>';
+  } elseif ($status == 3) {
+    echo '<td><span class="btn btn-info">En Proceso</span></td>';
+  } elseif ($status == 4) {
+    echo '<td><span class="btn btn-success">Aceptado</span></td>';
+  
+  } elseif ($status == 5) {
+  }
+}
+
 function img_users()
 {
   $ci = get_instance();
 
-  if($ci->session->userdata('img_signature') == 'assets/images/no-photo.jpg' || $ci->session->userdata('img_cip') == 'assets/images/no-photo.jpg' || $ci->session->userdata('img_dni') == 'assets/images/no-photo.jpg'){
+  if ($ci->session->userdata('img_signature') == 'assets/images/no-photo.jpg' || $ci->session->userdata('img_cip') == 'assets/images/no-photo.jpg' || $ci->session->userdata('img_dni') == 'assets/images/no-photo.jpg') {
     echo "1";
-  }else{
+  } else {
     echo "2";
   }
 }
