@@ -188,7 +188,7 @@ function viewRcvd(id, ext) {
 		$("#view_img").removeAttr("style");
 		$("#view_img").attr(
 			"src",
-			location.origin + "/dev-cob/assets/images/cr_recvd/" + id + "." + ext
+			mybase_url + "assets/images/cr_recvd/" + id + "." + ext
 		);
 	}, 800);
 }
