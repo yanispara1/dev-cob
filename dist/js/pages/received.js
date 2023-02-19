@@ -180,6 +180,7 @@ function decree(dec, id_cr) {
 	});
 }
 function viewRcvd(id, ext) {
+	let mybase_url = $("#url_base").val();
 	$("#tooltipmodals").modal({ backdrop: "static", keyboard: false });
 	$("#tooltipmodals").modal("show");
 
