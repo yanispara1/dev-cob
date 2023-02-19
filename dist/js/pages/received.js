@@ -63,7 +63,7 @@ $(function () {
 					$("#send_rcvd")[0].reset();
 					$("#img_r").attr(
 						"src",
-						location.origin + "/dev-cob/assets/images/square_p.jpg"
+						location.origin + "/assets/images/square_p.jpg"
 					);
 					$("#file-1-preview div").html("<span>+</span>");
 					$("#tb_d").val(date);

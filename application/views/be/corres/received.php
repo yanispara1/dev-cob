@@ -169,6 +169,7 @@
                                             <label for="tb-d">Clasificación</label>
 
                                             <select id="tb_cl" name="tb_cl" class="select2 form-control form-select" style="width: 100%; height:36px;position:fixed">
+                                                <option value="Común">Común</option>
                                                 <option value="Olaya">Olaya</option>
                                                 <option value="O.P.E">O.P.E</option>
                                                 <option value="E. Inf.">E. Inf.</option>
