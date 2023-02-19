@@ -58,6 +58,7 @@ $(function () {
 							'<button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree(0,' +
 								res.id +
 								')"> No Decretado</button>',
+								'<td><span class="btn btn-danger">No Decretado</span></td>'
 						])
 						.draw(false);
 					$("#send_rcvd")[0].reset();
