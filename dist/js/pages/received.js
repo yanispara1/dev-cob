@@ -35,6 +35,7 @@ $(function () {
 			processData: false,
 			beforeSend: () => {
 				$("#btn_rcvd").attr("disabled", "disabled");
+				$("#btn_rcvd").text("Cargando...");
 			},
 		})
 			.done((res) => {
@@ -45,7 +46,7 @@ $(function () {
 								res.id +
 								", " +
 								res.ext +
-								')"><i class="fas fa-file-image"></i>' +
+								')"><i class="fas fa-file-image"></i> ' +
 								res.rsp +
 								"</button>",
 							rowfrm[0].value,
@@ -58,7 +59,7 @@ $(function () {
 							'<button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree(0,' +
 								res.id +
 								')"> No Decretado</button>',
-								'<td><span class="btn btn-danger">No Decretado</span></td>'
+							'<td><span class="btn btn-danger">No Decretado</span></td>',
 						])
 						.draw(false);
 					$("#send_rcvd")[0].reset();
@@ -70,6 +71,7 @@ $(function () {
 					$("#tb_d").val(date);
 
 					$("#btn_rcvd").removeAttr("disabled");
+					$("#btn_rcvd").text("Enviar");
 
 					successMsg(
 						"Correspondecia Agregado",
