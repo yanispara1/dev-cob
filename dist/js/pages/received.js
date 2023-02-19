@@ -122,7 +122,7 @@ $(function () {
 					.each(function () {
 						if ($(this).attr("id") == "d" + id_cr) {
 							$("#d" + id_cr).html(
-								'<button class="btn waves-effect waves-light w-100 btn-info" Onclick="decree(' +
+								'<button class="btn waves-effect waves-light w-100 btn-primary" Onclick="decree(' +
 									val +
 									"," +
 									id_cr +

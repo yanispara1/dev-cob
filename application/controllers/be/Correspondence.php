@@ -169,6 +169,9 @@ class Correspondence extends CI_Controller
             $jsonData['rsp'] = $id;
             $jsonData['id'] = $qy;
             $jsonData['ext'] = "'" . $ext . "'";
+            if ($this->input->post('id_rcvd') != null) {
+                $row = $this->Correspondence_model->update(array('status' => '3'), array('id_rcvd_cr ' => $this->input->post('id_rcvd')), 'tbl_received_corr');
+            }
         } else {
             $jsonData['key'] = 400;
         }

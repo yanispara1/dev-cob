@@ -56,7 +56,11 @@ $(function () {
 						.draw(false);
 					$("#send_frwd")[0].reset();
 					$("#tb_d").val(date);
-
+					$("#img_r").attr(
+						"src",
+						location.origin + "/dev-cob/assets/images/square_p.jpg"
+					);
+					$("#file-2-preview div").html("<span>+</span>");
 					successMsg(
 						"Correspondecia Agregado",
 						"Nueva correspondecia recibida agregado",

@@ -280,17 +280,18 @@
                                             <?php
                                                     } else {
                                             ?>
-                                                <button class="btn waves-effect waves-light w-100 btn-info" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>)"><?= $row->name_rol ?></button>
+                                                <button class="btn waves-effect waves-light w-100 btn-primary" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>)"><?= $row->name_rol ?></button>
                                             <?php
                                                     } 
                                             ?>
                                             
 
                                         <?php }
-                                        status_received($row->status);
                                             if ($this->session->userdata('user_type') == $row->decree) { ?>
                                             <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="btn btn-success">Responder</a></td>
-                                        <?php } ?>
+                                        
+                                        <?php } status_received($row->status);?>
+                                        
                                         </tr>
 
                                     <?php
