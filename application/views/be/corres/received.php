@@ -1,4 +1,16 @@
 <style>
+    .pdfview {
+        /* Centrado */
+        margin: auto;
+        display: block;
+        /* Tamaño */
+        width: 850px;
+        height: 90vh;
+        /* Mejorar aspecto */
+        border-radius: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
     .zoom {
         display: inline-block;
         position: relative;
@@ -283,16 +295,17 @@
                                             ?>
                                                 <button class="btn waves-effect waves-light w-100 btn-primary" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>)"><?= $row->name_rol ?></button>
                                             <?php
-                                                    } 
+                                                    }
                                             ?>
-                                            
+
 
                                         <?php }
                                             if ($this->session->userdata('user_type') == $row->decree) { ?>
                                             <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="btn btn-success">Responder</a></td>
-                                        
-                                        <?php } status_received($row->status);?>
-                                        
+
+                                        <?php }
+                                            status_received($row->status); ?>
+
                                         </tr>
 
                                     <?php
@@ -310,7 +323,7 @@
         <!-- End PAge Content -->
         <!-- ============================================================== -->
         <div id="tooltipmodals" class="modal" tabindex="-1" role="dialog" aria-labelledby="tooltipmodel" aria-hidden="true" style="background:transparent">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4>Foto Correspondecia Recibida</h4>
@@ -332,7 +345,15 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
+        <div id="view_pdf" class="modal" tabindex="-1" role="dialog" aria-labelledby="tooltipmodel" aria-hidden="true" style="background:transparent">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content" style="background-color: transparent; border:0px">
+                    <object class="pdfview" type="application/pdf" id="object_pdf"></object>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
         <div class="modal" tabindex="-1" role="dialog" aria-labelledby="tooltipmodel" aria-hidden="true" id="decree">
             <div class="modal-dialog modal-dialog-centered zoomIn animated">

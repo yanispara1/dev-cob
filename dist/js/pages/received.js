@@ -1,5 +1,6 @@
 $(function () {
 	"use strict";
+	let mybase_url = $("#url_base").val();
 
 	let t = $("#table_rcvd").DataTable({
 		order: [[0, "desc"]],
@@ -63,10 +64,7 @@ $(function () {
 						])
 						.draw(false);
 					$("#send_rcvd")[0].reset();
-					$("#img_r").attr(
-						"src",
-						location.origin + "/assets/images/square_p.jpg"
-					);
+					$("#img_r").attr("src", mybase_url + "/assets/images/square_p.jpg");
 					$("#file-1-preview div").html("<span>+</span>");
 					$("#tb_d").val(date);
 
@@ -181,17 +179,26 @@ function decree(dec, id_cr) {
 }
 function viewRcvd(id, ext) {
 	let mybase_url = $("#url_base").val();
-	$("#tooltipmodals").modal({ backdrop: "static", keyboard: false });
-	$("#tooltipmodals").modal("show");
 
-	setTimeout(() => {
-		$("#spinn_img").attr("style", "display: none");
-		$("#view_img").removeAttr("style");
-		$("#view_img").attr(
-			"src",
+	if (ext == "png" || ext == "jpg" || ext == "jpeg") {
+		$("#tooltipmodals").modal({ backdrop: "static", keyboard: false });
+		$("#tooltipmodals").modal("show");
+		setTimeout(() => {
+			$("#spinn_img").attr("style", "display: none");
+			$("#view_img").removeAttr("style");
+			$("#view_img").attr(
+				"src",
+				mybase_url + "assets/images/cr_recvd/" + id + "." + ext
+			);
+		}, 800);
+	} else {
+		$("#view_pdf").modal("show");
+		$("#object_pdf").removeAttr("style");
+		$("#object_pdf").attr(
+			"data",
 			mybase_url + "assets/images/cr_recvd/" + id + "." + ext
 		);
-	}, 800);
+	}
 }
 
 function closeRcvd() {

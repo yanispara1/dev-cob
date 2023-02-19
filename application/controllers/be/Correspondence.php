@@ -61,7 +61,7 @@ class Correspondence extends CI_Controller
             $qy = $this->Correspondence_model->insert($data, 'tbl_received_corr');
             $id = str_pad($qy, 3, '0', STR_PAD_LEFT);
             $config['upload_path'] = 'assets/images/cr_recvd/';
-            $config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
+            $config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG|pdf|doc|docx';
             $img = $qy . "." . pathinfo($_FILES['file_1']['name'], PATHINFO_EXTENSION);
             $config['file_name'] = $img;
             $this->load->library('upload', $config);
@@ -165,6 +165,8 @@ class Correspondence extends CI_Controller
                 $error = array('error' => $this->upload->display_errors());
                 var_dump($error) . "<br>";
             }
+
+
             $jsonData['key'] = 200;
             $jsonData['rsp'] = $id;
             $jsonData['id'] = $qy;
