@@ -134,6 +134,7 @@ $route['be/correspondecias-recibidas'] = 'be/correspondence/received';
 $route['be/correspondecias-remitidas'] = 'be/correspondence/forwarded';
 $route['be/archivos-adjuntos'] = 'be/correspondence/driveFrwrd';
 $route['be/descargar'] = 'be/correspondence/donwload';
+$route['be/ver-decreto/(:any)'] = 'be/correspondence/viewPDFDecree/$1';
 
 /*
     /ROUTES BE ORDERS

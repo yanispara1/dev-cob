@@ -110,19 +110,7 @@ function destiny(id) {
 		}
 	});
 }
-$.fn.autoResize = function () {
-	let r = (e) => {
-		e.style.height = "";
-		e.style.height = e.scrollHeight + "px";
-	};
-	return this.each((i, e) => {
-		e.style.overflow = "hidden";
-		r(e);
-		$(e).bind("input", (e) => {
-			r(e.target);
-		});
-	});
-};
+
 function previewBeforeUpload(id) {
 	document.querySelector("#" + id).addEventListener("change", function (e) {
 		if (e.target.files.length == 0) {

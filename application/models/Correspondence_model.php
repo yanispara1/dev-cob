@@ -19,6 +19,20 @@ class Correspondence_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function get_decree($where)
+    {
+        if ($where) {
+            $this->db->select('*');
+            $this->db->from('tbl_decree');
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->row();
+        }
+        $this->db->select('*');
+        $this->db->from('tbl_decree');
+        return $this->db->get()->result();
+    }
+
     public function dataDrive($where)
     {
 
@@ -78,6 +92,16 @@ class Correspondence_model extends CI_Model
         $this->db->join('tbl_rol d', 'd.id_rol = c.decree');
         $this->db->where($where);
         return $this->db->get()->result();
+    }
+    function dataCorrr($where)
+    {
+        $this->db->select('c.*');
+        $this->db->select('d.*');
+        $this->db->from('tbl_received_corr c');
+        $this->db->join('tbl_rol d', 'd.id_rol = c.decree');
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->row();
     }
     public function get_record($where, $table)
     {

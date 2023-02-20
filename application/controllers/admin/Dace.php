@@ -79,42 +79,7 @@ class Dace extends CI_Controller
 
 
 
-		if ($_FILES['img_tit']['name'] != "") {
 
-			$config['upload_path'] = 'assets/images/fingerprint/';
-			$config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
-
-			$image_tit = date('dmYhis') . '_' . rand(0, 99999) . "." . pathinfo($_FILES['img_tit']['name'], PATHINFO_EXTENSION);
-
-			$config['file_name'] = $image_tit;
-
-			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload('img_tit')) {
-				$error = array('error' => $this->upload->display_errors());
-
-				var_dump($error) . "<br>";
-			}
-		}
-
-
-		if ($_FILES['img_con']['name'] != "") {
-
-			$config['upload_path'] = 'assets/images/fingerprint/';
-			$config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
-
-			$image_con = date('dmYhis') . '_' . rand(0, 99999) . "." . pathinfo($_FILES['img_con']['name'], PATHINFO_EXTENSION);
-
-			$config['file_name'] = $image_con;
-
-			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload('img_con')) {
-				$error = array('error' => $this->upload->display_errors());
-
-				var_dump($error) . "<br>";
-			}
-		}
 
 		$data_form = array(
 			'user_formdace' => $this->session->userdata('user_id'),
@@ -122,8 +87,8 @@ class Dace extends CI_Controller
 			'observation_user' => $obs_user,
 			'assignment' => $assignmen,
 			'assignment_type' => $assig_type,
-			'img_tit' => $image_tit,
-			'img_con' => $image_con,
+			'img_tit' => 'sdfadf',
+			'img_con' => 'sdfsadf',
 			'date_create_dace' => date(DATE_W3C)
 
 		);

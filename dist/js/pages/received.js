@@ -5,6 +5,8 @@ $(function () {
 	let t = $("#table_rcvd").DataTable({
 		order: [[0, "desc"]],
 	});
+	$("#tb_as").autoResize();
+	$("#issue_decree").autoResize();
 
 	$("#tb_c").select2();
 	$("#tb_cl").select2();
@@ -96,18 +98,37 @@ $(function () {
 
 	$("#close").on("click", () => {
 		$(".select2").empty();
+		$("#issue_decree").empty();
 		$("#decree").modal("hide");
+		$("#urg").prop("checked", false);
+		$("#m_urg").prop("checked", false);
 	});
 	$("#btn_decree").on("click", () => {
 		let val = $("#slct_rol").val();
 		let slcttxt = $("#slct_rol option:selected").html();
 		let id_cr = $("#id_cr").val();
+		let slct_decree = $("#slct_decree").val(),
+			issue = $("#issue_decree").val(),
+			radio;
 
+		if ($("#urg").is(":checked")) {
+			radio = "1";
+		} else {
+			radio = "2";
+		}
+		let array_var = {
+			val: val,
+			id_cr: id_cr,
+			radio: radio,
+			issue: issue,
+			slct_decree: slct_decree,
+		};
 		$.ajax({
-			method: "post",
+			method: "POST",
 			url: "correspondence/decreeTeam",
-			data: { val: val, id_cr: id_cr },
-			dataType: "json",
+			data: array_var,
+			dataType: "JSON",
+			async: true,
 		}).done((data) => {
 			if (data.rsp == 400) {
 				successMsg(
@@ -127,6 +148,11 @@ $(function () {
 									val +
 									"," +
 									id_cr +
+									"," +
+									slct_decree +
+									"," +
+									radio +
+									
 									')">' +
 									slcttxt +
 									"</button>"
@@ -148,7 +174,7 @@ $(function () {
 	});
 });
 
-function decree(dec, id_cr) {
+function decree(dec, id_cr, mode_decree, urg) {
 	//Initialize Decree
 
 	$("#decree").modal({ backdrop: "static", keyboard: false });
@@ -157,9 +183,13 @@ function decree(dec, id_cr) {
 	let select = $("#slct_rol").select2({
 		dropdownParent: $("#decree"),
 	});
+	let slct_decree = $("#slct_decree").select2({
+		dropdownParent: $("#decree"),
+	});
 	$.ajax({
 		method: "post",
 		url: "correspondence/userView",
+		data: {id_corr:id_cr},
 		dataType: "json",
 	}).done((data) => {
 		$("#id_cr").val(id_cr);
@@ -175,6 +205,23 @@ function decree(dec, id_cr) {
 				select.append('<option value="' + id + '">' + name + "</option>");
 			}
 		}
+		for (let j = 0; j < data.decree.length; j++) {
+			let id = data.decree[j]["id_decree"];
+			let name = data.decree[j]["name_decree"];
+			if (id == mode_decree) {
+				slct_decree.append(
+					'<option selected value="' + id + '">' + name + "</option>"
+				);
+			} else {
+				slct_decree.append('<option value="' + id + '">' + name + "</option>");
+			}
+		}
+		if (urg == "1") {
+			$("#urg").prop("checked", true);
+		} else {
+			$("#m_urg").prop("checked", true);
+		}
+		$("#issue_decree").val(data.corr[0]["issue_decree"]);
 	});
 }
 function viewRcvd(id, ext) {

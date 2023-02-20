@@ -84,13 +84,24 @@ class Correspondence extends CI_Controller
     {
         $val = $this->input->post('val');
         $id = $this->input->post('id_cr');
+        $radio = $this->input->post('radio');
+        $issue = $this->input->post('issue');
+        $slct_decree = $this->input->post('slct_decree');
         $qy = $this->Correspondence_model->get_rol(array('name_rol' => 'JEM'));
+
 
         $jsonData = array();
         if ($this->session->userdata('user_id') != $qy->jefe_rol) {
             $jsonData['rsp'] = 400;
         } else {
-            $row = $this->Correspondence_model->update(array('decree' => $val, 'status' => '2'), array('id_rcvd_cr ' => $id), 'tbl_received_corr');
+            $data = array(
+                'decree' => $val,
+                'status' => '2',
+                'mode_decree' => $slct_decree,
+                'urg' => $radio,
+                'issue_decree' => $issue,
+            );
+            $row = $this->Correspondence_model->update($data, array('id_rcvd_cr ' => $id), 'tbl_received_corr');
             $jsonData['rsp'] = 200;
         }
         header('Content-type: application/json; charset=utf-8');
@@ -184,6 +195,10 @@ class Correspondence extends CI_Controller
     public function userView()
     {
         $jsonData['rol'] = $this->Correspondence_model->get_record(null, 'tbl_rol');
+        $jsonData['decree'] = $this->Correspondence_model->get_decree(null);
+        $jsonData['corr'] = $this->Correspondence_model->dataCorr(array('id_rcvd_cr' => $this->input->post('id_corr')));
+
+
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
     }
@@ -195,6 +210,11 @@ class Correspondence extends CI_Controller
 
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
+    }
+    public function viewPDFDecree($id)
+    {
+        $data['row'] = $this->Correspondence_model->dataCorrr(array('id_rcvd_cr' => $id));;
+        $this->load->view("be/corres/decree_pdf", $data);
     }
     public function saveFiles()
     {

@@ -201,7 +201,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <textarea type="text" class="form-control" name="tb_as" id="tb_as" placeholder="Asunto"></textarea>
+                                            <textarea type="text" class="form-control" name="tb_as" id="tb_as" placeholder="Asunto" style="overflow: hidden;"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -288,12 +288,12 @@
                                                     <?php
                                                     if ($row->decree == "0") {
                                                     ?>
-                                                        <button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree( 0, <?= $row->id_rcvd_cr ?>)"> No Decretado</button>
+                                                        <button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree( 0, <?= $row->id_rcvd_cr ?>,<?= $row->mode_decree ?>,<?= $row->urg ?>)"> No Decretado</button>
                                                 </td>
                                             <?php
                                                     } else {
                                             ?>
-                                                <button class="btn waves-effect waves-light w-100 btn-primary" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>)"><?= $row->name_rol ?></button>
+                                                <button class="btn waves-effect waves-light w-100 btn-primary" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>,<?= $row->mode_decree ?>,<?= $row->urg ?>)"><?= $row->name_rol ?></button>
                                             <?php
                                                     }
                                             ?>
@@ -362,12 +362,27 @@
                         <h4 id="title_decree" class="modal-title"></h4>
                     </div>
                     <div class="modal-body bg-secondary">
-                        <form>
+                        <form id="send_decree">
                             <div class="form-group">
                                 <label id="lbl_user" for="recipient-name" class="form-label"></label>
-                                <select id="slct_rol" class="select2 form-control form-select" style="width: 100%; height:36px;position:fixed">
+                                <select id="slct_rol" name="slct_rol" class="select2 form-control form-select" style="width: 100%; height:36px;position:fixed">
                                 </select>
                                 <input type="hidden" id="id_cr">
+                            </div>
+                            <div class="form-group">
+                                <label id="lbl_user" for="recipient-name" class="form-label"></label>
+                                <select id="slct_decree" name="slct_decree" class="select2 form-control form-select" style="width: 100%; height:36px;position:fixed">
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" class="form-check-input" value="1" name="urg" id="urg">
+                                <label class="label label-warning" for="urg">Urgente</label>
+                                <input type="radio" class="form-check-input" value="2" name="urg" id="m_urg">
+                                <label class="label label-danger" for="m_urg">Muy Urgente</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea type="text" class="form-control" name="issue_decree" id="issue_decree" placeholder="Observaciones" style="overflow: hidden;"></textarea>
                             </div>
                         </form>
                     </div>
