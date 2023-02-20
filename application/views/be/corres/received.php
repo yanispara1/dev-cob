@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" required name="tb_rp" id="tb_rp" placeholder="Enter Name here" disabled value="----">
+                                            <input type="text" class="form-control" required name="tb_rp" id="tb_rp" placeholder="Enter Name here" disabled value="lo decreta JEM">
                                             <label for="tb-rp">Recibido Por</label>
                                         </div>
                                     </div>
