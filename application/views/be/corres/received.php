@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" required name="tb_rp" id="tb_rp" placeholder="Enter Name here">
+                                            <input type="text" class="form-control" required name="tb_rp" id="tb_rp" placeholder="Enter Name here" disabled value="----">
                                             <label for="tb-rp">Recibido Por</label>
                                         </div>
                                     </div>
@@ -306,7 +306,7 @@
                                             <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="btn btn-success">Responder</a> </td>
 
                                         <?php }
-                                            status_received($row->status,$row->id_rcvd_cr); ?>
+                                            status_received($row->status, $row->id_rcvd_cr); ?>
 
                                         </tr>
 
@@ -389,7 +389,7 @@
                         </form>
                     </div>
                     <div class="modal-footer bg-secondary">
-                        
+
 
                         <button type="button" class="btn btn-danger waves-effect" id="close">
                             Cerrar

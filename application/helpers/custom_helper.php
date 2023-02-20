@@ -225,7 +225,7 @@ function status_order($status)
 }
 
 function status_received($status,$id)
-{
+{ 
   if ($status == 1) {
     echo '<td><span class="btn btn-danger">No Decretado</span></td>';
   } elseif ($status == 2) {
