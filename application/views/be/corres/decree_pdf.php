@@ -22,7 +22,7 @@ $pdf->Ln();
 
 $pdf->SetFont('Arial', 'B', 13);
 
-$pdf->Cell(180, 8, utf8_decode('DEPARTAMENTO DECRETADO: '), '', 1, 'C', false);
+$pdf->Cell(180, 8, utf8_decode('DEPARTAMENTO DECRETADO: ' .$row->name_rol), '', 1, 'C', false);
 
 $pdf->Ln();
 $pdf->Ln();

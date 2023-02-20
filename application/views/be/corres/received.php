@@ -294,6 +294,8 @@
                                                     } else {
                                             ?>
                                                 <button class="btn waves-effect waves-light w-100 btn-primary" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>,<?= $row->mode_decree ?>,<?= $row->urg ?>)"><?= $row->name_rol ?></button>
+
+
                                             <?php
                                                     }
                                             ?>
@@ -301,10 +303,10 @@
 
                                         <?php }
                                             if ($this->session->userdata('user_type') == $row->decree) { ?>
-                                            <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="btn btn-success">Responder</a></td>
+                                            <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="btn btn-success">Responder</a> </td>
 
                                         <?php }
-                                            status_received($row->status); ?>
+                                            status_received($row->status,$row->id_rcvd_cr); ?>
 
                                         </tr>
 
@@ -387,6 +389,8 @@
                         </form>
                     </div>
                     <div class="modal-footer bg-secondary">
+                        
+
                         <button type="button" class="btn btn-danger waves-effect" id="close">
                             Cerrar
                         </button>

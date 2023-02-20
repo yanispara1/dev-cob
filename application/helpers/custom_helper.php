@@ -224,16 +224,16 @@ function status_order($status)
   }
 }
 
-function status_received($status)
+function status_received($status,$id)
 {
   if ($status == 1) {
     echo '<td><span class="btn btn-danger">No Decretado</span></td>';
   } elseif ($status == 2) {
-    echo '<td><span class="btn btn-warning">Pendiente</span></td>';
+    echo '<td><a href="'.base_url('be/ver-decreto/'.$id).'" class="btn btn-warning" target="_blank">Pendiente</a></td>';
   } elseif ($status == 3) {
-    echo '<td><span class="btn btn-info">En Proceso</span></td>';
+    echo '<td><a <a href="'.base_url('be/ver-decreto/'.$id).'" class="btn btn-info" target="_blank">En Proceso</a></td>';
   } elseif ($status == 4) {
-    echo '<td><span class="btn btn-success">Aceptado</span></td>';
+    echo '<td><a href="'.base_url('be/ver-decreto/'.$id).'" class="btn btn-success" target="_blank">Aceptado</a></td>';
   
   } elseif ($status == 5) {
   }
