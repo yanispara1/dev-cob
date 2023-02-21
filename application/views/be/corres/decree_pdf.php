@@ -1,5 +1,25 @@
 <?php
 require('assets/fpdf/fpdf.php');
+
+
+$url1 = 'assets/images/qr/decree_' .  $row->id_rcvd_cr . '.png';
+$url2 = base_url() . 'be/ver-decreto/' . $row->id_rcvd_cr;
+
+if (!file_exists($url1)) {
+
+    qr($url1, $url2, $row->id_rcvd_cr);
+}
+
+
+$url3 = 'assets/images/qr/rcvd_' .  $row->id_rcvd_cr . '.png';
+$url4 = base_url() . 'assets/images/cr_recvd/' . $row->id_rcvd_cr . '.' . $row->ext_rcvd;
+
+if (!file_exists($url3)) {
+
+    qr($url3, $url4, $row->id_rcvd_cr);
+}
+
+
 $pdf = new FPDF('P', 'mm', 'A4');
 $pdf->AddPage();
 
@@ -22,7 +42,7 @@ $pdf->Ln();
 
 $pdf->SetFont('Arial', 'B', 13);
 
-$pdf->Cell(180, 8, utf8_decode('DEPARTAMENTO DECRETADO: ' .$row->name_rol), '', 1, 'C', false);
+$pdf->Cell(180, 8, utf8_decode('DEPARTAMENTO DECRETADO: ' . $row->name_rol), '', 1, 'C', false);
 
 $pdf->Ln();
 $pdf->Ln();
@@ -64,7 +84,7 @@ $pdf->Cell(60, 5, '                                      ', '', 0, 'R', false);
 $pdf->Cell(9, 5, $r = ($row->mode_decree == '11') ? ' X' : '', 'LRTB', 0, 'L', false);
 $pdf->Cell(32, 5, 'RESPUESTA', '', 1, 'L', false);
 $pdf->Ln();
-$pdf->Cell(9, 5,$r = ($row->mode_decree == '6') ? ' X' : '', 'LRTB', 0, 'L', false);
+$pdf->Cell(9, 5, $r = ($row->mode_decree == '6') ? ' X' : '', 'LRTB', 0, 'L', false);
 $pdf->Cell(25, 5, 'DIFUSION', '', 0, 'L', false);
 $pdf->Cell(60, 5, '                                      ', '', 0, 'R', false);
 $pdf->Cell(9, 5, $r = ($row->mode_decree == '12') ? ' X' : '', 'LRTB', 0, 'L', false);
@@ -73,7 +93,7 @@ $pdf->Ln();
 $pdf->Cell(9, 5, $r = ($row->mode_decree == '7') ? ' X' : '', 'LRTB', 0, 'L', false);
 $pdf->Cell(25, 5, 'EXPLOTACION', '', 0, 'L', false);
 $pdf->Cell(60, 5, '                                      ', '', 0, 'R', false);
-$pdf->Cell(9, 5,$r = ($row->mode_decree == '13') ? ' X' : '', 'LRTB', 0, 'L', false);
+$pdf->Cell(9, 5, $r = ($row->mode_decree == '13') ? ' X' : '', 'LRTB', 0, 'L', false);
 $pdf->Cell(32, 5, 'ACCION CORRESPONDIENTE', '', 1, 'L', false);
 $pdf->Ln();
 
@@ -110,6 +130,8 @@ $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(90, 4, '', '', 0, 'C', false);
 $pdf->Cell(90, 6, '______________________________', '', 1, 'C', false);
 
+$pdf->Image($url1,  10,262,-90);
+$pdf->Image($url3,  40,262,-90);
 
 $pdf->Cell(90, 4, '', '', 0, 'C', false);
 $pdf->Cell(90, 4, 'O- 224534372- O+', '', 1, 'C', false);

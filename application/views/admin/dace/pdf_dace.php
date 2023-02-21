@@ -507,7 +507,7 @@
     $pdf->SetFont('Arial', '', 10);
     $pdf->Ln();
     $pdf->Cell(201, 5, utf8_decode('EL SUSCRITO SOLICITA ASIGNACIÓN EXCEPCIONAL O ESPECIAL POR EL MOTIVO SIGUIENTE:'), '', 1, '', false);
-SI
+
     $pdf->SetFont('Arial', '', 15);
 
 
