@@ -1,5 +1,6 @@
 $(function () {
 	let extensiones = [];
+	let mybase_url = $("#url_base").val();
 
 	const value = window.location.search;
 	const urlParams = new URLSearchParams(value);
@@ -46,7 +47,7 @@ $(function () {
 						'<div class="drive-item-inner module-inner><div class="drive-item-title"><a href="#">' +
 						r.rows[i]["name_rcvd"] +
 						'</a><div class="drive-item-thumb"><a href="#"><img class="img-responsive" src="' +
-						base_url +
+						mybase_url +
 						"assets/files/received/" +
 						id +
 						"/" +
@@ -54,7 +55,7 @@ $(function () {
 						'"></a></div></div>' +
 						'<div class="drive-item-footer module-footer"><ul class="utilities list-inline">' +
 						'<li><a class="text-dark" href="' +
-						base_url +
+						mybase_url +
 						"assets/files/received/" +
 						id +
 						"/" +
