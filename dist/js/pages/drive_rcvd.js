@@ -39,7 +39,7 @@ $(function () {
 		}).done((r) => {
 			console.log(r.rows);
 			for (let i = 0; i < r.rows.length; i++) {
-				let name = "'" + r.rows[i]["id_file_rcvd "] + "'";
+				let name = "'" + r.rows[i]["name_rcvd"] + "'";
 				$("#div_one").append(
 					'<div class="drive-item module text-center" id="r_' +
 						r.rows[i]["id_file_rcvd"] +
@@ -65,7 +65,7 @@ $(function () {
 						r.rows[i]["name_rcvd"] +
 						'"><i class="fa fa-download"></i></a></li>' +
 						'<li><button style="border:none; background:transparent" onclick="deleteFile(' +
-						r.rows[i]["id_file_rcvd "] +
+						r.rows[i]["id_file_rcvd"] +
 						"," +
 						id +
 						"," +
