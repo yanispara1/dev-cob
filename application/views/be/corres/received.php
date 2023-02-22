@@ -124,7 +124,7 @@
                             <div class="card-header text-white bg-info">
                                 <b>Agregar Nueva Correspondencia Recibida</b>
                                 <div class="card-actions">
-                                    <a class="text-white" data-action="collapse"><i class="ti-plus"></i></a>
+                                    <a class="text-white" data-action="collapse"><i id="icon_form" class="ti-plus"></i></a>
                                 </div>
                             </div>
                             <div class="card-body collapse" id="crd_form">
@@ -133,6 +133,9 @@
                                 <div class="row p-t-20">
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3">
+                                            <input type="hidden" name="name_form" id="name_form" value="save">
+                                            <input type="hidden" name="id_received" id="id_received">
+                                            <input type="hidden" name="extension" id="extension">
                                             <input type="text" class="form-control" required name="tb_r" id="tb_r" placeholder="Enter Name here">
                                             <label for="tb-r">Remitente</label>
                                         </div>
@@ -180,7 +183,7 @@
                                         <div class="form-group mb-3">
                                             <label for="tb-d">Clasificación</label>
 
-                                            <select id="tb_cl" name="tb_cl" class="select2 form-control form-select" style="width: 100%; height:36px;position:fixed">
+                                            <select id="tb_cl" name="tb_cl" class="  form-control form-select" style="width: 100%; height:36px;position:fixed">
                                                 <option value="Común">Común</option>
                                                 <option value="Olaya">Olaya</option>
                                                 <option value="O.P.E">O.P.E</option>
@@ -193,7 +196,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" required name="tb_rp" id="tb_rp" placeholder="Enter Name here" disabled value="lo decreta JEM">
+                                            <input type="text" class="form-control" name="tb_rp" id="tb_rp" placeholder="Enter Name here"  value="lo decreta JEM">
                                             <label for="tb-rp">Recibido Por</label>
                                         </div>
                                     </div>
@@ -226,10 +229,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12">
 
-                                    </div>
                                     <div class="offset-sm-10 col-md-2">
+                                        <button type="submit" style="display:none;" class="btn waves-effect waves-light w-100 btn-danger text-white" id="btn_cancel">CANCELAR</button>
+                                        <button type="submit" style="display:none;" class="btn waves-effect waves-light w-100 btn-success text-white" id="btn_edit">EDITAR</button>
                                         <button type="submit" class="btn waves-effect waves-light w-100 btn-success text-white" id="btn_rcvd">ENVIAR</button>
                                     </div>
                                 </div>
@@ -251,8 +254,8 @@
                             <table id="table_rcvd" class="table table-responsive table-striped border">
                                 <thead>
                                     <tr>
-                                        <th style="min-width: 80px;"> N° DE ORDEN</th>
-                                        <th style="min-width: 100px;">REMITENTE</th>
+                                        <th style="min-width: 100px;"> N° DE ORDEN</th>
+                                        <th style="min-width: 130px;">REMITENTE</th>
                                         <th style="min-width: 100px;">CLASE</th>
                                         <th style="min-width: 100px;">INDICATIVO</th>
                                         <th style="min-width: 100px;">FECHA</th>
@@ -272,16 +275,20 @@
                                 <tbody id="tbody">
                                     <?php
                                     foreach ($rows as $key => $row) {
+                                        $ext = "'" . $row->ext_rcvd . "'";
+
                                     ?>
-                                        <tr id="r<?= $row->id_rcvd_cr ?>">
-                                            <td> <button class="btn btn-info" OnClick="viewRcvd(<?= $row->id_rcvd_cr . ", '" . $row->ext_rcvd . "'" ?>)"><i class="fas fa-file-image"></i> <?= str_pad($row->id_rcvd_cr, 3, '0', STR_PAD_LEFT) ?></button></td>
-                                            <td><?= $row->sender_rcvd ?></td>
-                                            <td><?= $row->class_rcvd ?></td>
-                                            <td><?= $row->indicative_rcvd ?></td>
-                                            <td><?= $row->date_rcvd ?></td>
-                                            <td><?= $row->clasif_rcvd ?></td>
-                                            <td><?= $row->issue_rcvd ?></td>
-                                            <td><?= $row->rcvd_by ?></td>
+                                        <tr id="r<?= $row->id_rcvd_cr ?>" onclick="editDecree(<?= $row->id_rcvd_cr ?>,<?= $ext ?>)" class="tr_data" data-id="<?= $row->id_rcvd_cr ?>">
+                                            <td> <button class="btn btn-info" OnClick="viewRcvd(<?= $row->id_rcvd_cr . ", '" . $row->ext_rcvd . "'" ?>)"><i class="fas fa-file-image"></i> <?= str_pad($row->id_rcvd_cr, 3, '0', STR_PAD_LEFT) ?></button>
+                                                <a class="btn btn-primary" href="<?= base_url('be/archivos-adjuntos-recibido?id=' . $row->id_rcvd_cr) ?>"><i class="fas fa-cloud"></i> </a>
+                                            </td>
+                                            <td><span id="a_<?= $row->id_rcvd_cr ?>"><?= $row->sender_rcvd ?></span></td>
+                                            <td><span id="b_<?= $row->id_rcvd_cr ?>"><?= $row->class_rcvd ?></span></td>
+                                            <td><span id="c_<?= $row->id_rcvd_cr ?>"><?= $row->indicative_rcvd ?></span></td>
+                                            <td><span id="d_<?= $row->id_rcvd_cr ?>"><?= $row->date_rcvd ?></span></td>
+                                            <td><span id="e_<?= $row->id_rcvd_cr ?>"><?= $row->clasif_rcvd ?></span></td>
+                                            <td><span id="f_<?= $row->id_rcvd_cr ?>"><?= $row->issue_rcvd ?></span></td>
+                                            <td><span id="g_<?= $row->id_rcvd_cr ?>"><?= $row->rcvd_by ?></span></td>
                                             <?php if ($type_user) { ?>
                                                 <td id="d<?= $row->id_rcvd_cr ?>">
 

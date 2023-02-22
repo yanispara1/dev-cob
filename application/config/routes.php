@@ -133,6 +133,7 @@ $route['Das/Lista'] = 'admin/das';
 $route['be/correspondecias-recibidas'] = 'be/correspondence/received';
 $route['be/correspondecias-remitidas'] = 'be/correspondence/forwarded';
 $route['be/archivos-adjuntos'] = 'be/correspondence/driveFrwrd';
+$route['be/archivos-adjuntos-recibido'] = 'be/correspondence/driveRcvd';
 $route['be/descargar'] = 'be/correspondence/donwload';
 $route['be/ver-decreto/(:any)'] = 'be/correspondence/viewPDFDecree/$1';
 

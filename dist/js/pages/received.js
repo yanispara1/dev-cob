@@ -42,62 +42,84 @@ $(function () {
 			},
 		})
 			.done((res) => {
-				if (res.key == 200) {
-					t.row
-						.add([
-							'<button class="btn btn-info" OnClick="viewRcvd(' +
-								res.id +
-								", " +
-								res.ext +
-								')"><i class="fas fa-file-image"></i> ' +
-								res.rsp +
-								"</button>",
-							rowfrm[0].value,
-							rowfrm[1].value,
-							rowfrm[2].value,
-							rowfrm[3].value,
-							rowfrm[4].value,
-							rowfrm[6].value,
-							rowfrm[5].value,
-							'<button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree(0,' +
-								res.id +
-								')"> No Decretado</button>',
-							'<td><span class="btn btn-danger">No Decretado</span></td>',
-						])
-						.draw(false);
-					$("#send_rcvd")[0].reset();
-					$("#img_r").attr("src", mybase_url + "/assets/images/square_p.jpg");
-					$("#file-1-preview div").html("<span>+</span>");
-					$("#tb_d").val(date);
+				if (res.sd == 500) {
+					if (res.key == 200) {
+						t.row
+							.add([
+								'<button class="btn btn-info" OnClick="viewRcvd(' +
+									res.id +
+									", " +
+									res.ext +
+									')"><i class="fas fa-file-image"></i> ' +
+									res.rsp +
+									'</button> <a class="btn btn-primary" href="' +
+									mybase_url +
+									"be/archivos-adjuntos-recibido?id=" +
+									res.id +
+									'"><i class="fas fa-cloud"></i> </a>',
+								rowfrm[0].value,
+								rowfrm[1].value,
+								rowfrm[2].value,
+								rowfrm[3].value,
+								rowfrm[4].value,
+								rowfrm[6].value,
+								rowfrm[5].value,
+								'<button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree(0,' +
+									res.id +
+									')"> No Decretado</button>',
+								'<td><span class="btn btn-danger">No Decretado</span></td>',
+							])
+							.draw(false);
 
-					$("#btn_rcvd").removeAttr("disabled");
-					$("#btn_rcvd").text("Enviar");
+						successMsg(
+							"Correspondecia Agregado",
+							"Nueva correspondecia recibida agregado",
+							"#ff6849",
+							"success"
+						);
+					} else if (res.key == 400) {
+						$("#file-1-preview").css("border", "2px solid red");
 
+						successMsg(
+							"Error Imagen",
+							"Tomar foto a la Correspondencia Recibida",
+							"#ff6849",
+							"error"
+						);
+						$("#btn_rcvd").removeAttr("disabled");
+					}
+				} else if (res.sd == 600) {
+					$("#a_" + res.id).text(rowfrm[0].value);
+					$("#b_" + res.id).text(rowfrm[1].value);
+					$("#c_" + res.id).text(rowfrm[2].value);
+					$("#d_" + res.id).text(rowfrm[3].value);
+					$("#e_" + res.id).text(rowfrm[4].value);
+					$("#f_" + res.id).text(rowfrm[6].value);
+					$("#g_" + res.id).text(rowfrm[5].value);
+
+					
 					successMsg(
-						"Correspondecia Agregado",
-						"Nueva correspondecia recibida agregado",
+						"Correspondecia Editado",
+						"La correspondencia se edito correctamente",
 						"#ff6849",
 						"success"
 					);
-				} else if (res.key == 400) {
-					$("#file-1-preview").css("border", "2px solid red");
-
-					successMsg(
-						"Error Imagen",
-						"Tomar foto a la Correspondencia Recibida",
-						"#ff6849",
-						"error"
-					);
-					$("#btn_rcvd").removeAttr("disabled");
 				}
 			})
 			.fail((error) => {
 				console.log(error.responseText);
+			})
+			.always(() => {
+				close();
 			});
 	});
-
+	$("#btn_cancel").on("click", (e) => {
+		e.preventDefault();
+		close();
+	});
 	$("#close").on("click", () => {
-		$(".select2").empty();
+		$("#slct_rol").empty();
+		$("#slct_decree").empty();
 		$("#issue_decree").empty();
 		$("#decree").modal("hide");
 		$("#urg").prop("checked", false);
@@ -122,6 +144,7 @@ $(function () {
 			radio: radio,
 			issue: issue,
 			slct_decree: slct_decree,
+			slcttxt: slcttxt,
 		};
 		$.ajax({
 			method: "POST",
@@ -152,11 +175,11 @@ $(function () {
 									slct_decree +
 									"," +
 									radio +
-									
 									')">' +
 									slcttxt +
 									"</button>"
 							);
+							$("#g_" + id_cr).text(slcttxt);
 						}
 					});
 				successMsg(
@@ -167,7 +190,8 @@ $(function () {
 				);
 
 				$(".mdl_range").fadeOut();
-				$(".select2").empty();
+				$("#slct_rol").empty();
+				$("#slct_decree").empty();
 				$("#decree").modal("hide");
 			}
 		});
@@ -189,7 +213,7 @@ function decree(dec, id_cr, mode_decree, urg) {
 	$.ajax({
 		method: "post",
 		url: "correspondence/userView",
-		data: {id_corr:id_cr},
+		data: { id_corr: id_cr },
 		dataType: "json",
 	}).done((data) => {
 		$("#id_cr").val(id_cr);
@@ -247,7 +271,39 @@ function viewRcvd(id, ext) {
 		);
 	}
 }
+function editDecree(id, ext) {
+	let mybase_url = $("#url_base").val();
 
+	$.ajax({
+		method: "post",
+		url: "correspondence/editDecree",
+		data: { id: id },
+		dataType: "json",
+		beforeSend: () => {
+			if ($("#crd_form").hasClass("card-body collapse")) {
+				$("#crd_form").addClass("show");
+				$("#icon_form").removeClass("ti-plus").addClass("ti-minus");
+				$("#btn_rcvd").css("display", "none");
+				$("#btn_cancel").removeAttr("style");
+				$("#btn_edit").removeAttr("style");
+			}
+		},
+	}).done((r) => {
+		document.querySelector("#file-1-preview img").src =
+			mybase_url + "assets/images/cr_recvd/" + id + "." + ext;
+		$("#tb_r").val(r.row[0]["sender_rcvd"]).focus();
+
+		$("#tb_c").val(r.row[0]["class_rcvd"]).trigger("change");
+		$("#tb_i").val(r.row[0]["indicative_rcvd"]);
+		$("#name_form").val("edit");
+		$("#tb_d").val(r.row[0]["date_rcvd"]);
+		$("#tb_cl").val(r.row[0]["clasif_rcvd"]).trigger("change");
+		$("#tb_rp").val(r.row[0]["rcvd_by"]);
+		$("#tb_as").val(r.row[0]["issue_rcvd"]);
+		$("#id_received").val(id);
+		$("#extension").val(ext);
+	});
+}
 function closeRcvd() {
 	$("#tooltipmodals").modal("hide");
 	$("#view_img").attr("style", "display: none");
@@ -274,5 +330,27 @@ function recortaDatos(dato, longitud) {
 	}
 	return respuesta;
 }
-
+function close() {
+	let mybase_url = $("#url_base").val();
+	let date = moment().format("DD/MM/YYYY");
+	$("#tb_d").bootstrapMaterialDatePicker({
+		weekStart: 0,
+		time: false,
+		format: "DD/MM/YYYY",
+	});
+	$("#send_rcvd")[0].reset();
+	$("#tb_rp").val("Lo Decreta JEM")
+	$("#img_r").attr("src", mybase_url + "/assets/images/square_p.jpg");
+	$("#file-1-preview div").html("<span>+</span>");
+	$("#tb_d").val(date);
+	$("#btn_rcvd").removeAttr("disabled");
+	$("#btn_rcvd").text("Enviar");
+	$("#tb_c").val("Oficios").trigger("change");
+	$("#tb_cl").val("Común").trigger("change");
+	$("#btn_cancel").css("display", "none");
+	$("#btn_edit").css("display", "none");
+	$("#btn_rcvd").removeAttr("style");
+	$("#icon_form").removeClass("ti-minus").addClass("ti-plus");
+	$("#crd_form").removeClass("show");
+}
 previewBeforeUpload("file-1");

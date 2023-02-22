@@ -43,6 +43,16 @@ class Correspondence_model extends CI_Model
         $this->db->where('d.frwrd_id', $where);
         return $this->db->get()->result();
     }
+    public function dataDriveRcvd($where)
+    {
+
+        $this->db->select('d.*');
+        $this->db->select('c.*');
+        $this->db->from('tbl_drive_rcvd d');
+        $this->db->join('tbl_received_corr  c', 'c.id_rcvd_cr = d.rcvd_id');
+        $this->db->where('d.rcvd_id', $where);
+        return $this->db->get()->result();
+    }
 
     public function dataReceived($where)
     {
@@ -84,6 +94,15 @@ class Correspondence_model extends CI_Model
         $this->db->limit($limit);
         return $this->db->get()->result();
     }
+    public function getFilesRcvd($limit, $where)
+    {
+        $this->db->select("*");
+        $this->db->from("tbl_drive_rcvd");
+        $this->db->where("rcvd_id", $where);
+        $this->db->order_by('id_file_rcvd', "DESC");
+        $this->db->limit($limit);
+        return $this->db->get()->result();
+    }
     function dataCorr($where)
     {
         $this->db->select('c.*');
@@ -119,6 +138,12 @@ class Correspondence_model extends CI_Model
     public function insert($data, $table)
     {
         $this->db->insert($table, $data);
+        return $this->db->insert_id();
+    }
+    public function updateResult($action, $id, $table)
+    {
+        $this->db->where($id);
+        $this->db->update($table, $action);
         return $this->db->insert_id();
     }
     public function update($action, $id, $table)
