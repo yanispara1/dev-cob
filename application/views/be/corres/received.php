@@ -196,7 +196,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="tb_rp" id="tb_rp" placeholder="Enter Name here"  value="lo decreta JEM">
+                                            <input type="text" class="form-control" name="tb_rp" id="tb_rp" placeholder="Enter Name here" value="lo decreta JEM">
                                             <label for="tb-rp">Recibido Por</label>
                                         </div>
                                     </div>
@@ -296,12 +296,12 @@
                                                     if ($row->decree == "0") {
                                                     ?>
                                                         <button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree( 0, <?= $row->id_rcvd_cr ?>,<?= $row->mode_decree ?>,<?= $row->urg ?>)"> No Decretado</button>
-                                                </td>
                                             <?php
                                                     } else {
                                             ?>
                                                 <button class="btn waves-effect waves-light w-100 btn-primary" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>,<?= $row->mode_decree ?>,<?= $row->urg ?>)"><?= $row->name_rol ?></button>
 
+                                                </td>
 
                                             <?php
                                                     }
