@@ -3,7 +3,6 @@ $(function () {
 	let mybase_url = $("#url_base").val();
 
 	let t = $("#table_rcvd").DataTable({
-		order: [[0, "desc"]],
 	});
 	$("#tb_as").autoResize();
 	$("#issue_decree").autoResize();
