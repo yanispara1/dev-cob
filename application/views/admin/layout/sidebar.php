@@ -59,7 +59,7 @@
 
                         ?>
                             <li class="nav-item">
-                                <a class="nav-link waves-effect waves-dark" href="<?= base_url('be/admin'); ?>" aria-expanded="false" title="Ingresar Modo Administrador"> <i class="fas fa-location-arrow text-dark"></i>
+                                <a class="nav-link waves-effect waves-dark" href="<?= base_url('be/admin'); ?>" aria-expanded="false" title="Cambiar Modo de Servicio"> <i class=" fas fa-sync-alt text-dark"></i>
                                 </a>
 
                             </li>
@@ -70,7 +70,7 @@
                         <!-- config -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Perfil"> <i class="fas fa-user text-dark"></i>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Perfil"> <i class="fas fa-cog text-dark"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end mailbox animated bounceInDown">
                                 <ul>
@@ -101,7 +101,7 @@
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- ============================================================== -->
-                        <li class="nav-item right-side-toggle"> <a class="nav-link  waves-effect waves-light" href="javascript:void(0)"><i class=" fas fa-cog text-dark" title="Personalizar Tema"></i></a></li>
+                        <li class="nav-item right-side-toggle"> <a class="nav-link  waves-effect waves-light" href="javascript:void(0)"><i class="fas fa-tachometer-alt text-dark" title="Personalizar Tema"></i></a></li>
                     </ul>
                 </div>
             </nav>
@@ -123,13 +123,13 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="" id="url_base" value="<?=base_url()?>">
+                <input type="hidden" name="" id="url_base" value="<?= base_url() ?>">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li>
                             <a class="waves-effect waves-dark" href="<?= base_url(); ?>" aria-expanded="false">
-                                <i class="ti-layout-media-right-alt"></i>
+                                <i class="fa fa-cogs"></i>
                                 <span class="hide-menu">TABLERO</span>
                             </a>
                             <?php
@@ -156,17 +156,17 @@
                                 </a>
                         </li>
                         <li>
-                            <a id="a_uni" class="waves-effect waves-dark" data-user="<?=img_users()?>" data-url="<?= base_url('Das/universidad'); ?>">
+                            <a id="a_uni" class="waves-effect waves-dark" data-user="<?= img_users() ?>" data-url="<?= base_url('Das/universidad'); ?>">
                                 Solicitud Universidad
                             </a>
                         </li>
                         <li>
-                            <a id="a_ins" data-url="<?= base_url('Das/Instituto'); ?>"  data-user="<?=img_users()?>" class="waves-effect waves-dark">
+                            <a id="a_ins" data-url="<?= base_url('Das/Instituto'); ?>" data-user="<?= img_users() ?>" class="waves-effect waves-dark">
                                 Solicitud Instituto - Academia
                             </a>
                         </li>
                         <li>
-                            <a  id="a_bri" data-url="<?= base_url('Das/Britanico'); ?>"  data-user="<?=img_users()?>" class="waves-effect waves-dark">
+                            <a id="a_bri" data-url="<?= base_url('Das/Britanico'); ?>" data-user="<?= img_users() ?>" class="waves-effect waves-dark">
                                 Solicitud Inst. Britanico
                             </a>
                         </li>

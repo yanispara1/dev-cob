@@ -254,7 +254,7 @@
                             <table id="table_rcvd" class="table table-responsive table-striped border">
                                 <thead>
                                     <tr>
-                                        <th style="min-width: 100px;"> N° DE ORDEN</th>
+                                        <th style="min-width: 120px;"> N° DE ORDEN</th>
                                         <th style="min-width: 130px;">REMITENTE</th>
                                         <th style="min-width: 100px;">CLASE</th>
                                         <th style="min-width: 100px;">INDICATIVO</th>

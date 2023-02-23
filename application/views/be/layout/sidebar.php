@@ -60,7 +60,7 @@
 
                         ?>
                             <li class="nav-item dropdown">
-                                <a class="nav-link waves-effect waves-dark" href="<?= base_url('admin'); ?>" aria-expanded="false" title="Ingresar Modo Usuario"> <i class="fas fa-location-arrow text-dark"></i>
+                                <a class="nav-link waves-effect waves-dark" href="<?= base_url('admin'); ?>" aria-expanded="false" title="Cambiar Modo de Usuario"> <i class="fas fa-sync-alt text-dark"></i>
                                 </a>
 
                             </li>
@@ -71,7 +71,7 @@
                         <!-- config -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Perfil"> <i class="fas fa-user text-dark"></i>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Perfil"> <i class="fas fa-cog text-dark"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end mailbox animated bounceInDown">
                                 <ul>
@@ -103,7 +103,7 @@
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- ============================================================== -->
-                        <li class="nav-item right-side-toggle"> <a class="nav-link  waves-effect waves-light" href="javascript:void(0)"><i class=" fas fa-cog text-dark" title="Personalizar Tema"></i></a></li>
+                        <li class="nav-item right-side-toggle"> <a class="nav-link  waves-effect waves-light" href="javascript:void(0)"><i class="fas fa-tachometer-alt text-dark" title="Personalizar Tema"></i></a></li>
                     </ul>
                 </div>
             </nav>
@@ -130,8 +130,8 @@
                     <ul id="sidebarnav">
                         <li>
                             <a class="waves-effect waves-dark" href="<?= base_url('be/dashboard'); ?>" aria-expanded="false">
-                                <i class="fas fa-tachometer-alt"></i>
-                                <span class="hide-menu">TABLERO</span>
+                                <i class=" fas fa-cog"></i>
+                                <span class="hide-menu">Registro Solicitud Común</span>
                             </a>
                         </li>
                         <?php if ($this->session->userdata('user_type') == 1) { ?>
