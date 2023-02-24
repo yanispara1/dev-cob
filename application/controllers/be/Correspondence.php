@@ -202,7 +202,16 @@ class Correspondence extends CI_Controller
             '<script src="' . base_url() . 'assets/node_modules/select2/dist/js/select2.full.min.js"></script>',
             '<script src="' . base_url() . 'dist/js/pages/forwarded.js"></script>'
         );
-        $data['rows'] = $this->Correspondence_model->dataForwarded($this->session->userdata('user_type'));
+
+        $qy = $this->Correspondence_model->get_rol(array('name_rol' => 'JEM'));
+        $qy2 = $this->Correspondence_model->get_rol(array('name_rol' => 'Mesa de Partes'));
+
+        if ($this->session->userdata('user_type') != $qy->id_rol || $this->session->userdata('user_type') != $qy2->id_rol) {
+            $data['rows'] = $this->Correspondence_model->dataForwarded('r.status','4');
+        } else {
+            $data['rows'] = $this->Correspondence_model->dataForwarded('f.team_id', $this->session->userdata('user_type'));
+        }
+
         $this->template->load('be/template', 'be/corres/forwarded', $data);
     }
     public function saveFrwrd()
@@ -419,7 +428,7 @@ class Correspondence extends CI_Controller
             $this->Correspondence_model->update($data, array('id_frwd' => $id_frwrd), 'tbl_forwarded_corr');
             $this->Correspondence_model->update(array('status' => '4'), array('id_rcvd_cr' => $id_rcvd), 'tbl_received_corr');
         }
-        $nombre ="'".$nuevoNombre."'";
+        $nombre = "'" . $nuevoNombre . "'";
         // Responder al cliente
         echo json_encode($nombre);
     }
@@ -438,8 +447,8 @@ class Correspondence extends CI_Controller
         $this->Correspondence_model->update(array('status' => '3'), array('id_rcvd_cr' => $id_rcvd), 'tbl_received_corr');
 
 
-        unlink('assets/images/cr_forwarded/' . $name );
-        
+        unlink('assets/images/cr_forwarded/' . $name);
+
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
     }

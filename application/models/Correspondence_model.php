@@ -90,7 +90,7 @@ class Correspondence_model extends CI_Model
         $this->db->where('c.decree', $where);
         return $this->db->get()->result();
     }
-    public function dataForwarded($where)
+    public function dataForwarded($atr,$where)
     {
         // ubicación JSON online
         if ($where != null) {
@@ -100,7 +100,7 @@ class Correspondence_model extends CI_Model
             $this->db->from('tbl_forwarded_corr f');
             $this->db->join('tbl_rol d', 'd.id_rol = f.team_id');
             $this->db->join('tbl_received_corr r', 'r.id_rcvd_cr = f.rcvd_corr');
-            $this->db->where('f.team_id', $where);
+            $this->db->where($atr, $where);
             return $this->db->get()->result();
         }
     }

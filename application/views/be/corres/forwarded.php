@@ -254,7 +254,6 @@
                                             <td><?= $row->clasif_frwd ?></td>
                                             <td><?= $row->issue_frwd ?></td>
                                             <td><?= $row->frwd_by ?></td>
-
                                             <td>
                                                 <button class="btn btn-youtube waves-effect waves-light" type="button" onclick='viewPDF(<?= $row->id_frwd ?> ,"<?= $row->ext_frwd ?>")'><i class="far fa-file-pdf"></i></button>
                                                 <a href="<?= base_url('be/archivos-adjuntos?id=' . $row->id_frwd) ?>" class="btn btn-info waves-effect waves-light" style="color:black" type="button"><i class="fas fa-cloud"></i></a>
