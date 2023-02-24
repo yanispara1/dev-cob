@@ -271,7 +271,6 @@
 
                                     </tr>
                                 </thead>
-
                                 <tbody id="tbody">
                                     <?php
                                     foreach ($rows as $key => $row) {
@@ -296,10 +295,10 @@
                                                     if ($row->decree == "0") {
                                                     ?>
                                                         <button class="btn waves-effect waves-light w-100 btn-danger" OnClick="decree( 0, <?= $row->id_rcvd_cr ?>,<?= $row->mode_decree ?>,<?= $row->urg ?>)"> No Decretado</button>
-                                            <?php
+                                                    <?php
                                                     } else {
-                                            ?>
-                                                <button class="btn waves-effect waves-light w-100 btn-primary" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>,<?= $row->mode_decree ?>,<?= $row->urg ?>)"><?= $row->name_rol ?></button>
+                                                    ?>
+                                                        <button class="btn waves-effect waves-light w-100 btn-primary" OnClick="decree( <?= $row->decree ?>, <?= $row->id_rcvd_cr ?>,<?= $row->mode_decree ?>,<?= $row->urg ?>)"><?= $row->name_rol ?></button>
 
                                                 </td>
 
@@ -321,6 +320,7 @@
 
                                     } ?>
                                 </tbody>
+
                             </table>
                         </div>
                     </div>

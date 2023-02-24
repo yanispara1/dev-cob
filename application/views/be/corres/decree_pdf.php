@@ -132,6 +132,7 @@ $pdf->Cell(90, 6, '______________________________', '', 1, 'C', false);
 
 $pdf->Image($url1,  10,262,-90);
 $pdf->Image($url3,  50,262,-105);
+$pdf->Image(base_url($user->signature_user),  123,228,-205);
 
 $pdf->Cell(90, 4, '', '', 0, 'C', false);
 $pdf->Cell(90, 4, 'O- 224534372- O+', '', 1, 'C', false);

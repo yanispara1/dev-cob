@@ -268,7 +268,10 @@ class Correspondence extends CI_Controller
     }
     public function viewPDFDecree($id)
     {
-        $data['row'] = $this->Correspondence_model->dataCorrr(array('id_rcvd_cr' => $id));;
+        $data['row'] = $this->Correspondence_model->dataCorrr(array('id_rcvd_cr' => $id));
+        $qy = $this->Correspondence_model->get_rol(array('name_rol' => 'JEM'));
+        $data['user'] = $this->Correspondence_model->get_user(array('id_user' => $qy->jefe_rol));
+
         $this->load->view("be/corres/decree_pdf", $data);
     }
     public function saveFiles()

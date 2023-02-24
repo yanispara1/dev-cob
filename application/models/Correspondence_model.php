@@ -19,6 +19,17 @@ class Correspondence_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function get_user($where)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_users');
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->row();
+
+
+    }
+
     public function get_decree($where)
     {
         if ($where) {
