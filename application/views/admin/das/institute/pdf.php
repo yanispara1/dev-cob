@@ -113,8 +113,8 @@ $pdf->SetFillColor(169, 189, 207);
 $pdf->Cell(190, 5, 'Copia de CIP y DNI Titular', 'LRTB', 1, 'C', true);
 
 
-$pdf->Image($path2 . $request->ins_cip, 30, 30, 156, 90);
-$pdf->Image($path2 . $request->ins_dni, 30, 140, 156, 90);
+$pdf->Image($path2 . $request->cip_image_user, 30, 30, 156, 90);
+$pdf->Image($path2 . $request->dni_image_user, 30, 140, 156, 90);
 
 if ($request->person == "2") {
   $pdf->AddPage();
