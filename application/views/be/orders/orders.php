@@ -35,7 +35,7 @@
                                                 <th>N°</th>
                                                 <th style="min-width: 150px;">EMISOR</th>
                                                 <th style="min-width: 200px;"">EQUIPO</th>
-                                                <th style="min-width: 100px;">DPTO/UNIDAD</th>
+                                                <th style=" min-width: 100px;">DPTO/UNIDAD</th>
                                                 <th style="min-width: 180px;">FECHA</th>
                                                 <th style="min-width: 100px;">ESTADO</th>
                                                 <th style="min-width: 100px;">INSPECCIÓN</th>
@@ -47,13 +47,26 @@
                                             foreach ($rows as $key => $row) {
                                             ?>
                                                 <tr id="">
-                                                    <td><?=$row->id_order?></td>
-                                                    <td><?=$row->name_order?></td>
-                                                    <td><?=$row->ep_order?></td>
-                                                    <td><?=$row->dpto_order?></td>
-                                                    <td><?=fecha($row->register_order)?></td>
-                                                    <td><?=status_order($row->line_order)?></td>
-                                                    <td><?=$row->status_order?></td>
+                                                    <td><?= $row->id_order ?></td>
+                                                    <td><?= $row->name_order ?></td>
+                                                    <td><?= $row->ep_order ?></td>
+                                                    <td><?= $row->dpto_order ?></td>
+                                                    <td><?= fecha($row->register_order) ?></td>
+                                                    <td><?= status_order($row->line_order) ?></td>
+                                                    <?php
+                                                    if ($row->status_order == '1') {
+                                                    ?>
+                                                        <td></td>
+
+                                                    <?php
+
+                                                    } else {
+                                                    ?>
+                                                        <td><?= $row->status_order ?></td>
+
+                                                    <?php
+                                                    }
+                                                    ?>
                                                     <td><button>acciones</button></td>
                                                 </tr>
                                             <?php

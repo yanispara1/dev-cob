@@ -188,7 +188,7 @@
                                 <li>
                                     <a class="waves-effect waves-dark" href="<?= base_url('be/correspondecias-remitidas'); ?>">
                                         <i class="fas fa-clipboard-check"></i>
-                                        &nbsp; Emitidas
+                                        &nbsp; Remitidas
                                     </a>
                                 </li>
                             </ul>

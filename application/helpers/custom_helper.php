@@ -224,17 +224,16 @@ function status_order($status)
   }
 }
 
-function status_received($status,$id)
-{ 
+function status_received($status, $id, $id_frwrd)
+{
   if ($status == 1) {
     echo '<td><span class="btn btn-danger">No Decretado</span></td>';
   } elseif ($status == 2) {
-    echo '<td><a href="'.base_url('be/ver-decreto/'.$id).'" class="btn btn-warning" target="_blank">Pendiente</a></td>';
+    echo '<td><a href="' . base_url('be/ver-decreto/' . $id) . '" class="btn btn-warning" target="_blank">Pendiente</a></td>';
   } elseif ($status == 3) {
-    echo '<td><a <a href="'.base_url('be/ver-decreto/'.$id).'" class="btn btn-info" target="_blank">En Proceso</a></td>';
+    echo '<td><a href="' . base_url('be/archivos-adjuntos?id=' . $id_frwrd) . '" class="btn btn-info" target="_blank">En Proceso</a></td>';
   } elseif ($status == 4) {
-    echo '<td><a href="'.base_url('be/ver-decreto/'.$id).'" class="btn btn-success" target="_blank">Aceptado</a></td>';
-  
+    echo '<td><a href="' . base_url('be/archivos-adjuntos?id=' . $id_frwrd) . '" class="btn btn-success" target="_blank">Finalizado</a></td>';
   } elseif ($status == 5) {
   }
 }
@@ -247,5 +246,27 @@ function img_users()
     echo "1";
   } else {
     echo "2";
+  }
+}
+
+function jefeJem($id)
+{
+  $ci = get_instance();
+  $ci->load->model('Correspondence_model');
+  $qy = $ci->Correspondence_model->get_rol(array('name_rol' => 'JEM'));
+  if($qy->jefe_rol == $id){
+    return true;
+
+  }
+}
+function remitida($id)
+{
+  $ci = get_instance();
+
+  $ci->load->model('Correspondence_model');
+
+  $qy = $ci->Correspondence_model->get_forwarded(array('rcvd_corr' => $id));
+  if ($qy) {
+    return $qy->id_frwd;
   }
 }

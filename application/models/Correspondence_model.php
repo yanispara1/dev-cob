@@ -26,9 +26,17 @@ class Correspondence_model extends CI_Model
         $this->db->where($where);
         $query = $this->db->get();
         return $query->row();
-
-
     }
+
+    public function get_forwarded($where)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_forwarded_corr');
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
 
     public function get_decree($where)
     {

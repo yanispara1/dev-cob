@@ -151,8 +151,9 @@ class Correspondence extends CI_Controller
     public function driveFrwrd()
     {
 
-        $data['title'] = 'Archivos Adjuntos';
+        $data['title'] = 'Archivos Adjuntos Remitidos';
         $data['rows'] = $this->Correspondence_model->dataDrive($_GET['id']);
+        $data['rcvd'] = $this->Correspondence_model->get_forwarded(array('id_frwd' => $_GET['id']));
         $data['id'] = $_GET['id'];
 
         $data['links'] = array(
@@ -168,7 +169,7 @@ class Correspondence extends CI_Controller
     }
     public function driveRcvd()
     {
-        $data['title'] = 'Archivos Adjuntos Rcibidos';
+        $data['title'] = 'Archivos Adjuntos Recibidos';
         $data['rows'] = $this->Correspondence_model->dataDriveRcvd($_GET['id']);
         $data['id'] = $_GET['id'];
 
@@ -390,6 +391,55 @@ class Correspondence extends CI_Controller
 
         $jsonData['row'] = $this->Correspondence_model->dataCorr(array('id_rcvd_cr ' => $id));
 
+        header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsonData);
+    }
+    public function saveAnswer()
+    {
+        $id_rcvd = $_POST['id_rcvd'];
+        $id_frwrd = $_POST['id_frwrd'];
+        $conteo = count($_FILES["archivos"]["name"]);
+        $path = "assets/images/cr_forwarded/";
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        for ($i = 0; $i < $conteo; $i++) {
+            $ubicacionTemporal = $_FILES["archivos"]["tmp_name"][$i];
+            $nombreArchivo = $_FILES["archivos"]["name"][$i];
+            $extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
+            // Renombrar archivo
+            $nuevoNombre = sprintf("%s_%d.%s", uniqid(), $i, $extension);
+            // Mover del temporal al directorio actual
+            move_uploaded_file($ubicacionTemporal, "$path/$nuevoNombre");
+            $data = array(
+                'answer_jem' => $nuevoNombre,
+                'ext_answer' => $extension
+            );
+            $this->Correspondence_model->update($data, array('id_frwd' => $id_frwrd), 'tbl_forwarded_corr');
+            $this->Correspondence_model->update(array('status' => '4'), array('id_rcvd_cr' => $id_rcvd), 'tbl_received_corr');
+        }
+        $nombre ="'".$nuevoNombre."'";
+        // Responder al cliente
+        echo json_encode($nombre);
+    }
+
+    public function deleteAnswer()
+    {
+        $jsonData = array();
+        $id_rcvd = $this->input->post('id_rcvd');
+        $id_frwd = $this->input->post('id_frwd');
+        $name = $this->input->post('name');
+        $data = array(
+            'answer_jem' => "",
+            'ext_answer' => ""
+        );
+        $this->Correspondence_model->update($data, array('id_frwd' => $id_frwd), 'tbl_forwarded_corr');
+        $this->Correspondence_model->update(array('status' => '3'), array('id_rcvd_cr' => $id_rcvd), 'tbl_received_corr');
+
+
+        unlink('assets/images/cr_forwarded/' . $name );
+        
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
     }

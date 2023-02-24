@@ -312,7 +312,8 @@
                                             <td><a href="<?= base_url('be/correspondecias-remitidas#' . $row->id_rcvd_cr) ?>" class="btn btn-success">Responder</a> </td>
 
                                         <?php }
-                                            status_received($row->status, $row->id_rcvd_cr); ?>
+                                            $id_frwrd =  remitida($row->id_rcvd_cr);
+                                            status_received($row->status, $row->id_rcvd_cr, $id_frwrd); ?>
 
                                         </tr>
 
