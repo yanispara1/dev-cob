@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="drive-item-footer module-footer">
                                                 <ul class="utilities list-inline">
-                                                    <li><a class="text-dark" href="<?= base_url('assets/images/cr_forwarded/' . $rcvd->id_frwd . '.' . $rcvd->ext_frwd) ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download" download="<?= $rcvd->id_frwd ?>"><i class="fa fa-download"></i></a>
+                                                    <li><a class="text-dark" href="<?= base_url('assets/images/cr_forwarded/' . $rcvd->id_frwd . '.' . $rcvd->ext_frwrd_d) ?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download" download="<?= $rcvd->id_frwd ?>"><i class="fa fa-download"></i></a>
                                                     </li>
                                                     <?php if ($rcvd->answer_jem == null) { ?>
                                                         <li><button id="answer_response" data-id="<?= $rcvd->id_frwd ?>" style="border:none; background:transparent" class="text-dark"><i class="fas fa-pencil-alt"></i></button></li>
@@ -95,14 +95,14 @@
                                     <?php
                                     foreach ($rows as $key => $row) {
                                         $name = "'" . $row->name . "'";
-                                        $ext = "'" . $row->ext . "'";
+                                        $ext = "'" . $row->ext_frwrd_d . "'";
                                     ?>
 
                                         <div class="drive-item module text-center" id="f_<?= $row->id_file ?>">
                                             <div class="drive-item-inner module-inner">
                                                 <div class="drive-item-title"><a href="#"><?= $row->name ?></a></div>
                                                 <div class="drive-item-thumb">
-                                                    <a href="#"><?= viewExtension($row->ext, $name, $id) ?></a>
+                                                    <a href="#"><?= viewExtension($row->ext_frwrd_d, $row->name, $id,'forwarded') ?></a>
                                                 </div>
                                             </div>
                                             <div class="drive-item-footer module-footer">

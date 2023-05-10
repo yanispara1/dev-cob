@@ -54,6 +54,30 @@ class Admin_model extends CI_Model
       return false;
     }
   }
-  
 
+  public function get_users($where)
+  {
+    if ($where) {
+      $this->db->select('user.*');
+      $this->db->select('rol.*');
+      $this->db->select('ran.*');
+      $this->db->select('sts.*');
+      $this->db->from('tbl_users user');
+      $this->db->join('tbl_rol rol', 'rol.id_rol = user.rol', 'LEFT');
+      $this->db->join('tbl_status sts', 'sts.id_status = user.val_user', 'LEFT');
+      $this->db->join('tbl_ranges ran', 'ran.id_range = user.range_user', 'LEFT');
+      $this->db->order_by('user.lastname_user', 'ASC');
+      $this->db->where($where);
+      return $this->db->get()->result();
+    }
+    $this->db->select('user.*');
+    $this->db->select('rol.*');
+    $this->db->select('ran.*');
+    $this->db->select('sts.*');
+    $this->db->from('tbl_users user');
+    $this->db->join('tbl_rol rol', 'rol.id_rol = user.rol', 'LEFT');
+    $this->db->join('tbl_status sts', 'sts.id_status = user.val_user', 'LEFT');
+    $this->db->join('tbl_ranges ran', 'ran.id_range = user.range_user', 'LEFT');
+    return $this->db->get()->result();
+  }
 }

@@ -1,4 +1,4 @@
-<?php
+    <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
@@ -119,8 +119,10 @@ $route['be/admin'] = 'be/dashboard';
 $route['be/usuarios'] = 'be/users';
 $route['be/resolucion/(:any)'] = 'be/dashboard/resolution/$1';
 $route['email'] = 'be/dashboard/example';
-$route['be/equipos'] = 'be/team';
+$route['be/departamentos'] = 'be/team';
 $route['be/mi-equipo'] = 'be/team/solo';
+$route['be/secciones'] = 'be/team/indexOffice';
+$route['be/oficinas'] = 'be/office';
 
 
 
@@ -141,4 +143,10 @@ $route['be/ver-decreto/(:any)'] = 'be/correspondence/viewPDFDecree/$1';
     /ROUTES BE ORDERS
 */
 $route['be/ordenes-de-servicio'] = 'be/orders/orders';
+$route['be/inspeciones-tecnicas'] = 'be/orders/inspection';
+
+/*
+    /ROUTES BE ORDERS
+*/
+$route['COPERE/agregar-personal'] = 'copere/staff/formStaff';
 

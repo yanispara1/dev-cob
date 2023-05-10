@@ -18,8 +18,20 @@ class Orders extends CI_Controller
             '<script src="' . base_url() . 'dist/js/pages/orders.js"></script>',
         );
 
-        $data['title'] = 'Ordenes de Servicio';
+        $data['title'] = 'Inspección Técnica';
         $data['rows'] = $this->Order_model->get_orders(null);
         $this->template->load('be/template', 'be/orders/orders', $data);
+    }
+    public function inspection()
+    {
+        $data['links'] = array(
+        );
+        $data['scripts'] = array(
+            '<script src="' . base_url() . 'dist/js/pages/inspection.js"></script>',
+        );
+
+        $data['title'] = 'Ordenes de Servicio';
+        $data['rows'] = $this->Order_model->get_inspection(null);
+        $this->template->load('be/template', 'be/orders/inspecciones', $data);
     }
 }

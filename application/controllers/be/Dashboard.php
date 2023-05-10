@@ -12,15 +12,9 @@ class Dashboard extends CI_Controller
 		$this->load->model('Be_model');
 	}
 
-	public function index()
+	public function dace()
 	{
-		$data['title'] = 'Inicio Administrador';
-		$data['links'] = array();
-		$data['scripts'] = array(
-			'<script src="' . base_url() . 'dist/js/pages/dashboard-be.js"></script>'
-
-		);
-
+		
 		$u = $this->Be_model->record('tbl_data_univ');
 		$i = $this->Be_model->record('tbl_data_institute');
 		$b = $this->Be_model->record('tbl_data_britanico');
@@ -38,8 +32,19 @@ class Dashboard extends CI_Controller
 		$data['univ'] = $this->Be_model->get_univ_list();
 		$data['inst'] = $this->Be_model->get_inst_list();
 		$data['brit'] = $this->Be_model->get_brit_list();
+	}
 
-		$this->template->load('be/template', 'be/dashboard', $data);
+	public function index()
+	{
+		$data['title'] = 'Inicio Administrador';
+		$data['links'] = array();
+		$data['scripts'] = array(
+			'<script src="' . base_url() . 'dist/js/pages/dashboard-be.js"></script>'
+
+		);
+
+
+		$this->template->load('be/template', 'be/init', $data);
 	}
 
 	public function resolution($id)

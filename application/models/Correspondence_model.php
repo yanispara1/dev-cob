@@ -93,16 +93,12 @@ class Correspondence_model extends CI_Model
     public function dataForwarded($atr,$where)
     {
         // ubicación JSON online
-        if ($where != null) {
             $this->db->select('f.*');
             $this->db->select('d.*');
-            $this->db->select('r.*');
             $this->db->from('tbl_forwarded_corr f');
             $this->db->join('tbl_rol d', 'd.id_rol = f.team_id');
-            $this->db->join('tbl_received_corr r', 'r.id_rcvd_cr = f.rcvd_corr');
             $this->db->where($atr, $where);
             return $this->db->get()->result();
-        }
     }
     public function getFiles($limit, $where)
     {

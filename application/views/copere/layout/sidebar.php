@@ -129,87 +129,19 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li>
-                            <a class="waves-effect waves-dark" href="<?= base_url('be/dashboard'); ?>" aria-expanded="false">
-                                <i class="fas fa-chart-pie"></i>
-                                <span class="hide-menu">Inicio</span>
-                            </a>
-                        </li>
-                        <?php if ($this->session->userdata('user_type') == 1) { ?>
-                            <li>
-                                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                    <i class="fas fa-cogs"></i>
-                                    <span class="hide-menu">Administración</span>
-                                </a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li>
-                                        <a class="waves-effect waves-dark" href="<?= base_url('be/usuarios'); ?>">
-                                            <i class="fas fa-users"></i>
-                                            &nbsp; Usuarios
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="waves-effect waves-dark" href="<?= base_url('be/departamentos'); ?>">
-                                            <i class="fas fa-sitemap"></i>
-                                            &nbsp; Departamentos
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="waves-effect waves-dark" href="<?= base_url('be/secciones'); ?>">
-                                            <i class="fas fa-desktop"></i>
-                                            &nbsp; secciones
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="waves-effect waves-dark" href="<?= base_url('be/oficinas'); ?>">
-                                            <i class="fas fa-briefcase"></i>
-                                            &nbsp; Oficinas
-                                        </a>
-                                    </li>
-                                </ul>
-
-                            </li>
-                        <?php }
-
-                        if (check_user() == true) {
-                        ?>
-                            <li>
-                                <a class="waves-effect waves-dark" href="<?= base_url('be/mi-equipo'); ?>" aria-expanded="false">
-                                    <i class="fas fa-users"></i>
-                                    <span class="hide-menu">Mi Equipo</span>
-                                </a>
-                            </li>
-                        <?php } ?>
-                        <li>
                             <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                                <i class="fas fa-clipboard-list"></i>
-                                <span class="hide-menu">Correspondencias</span>
+                                <i class="fas fa-database"></i>
+                                <span class="hide-menu">Personal Civil</span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
                                 <li>
-                                    <a class="waves-effect waves-dark" href="<?= base_url('be/ordenes-de-servicio'); ?>">
-                                        <i class="fas fa-clipboard-check"></i>
-                                        &nbsp; Ordenes de Servicio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="waves-effect waves-dark" href="<?= base_url('be/inspeciones-tecnicas'); ?>">
-                                        <i class="fas fa-clipboard-check"></i>
-                                        &nbsp; Ordenes de Servicio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="waves-effect waves-dark" href="<?= base_url('be/correspondecias-recibidas'); ?>">
-                                        <i class="fas fa-clipboard"></i>
-                                        &nbsp; Recibidos
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="waves-effect waves-dark" href="<?= base_url('be/correspondecias-remitidas'); ?>">
-                                        <i class="fas fa-clipboard-check"></i>
-                                        &nbsp; Remitidas
+                                    <a class="waves-effect waves-dark" href="<?= base_url('COPERE/agregar-personal'); ?>">
+                                        <i class="fas fa-users"></i>
+                                        &nbsp; Agregar
                                     </a>
                                 </li>
                             </ul>
+
                         </li>
 
                     </ul>

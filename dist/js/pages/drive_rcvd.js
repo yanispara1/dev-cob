@@ -46,13 +46,7 @@ $(function () {
 						'">' +
 						'<div class="drive-item-inner module-inner><div class="drive-item-title"><a href="#">' +
 						r.rows[i]["name_rcvd"] +
-						'</a><div class="drive-item-thumb"><a href="#"><img class="img-responsive" src="' +
-						mybase_url +
-						"assets/files/received/" +
-						id +
-						"/" +
-						r.rows[i]["name_rcvd"] +
-						'"></a></div></div>' +
+						'</a><div class="drive-item-thumb"><a href="#"><i class="fa fa-check-circle text-success"></i></a></div></div>' +
 						'<div class="drive-item-footer module-footer"><ul class="utilities list-inline">' +
 						'<li><a class="text-dark" href="' +
 						mybase_url +

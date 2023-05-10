@@ -33,7 +33,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <button class="btn btn-success btn-rounded text-white" OnClick="createTeam()"><i class="fas fa-plus"></i> Añadir Equipo</button>
+                                <button class="btn btn-success btn-rounded text-white" OnClick="createTeam()"><i class="fas fa-plus"></i> Añadir Departamento</button>
                                 <div class="row">
                                     <div class="col-md-12 mt-4">
                                         <ul class="list-unstyled" id="list_team">
@@ -77,41 +77,48 @@
                                 <strong>
                                     <h3 class="card-title" id="vcenter">Departamento a Añadir</h3>
                                 </strong><br>
-                                <p class="card-subtitle">Crear un departamento para agrupar usuarios. Los equipos se pueden utilizar en lugar de los usuarios para compartir recursos como Vistas.</p>
+                                <p class="card-subtitle">Crear un departamento para agrupar usuarios. Los departamentos se pueden utilizar en lugar de los usuarios para compartir recursos como Vistas.</p>
                                 <br>
 
                                 <form class="form-horizontal form-material" id="send_team">
                                     <div class="form-group ">
                                         <div class="col-xs-12">
-                                            <label for="">Nombre de Departamento</label>
-                                            <input class="form-control" type="text" required="" placeholder="Añadir nombre de departamento aquí Ej. DACE" name="n_dp" id="n_dp">
+                                            <label for="">Nombre de Departamento <code>(obligatorio)</code></label>
+                                            <input class="form-control" type="text" required="" placeholder="Añadir nombre de departamento aquí Ej. DAS" name="n_dp" id="n_dp">
                                             <input type="hidden" name="id_r" id="id_r">
                                             <input type="hidden" name="m_r" id="m_r">
                                         </div>
                                     </div>
-                                    <div class="form-group ">
+                                    <div class="form-group">
                                         <div class="col-xs-12">
-                                            <label>Descripción de Departamento</label>
-                                            <input class="form-control" type="text" required="" placeholder="Añada la descripción del equipo aquí Ej. Ayuda Social" name="d_dp" id="d_dp">
+                                            <label>Descripción de Departamento <code>(obligatorio)</code></label>
+                                            <input class="form-control" type="text" required="" placeholder="Añada la descripción del departamento aquí Ej. Departamento Ayuda Social" name="d_dp" id="d_dp">
                                         </div>
                                     </div>
-                                    <div class="form-group ">
+                                    <div class="form-group">
                                         <div class="col-xs-12">
-                                            <label for="">Jefe del Equipo</label>
+                                            <label for="">Jefe de Departamento <code>(obligatorio)</code></label>
                                             <select name="j_dp" id="j_dp" class="boss m-b-10 form-control form-select" style="width: 100%">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <label for="">Segundo al mando de Departamento <code>(obligatorio)</code></label>
+                                            <select name="js_dp" id="js_dp" class="boss m-b-10 form-control form-select" style="width: 100%">
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="col-xs-12">
-                                            <label for="">Miembros del Equipo</label>
+                                            <label for="">Miembros del Departamento <code>(obligatorio)</code></label>
                                             <select name="m_dp" id="m_dp" class="select2 m-b-10 select2-multiple" style="width: 100%" multiple="multiple" data-placeholder="Choose">
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-xs-12">
-                                            <button id="btn_send" type="button" class="btn btn-success float-end  btn-rounded text-white" >
+                                            <button id="btn_send" type="button" class="btn btn-success float-end  btn-rounded text-white">
                                                 Guardar
                                             </button>
                                             <button style="display: none;" id="btn_modify" type="button" class="btn btn-success float-end  btn-rounded text-white">

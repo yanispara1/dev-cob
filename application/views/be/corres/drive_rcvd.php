@@ -46,14 +46,14 @@
                                     <?php
                                     foreach ($rows as $key => $row) {
                                         $name = "'" . $row->name_rcvd . "'";
-                                        $ext = "'" . $row->ext_rcvd . "'";
+                                        $ext = "'" . $row->ext_rcvd_d . "'";
                                     ?>
 
                                         <div class="drive-item module text-center" id="r_<?= $row->id_file_rcvd  ?>">
                                             <div class="drive-item-inner module-inner">
                                                 <div class="drive-item-title"><a href="#"><?= $row->name_rcvd ?></a></div>
                                                 <div class="drive-item-thumb">
-                                                    <a href="#"><?= viewExtension($row->ext_rcvd, $name, $id) ?></a>
+                                                    <a href="#"><?= viewExtension($row->ext_rcvd_d, $row->name_rcvd, $id,'received') ?></a>
                                                 </div>
                                             </div>
                                             <div class="drive-item-footer module-footer">

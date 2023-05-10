@@ -23,7 +23,32 @@ class Site extends CI_Controller
 		} elseif ($this->session->userdata('is_user_login') == "1") {
 			redirect(base_url() . 'be/admin', 'refresh');
 		}
-		$this->load->view('login');
+		if (hasConnection() == true) {
+			$this->load->view('login');
+		} else {
+			$this->load->view('login2');
+		}
+	}	
+
+	public function verifyPass()
+	{
+		$id = md5($this->input->post('id'));
+		$pass = $this->input->post('pass');
+		$jsonData = array();
+		$rowData = $this->Admin_model->auth_user_login(array('encrypt_cip' => $id));
+
+		if ($rowData->password == null) {
+			$this->Admin_model->update(array('password' => $pass), $rowData->id_user, 'tbl_users');
+			$jsonData['password'] = $pass;
+		}else{
+		$jsonData['password'] = $rowData->password;
+
+		}
+
+		$jsonData['phone_user'] = $rowData->phone_user;
+		//Mostrando mi respuesta en formato Json
+		header('Content-type: application/json; charset=utf-8');
+		echo json_encode($jsonData);
 	}
 
 	public function login($data)
@@ -54,6 +79,7 @@ class Site extends CI_Controller
 				'img_signature' => $rowData->signature_user,
 				'img_dni' => $rowData->dni_image_user,
 				'img_cip' => $rowData->cip_image_user,
+				'core' => $rowData->core
 			);
 			$this->session->set_userdata($data);
 
@@ -85,6 +111,7 @@ class Site extends CI_Controller
 				'img_signature' => $rowData->signature_user,
 				'img_dni' => $rowData->dni_image_user,
 				'img_cip' => $rowData->cip_image_user,
+				'core' => $rowData->core
 
 			);
 			$this->session->set_userdata($data);

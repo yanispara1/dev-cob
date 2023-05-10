@@ -28,50 +28,42 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
+                                <div class="content-utilities">
+                                    <div class="page-nav">
+                                        <button class="btn btn-primary btn-rounded waves-effect waves-light"><i class="fas fa-plus"></i> Agregar Inspección</button>
+                                    </div>
+                                    <hr>
+                                </div>
                                 <div class="row">
-                                    <table id="data-orders" class="table table-responsive table-striped border">
+                                    <table id="data-inspection" class="table table-responsive table-striped border">
                                         <thead>
                                             <tr>
                                                 <th>N°</th>
-                                                <th style="min-width: 150px;">EMISOR</th>
-                                                <th style="min-width: 200px;"">EQUIPO</th>
-                                                <th style=" min-width: 100px;">DPTO/UNIDAD</th>
-                                                <th style="min-width: 180px;">FECHA</th>
-                                                <th style="min-width: 100px;">ESTADO</th>
-                                                <th style="min-width: 100px;">INSPECCIÓN</th>
-                                                <th style="min-width: 100px;">ACCIONES</th>
+                                                <th style="min-width: 300px;"">Emisor</th>
+                                                <th style=" min-width: 200px;">Fecha de Públicación</th>
+                                                <th style="min-width: 150px;">Orden</th>
+                                                <th style="min-width: 300px;">Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbody">
                                             <?php
                                             foreach ($rows as $key => $row) {
                                             ?>
-                                                <tr id="">
-                                                    <td><?= $row->id_order ?></td>
-                                                    <td><?= $row->name_order ?></td>
-                                                    <td><?= $row->ep_order ?></td>
-                                                    <td><?= $row->dpto_order ?></td>
-                                                    <td><?= fecha($row->register_order) ?></td>
-                                                    <td><?= status_order($row->line_order,$row->id_order) ?></td>
-                                                    <?php
-                                                    if ($row->status_order == '1') {
-                                                    ?>
-                                                        <td><button class="btn btn-info"> Agregar Inspección</button></td>
-
-                                                    <?php
-
-                                                    } else {
-                                                    ?>
-                                                        <td><?= $row->status_order ?></td>
-
-                                                    <?php
-                                                    }
-                                                    ?>
+                                                <tr>
+                                                    <td><?= $row->id_documento ?></td>
+                                                    <td><?php
+                                                        $user = $this->Order_model->get_data(array('id_user' => $row->id_usuario));
+                                                        echo $user->name_user . " " . $user->lastname_user;
+                                                        ?></td>
+                                                    <td><?= fecha($row->fecha_registro) ?></td>
+                                                    <td><a href="">OR<?= $row->orden ?></a></td>
                                                     <td>
-                                                        
-                                                        <button class ="btn btn-danger">Eliminar</button>
+                                                        <button class="btn btn-info">editar</button>
+                                                        <button class="btn btn-primary">descargar</button>
+                                                        <button class="btn btn-danger">eliminar</button>
                                                     </td>
                                                 </tr>
+
                                             <?php
                                             } ?>
                                         </tbody>

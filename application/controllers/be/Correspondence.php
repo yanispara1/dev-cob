@@ -198,7 +198,6 @@ class Correspondence extends CI_Controller
             '<script src="' . base_url() . 'assets/node_modules/moment/moment.js"></script>',
             '<script src="' . base_url() . 'assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>',
             '<script src="' . base_url() . 'assets/node_modules/Magnific-Popup-master/dist/jquery.magnific-popup.min.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>',
             '<script src="' . base_url() . 'assets/node_modules/select2/dist/js/select2.full.min.js"></script>',
             '<script src="' . base_url() . 'dist/js/pages/forwarded.js"></script>'
         );
@@ -206,11 +205,8 @@ class Correspondence extends CI_Controller
         $qy = $this->Correspondence_model->get_rol(array('name_rol' => 'JEM'));
         $qy2 = $this->Correspondence_model->get_rol(array('name_rol' => 'Mesa de Partes'));
 
-        if ($this->session->userdata('user_type') != $qy->id_rol || $this->session->userdata('user_type') != $qy2->id_rol) {
-            $data['rows'] = $this->Correspondence_model->dataForwarded('r.status','4');
-        } else {
+
             $data['rows'] = $this->Correspondence_model->dataForwarded('f.team_id', $this->session->userdata('user_type'));
-        }
 
         $this->template->load('be/template', 'be/corres/forwarded', $data);
     }
@@ -304,7 +300,7 @@ class Correspondence extends CI_Controller
             $data = array(
                 "frwrd_id" => $id,
                 "name" => $nuevoNombre,
-                "ext" => $extension,
+                "ext_frwrd_d" => $extension,
             );
             $this->Correspondence_model->insert($data, 'tbl_drive');
         }
@@ -331,7 +327,7 @@ class Correspondence extends CI_Controller
             $data = array(
                 "rcvd_id" => $id,
                 "name_rcvd" => $nuevoNombre,
-                "ext_rcvd" => $extension,
+                "ext_rcvd_d" => $extension,
             );
             $this->Correspondence_model->insert($data, 'tbl_drive_rcvd');
         }

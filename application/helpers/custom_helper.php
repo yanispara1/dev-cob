@@ -146,81 +146,70 @@ function viewReportes($url)
   mail($to, $subject, $message, $headers);
 }
 
-function viewExtension($extension, $name, $id_frwrd)
+function viewExtension($extension, $name, $id_frwrd,$path)
 {
-  $files_ext = [
-    [
-      'pdf',
-      'fa fa-file-pdf-o text-danger'
-    ],
-    [
-      'zip',
-      'fa fa-file-zip-o text-primary'
-    ],
-    [
-      'rar',
-      'fa fa-file-zip-o text-primary'
-    ],
-    [
-      'ppt',
-      'fa fa-file-powerpoint-o text-warning'
-    ],
-    [
-      'xlsx',
-      'fa fa-file-excel-o text-success'
-    ],
-    [
-      'xls',
-      'fa fa-file-excel-o text-success'
-    ],
-    [
-      'docx',
-      'fa fa-file-word-o text-info'
-    ],
-    [
-      'txt',
-      'fa fa-file-code-o text-primary'
-    ],
-  ];
+  $files_ext = array(
+    'pdf' =>
+    '<i class="fa fa-file-pdf-o text-danger"></i>',
 
-  $files_img = [
-    [
-      'jpg',
-    ],
-    [
-      'png',
-    ],
-    [
-      'jpeg',
-    ],
-    [
-      'svg',
-    ],
-  ];
+    'zip' =>
+    '<i class="fa fa-file-zip-o text-primary"></i>',
 
-  foreach ($files_ext as list($ext, $font)) {
-    if ($extension == $ext) {
-      echo '<i class="' . $font . '"></i>';
-    } else {
-      foreach ($files_img as list($ext_img)) {
-        if ($extension == $ext_img) {
-          echo '<img src="">';
-        }
-      }
-    }
+    'rar' =>
+    '<i class="fa fa-file-zip-o text-primary"></i>',
+
+    'ppt' =>
+    '<i class="fa fa-file-powerpoint-o text-warning"></i>',
+
+    'xlsx' =>
+    '<i class="fa fa-file-excel-o text-success"></i>',
+
+    'xls' =>
+    '<i class="fa fa-file-excel-o text-success"></i>',
+
+    'docx' =>
+    '<i class="fa fa-file-word-o text-info"></i>',
+
+    'txt' =>
+    '<i class="fa fa-file-code-o text-primary"></i>',
+
+    'sql' =>
+    '<i class="fa fa-file-code-o text-primary"></i>'
+  );
+  
+  $img_ext = array(
+    'jpg' =>
+    '<img class="img-responsive" src="' . base_url() . 'assets/files/'.$path.'/' . $id_frwrd . '/' . $name . '">',
+
+    'png' =>
+    '<img class="img-responsive" src="' . base_url() . 'assets/files/'.$path.'/' . $id_frwrd . '/' . $name . '">',
+
+    'jpeg' =>
+    '<img class="img-responsive" src="' . base_url() . 'assets/files/'.$path.'/' . $id_frwrd . '/' . $name . '">',
+
+    'svg' =>
+    '<img class="img-responsive" src="' . base_url() . 'assets/files/'.$path.'/' . $id_frwrd . '/' . $name . '">',
+  );
+
+  if (array_key_exists($extension, $files_ext)) {
+    return $files_ext[$extension];
+  } elseif (array_key_exists($extension, $img_ext)) {
+    return $img_ext[$extension];
+  }else{
+    return '<i class="fa fa-file text-primary"></i>';
   }
 }
 
 function status_order($status)
 {
   if ($status == '01') {
-    echo '<span class="label label-info">Pendiente</span>';
+    echo '<button class="btn btn-info">Pendiente</button>';
   } elseif ($status == '02') {
-    echo '<span class="label label-warning">En Proceso</span>';
+    echo '<button class="btn btn-warning">En Proceso</button>';
   } elseif ($status == '03') {
-    echo '<span class="label label-success">Finalizado</span>';
+    echo '<button class="btn btn-success">Finalizado</button>';
   } elseif ($status == '04') {
-    echo '<span class="label label-danger">Cancelado</span>';
+    echo '<button class="btn btn-danger">Cancelado</button>';
   }
 }
 
@@ -254,9 +243,8 @@ function jefeJem($id)
   $ci = get_instance();
   $ci->load->model('Correspondence_model');
   $qy = $ci->Correspondence_model->get_rol(array('name_rol' => 'JEM'));
-  if($qy->jefe_rol == $id){
+  if ($qy->jefe_rol == $id) {
     return true;
-
   }
 }
 function remitida($id)
@@ -269,4 +257,17 @@ function remitida($id)
   if ($qy) {
     return $qy->id_frwd;
   }
+}
+
+function hasConnection()
+{
+  $connected = @fsockopen("es.stackoverflow.com", 80);
+  if ($connected) {
+    $is_conn = true; //Conectado
+    fclose($connected);
+  } else {
+    $is_conn = false; //No conectado
+  }
+
+  return $is_conn;
 }

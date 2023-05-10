@@ -31,6 +31,35 @@ class Team_model extends CI_Model
         $this->db->from('tbl_rol');
         return $this->db->get()->result();
     }
+
+    public function get_n($where)
+    {
+        if ($where) {
+            $this->db->select('*');
+            $this->db->from('tbl_neogicates');
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->row();
+        }
+        $this->db->select('*');
+        $this->db->from('tbl_neogicates');
+        return $this->db->get()->result();
+    }
+
+    public function get_office($where)
+    {
+        if ($where) {
+            $this->db->select('*');
+            $this->db->from('tbl_office');
+            $this->db->where($where);
+            $query = $this->db->get();
+            return $query->row();
+        }
+        $this->db->select('*');
+        $this->db->from('tbl_office');
+        return $this->db->get()->result();
+    }
+
     public function get_users($where)
     {
         if ($where) {
@@ -58,9 +87,7 @@ class Team_model extends CI_Model
     }
 
     public function get_rol()
-    {
-
-        $this->db->select('*');
+    {        $this->db->select('*');
         $this->db->from('tbl_rol');
         return $this->db->get()->result();
     }

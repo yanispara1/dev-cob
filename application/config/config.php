@@ -24,8 +24,8 @@ date_default_timezone_set('America/Bogota');
 | a PHP script and you can easily do that on your own.
 |
 */
-defined('BASE_URL') OR define('BASE_URL', (is_https() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/');
-$config['base_url'] = BASE_URL;
+    defined('BASE_URL') OR define('BASE_URL', (is_https() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/');
+    $config['base_url'] = BASE_URL;
 
 
 
