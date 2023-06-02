@@ -37,7 +37,8 @@
                                 <div class="row">
                                     <div class="col-md-12 mt-4">
                                         <ul class="list-unstyled" id="list_team">
-                                            <?php foreach ($rows as $key => $row) {
+                                            <?php   
+                                            foreach ($rows as $key => $row) {
                                                 if ($row->id_rol == 0  || $row->id_rol == 1 || $row->id_rol == 2) {
                                                 } else {
                                             ?>

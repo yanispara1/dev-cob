@@ -13,7 +13,7 @@ date_default_timezone_set('America/Bogota');
 |	http://example.com/
 |
 | WARNING: You MUST set this value!
-|
+|   
 | If it is not set, then CodeIgniter will try guess the protocol and path
 | your installation, but due to security concerns the hostname will be set
 | to $_SERVER['SERVER_ADDR'] if available, or localhost otherwise.

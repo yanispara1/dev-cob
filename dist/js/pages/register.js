@@ -1,7 +1,26 @@
 $(function () {
 	$(".preloader").fadeOut();
 	$(".select2").select2();
+	var elems = Array.prototype.slice.call(
+		document.querySelectorAll(".js-switch")
+	);
+	$(".js-switch").each(function () {
+		new Switchery($(this)[0], $(this).data());
+	});
 
+	$("#switch_cgi").on("change", function () {
+		let clickCheckbox = document.querySelector(".js-switch");
+		console.log(clickCheckbox.checked);
+		if(clickCheckbox.checked == true){
+			$("#text_cgi").text("SÍ");
+			$("#text_cgi").removeAttr("style");
+			$("#text_cgi").attr("style","font-weight:bold; color:green");
+		}else{
+			$("#text_cgi").text("NO");
+			$("#text_cgi").removeAttr("style");
+			$("#text_cgi").attr("style","font-weight:bold; color:red");
+		}
+	});
 	//Validando si existe la Cedula en BD antes de enviar el Form
 	$("#cip").on("keyup", function () {
 		var cip = $("#cip").val();

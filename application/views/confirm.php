@@ -49,10 +49,10 @@
                         <h3 class="card-title">Correo Enviado Existosamente</h3>
                         <p class="card-text">Le hemos enviado un correo de verificación, revise su correo para ingresar a su cuenta </p>
                         <div class="button-group">
-                            <input name="cip" type="hidden" value="<?=$cip?>">
-                            <input name="code" type="hidden" value="<?=$code?>">
-                            <button id="envio" type="submit" class="btn waves-effect waves-light btn-rounded btn-warning text-dark" disabled></button>
-                            <a href="<?= base_url(); ?>reception/<?=$code?>" target="_blank" class="btn waves-effect waves-light btn-rounded btn-dark">Revisar Correo</a>
+                            <input name="cip" type="hidden" value="<?= $cip ?>">
+                            <input name="code" type="hidden" value="<?= $code ?>">
+                            <button id="envio" typ  e="submit" class="btn waves-effect waves-light btn-rounded btn-warning text-dark" disabled></button>
+                            <a href="<?= base_url(); ?>reception/<?= $code ?>" target="_blank" class="btn waves-effect waves-light btn-rounded btn-dark">Revisar Correo</a>
                         </div>
                     </div>
                 </div>
@@ -89,9 +89,9 @@
                 document.getElementById(this.id).innerHTML = "Reenviar en " + this.contador--;
                 setTimeout(this.conteoSegundos.bind(this), 1000);
 
-                if (this.contador <= "0"){
+                if (this.contador <= "0") {
 
-                document.getElementById(this.id).innerHTML = "Reenviar Correo";
+                    document.getElementById(this.id).innerHTML = "Reenviar Correo";
 
                 }
 

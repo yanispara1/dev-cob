@@ -145,34 +145,43 @@
 
                             endif;
                             ?>
-                        <li id="step6">
-                            <a class="has-arrow waves-effect waves-dark <?= $active ?>" href="javascript:void(0)" aria-expanded="false">
-                                <i class="fas fa-university"></i>
-                                <span class="hide-menu"> Consultas DAS</span>
-                            </a>
-                            <ul aria-expanded="false" class="collapse <?= $in ?>">
-                                <a class="waves-effect waves-dark" href="<?= base_url('Das/Lista'); ?>">
-                                    Lista Solicitudes DAS
+                        </li>
+                        <?php if ($this->session->userdata('user_cgi') == 0) { ?>
+                            <li id="step6">
+                                <a class="has-arrow waves-effect waves-dark <?= $active ?>" href="javascript:void(0)" aria-expanded="false">
+                                    <i class="fas fa-university"></i>
+                                    <span class="hide-menu"> Consultas DAS</span>
                                 </a>
-                        </li>
-                        <li>
-                            <a id="a_uni" class="waves-effect waves-dark" data-user="<?= img_users() ?>" data-url="<?= base_url('Das/universidad'); ?>">
-                                Solicitud Universidad
-                            </a>
-                        </li>
-                        <li>
-                            <a id="a_ins" data-url="<?= base_url('Das/Instituto'); ?>" data-user="<?= img_users() ?>" class="waves-effect waves-dark">
-                                Solicitud Instituto - Academia
-                            </a>
-                        </li>
-                        <li>
-                            <a id="a_bri" data-url="<?= base_url('Das/Britanico'); ?>" data-user="<?= img_users() ?>" class="waves-effect waves-dark">
-                                Solicitud Inst. Britanico
-                            </a>
-                        </li>
-                    </ul>
-                    </li>
+                                <ul aria-expanded="false" class="collapse <?= $in ?>">
+                                    <a class="waves-effect waves-dark" href="<?= base_url('Das/Lista'); ?>">
+                                        Lista Solicitudes DAS
+                                    </a>
 
+                                    <li>
+                                        <a id="a_uni" class="waves-effect waves-dark" data-user="<?= img_users() ?>" data-url="<?= base_url('Das/universidad'); ?>">
+                                            Solicitud Universidad
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="a_ins" data-url="<?= base_url('Das/Instituto'); ?>" data-user="<?= img_users() ?>" class="waves-effect waves-dark">
+                                            Solicitud Instituto - Academia
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="a_bri" data-url="<?= base_url('Das/Britanico'); ?>" data-user="<?= img_users() ?>" class="waves-effect waves-dark">
+                                            Solicitud Inst. Britanico
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } else { ?>
+                            <li>
+                                <a class="waves-effect waves-dark" href="<?= base_url('admin/datos-adicionales-cgi'); ?>" aria-expanded="false">
+                                    <i class="fas fa-id-badge"></i>
+                                    <span class="hide-menu">Datos Adicionales</span>
+                                </a>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

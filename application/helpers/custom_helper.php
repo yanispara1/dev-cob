@@ -200,16 +200,16 @@ function viewExtension($extension, $name, $id_frwrd,$path)
   }
 }
 
-function status_order($status)
+function status_order($status,$id)
 {
   if ($status == '01') {
-    echo '<button class="btn btn-info">Pendiente</button>';
+    echo '<button OnClick="edit('.$id.')" class="btn btn-info">Pendiente</button>';
   } elseif ($status == '02') {
-    echo '<button class="btn btn-warning">En Proceso</button>';
+    echo '<button OnClick="edit('.$id.')" class="btn btn-warning">En Proceso</button>';
   } elseif ($status == '03') {
-    echo '<button class="btn btn-success">Finalizado</button>';
+    echo '<button OnClick="edit('.$id.')" class="btn btn-success">Finalizado</button>';
   } elseif ($status == '04') {
-    echo '<button class="btn btn-danger">Cancelado</button>';
+    echo '<button OnClick="edit('.$id.')" class="btn btn-danger">Cancelado</button>';
   }
 }
 

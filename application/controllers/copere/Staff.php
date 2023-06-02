@@ -27,10 +27,10 @@ class Staff extends CI_Controller
             '<script src="' . base_url() . 'dist/js/pages/staff.js"></script>'
 
         );
-        
-        $data['grades'] = $this->Staff_model->get_data('tbl_grade_staff',null);
-        $data['teams'] = $this->Staff_model->get_data('tbl_rol',null);
-        $data['specialties'] = $this->Staff_model->get_data('tbl_specialty',null);
+
+        $data['grades'] = $this->Staff_model->get_data('tbl_grade_staff', null);
+        $data['teams'] = $this->Staff_model->get_data('tbl_rol', null);
+        $data['specialties'] = $this->Staff_model->get_data('tbl_specialty', null);
         $data['title'] = 'Agregar Personal';
         $this->template->load('be/template', 'copere/staff/form', $data);
     }

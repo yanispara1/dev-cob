@@ -15,7 +15,10 @@
     <link href="<?= base_url(); ?>assets/node_modules/register-steps/steps.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url(); ?>/assets/node_modules/dropify/dist/css/dropify.min.css">
     <link href="<?= base_url(); ?>dist/css/pages/register3.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>assets/node_modules/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url(); ?>assets/node_modules/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />}
+    <link href="<?= base_url(); ?>assets/node_modules/switchery/dist/switchery.min.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="<?= base_url(); ?>dist/css/style.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
@@ -58,12 +61,12 @@
                         <h2 class="fs-title">Datos de Accesso</h2>
                         <h3 class="fs-subtitle">Paso 1</h3>
                         <div class="form-floating mb-3">
-                            <input class="form-control input_numb" type="text" name="cip" placeholder="Ingrese  CIP" id="cip"  maxlength="9" />
+                            <input class="form-control input_numb" type="text" name="cip" placeholder="Ingrese  CIP" id="cip" maxlength="9" />
                             <label for="cip">Ingrese CIP</label>
                             <div id="respuesta"></div>
                         </div>
 
-                        <input type="button" name="next" class="next action-button" value="Siguiente" id="btnone" disabled/>
+                        <input type="button" name="next" class="next action-button" value="Siguiente" id="btnone" disabled />
                     </fieldset>
                     <fieldset>
                         <h2 class="fs-title">Datos Personales</h2>
@@ -80,7 +83,7 @@
                         </div>
 
                         <div class="form-floating">
-                            <input class="form-control input_numb" type="text" name="dni" placeholder="DNI" id="dni" maxlength="8"/>
+                            <input class="form-control input_numb" type="text" name="dni" placeholder="DNI" id="dni" maxlength="8" />
                             <div id="respuestadni"></div> <label for="">Ingrese DNI</label>
                         </div>
 
@@ -90,7 +93,7 @@
                         </div>
 
                         <div class="form-floating">
-                            <input class="form-control input_numb" type="text" name="phone" placeholder="N° Celular" id="phone" maxlength="9"/>
+                            <input class="form-control input_numb" type="text" name="phone" placeholder="N° Celular" id="phone" maxlength="9" />
                             <div id="respuestaphone"></div> <label for="">Ingrese N° Celular</label>
                         </div>
 
@@ -118,17 +121,18 @@
                                 ?>
                             </optgroup>
                         </select>
-
+                        <div class="form-floating" style="margin-top:10px">
+                            <p>Estas dentro del CGI? <b id="text_cgi" style="font-weight:bold; color:red">NO</b></p>
+                            <input type="checkbox" name="switch_cgi" id="switch_cgi" class="js-switch" data-color="#06C80F" data-secondary-color="#FF0000" />
+                        </div>
                         <input type="button" name="previous" class="previous action-button" value="Anterior" />
-                        <input type="button" name="next" class="next action-button" value="Siguiente" id="nxt_2" disabled/>
+                        <input type="button" name="next" class="next action-button" value="Siguiente" id="nxt_2" disabled />
                     </fieldset>
                     <fieldset>
                         <h2 class="fs-title">Políticas de Privacidad</h2>
                         <h3 class="fs-subtitle">Paso Final</h3>
                         <p id="prv"><input type="checkbox" class="form-check-input" id="chk" style="width:auto; appearance:auto;">
                             He leído y acepto la <a href="#">Política de Privacidad</a> </p>
-
-
                         <input type="button" name="previous" class="previous action-button white" value="Anterior" id="anterior" />
                         <input type="submit" name="submit" class="action-button" value="Registrar" id="register" />
                     </fieldset>
@@ -192,11 +196,13 @@
     <!-- Bootstrap tether Core JavaScript -->
     <!-- Menu Plugin JavaScript -->
     <script src="<?= base_url(); ?>assets/node_modules/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="../assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
     <script src="<?= base_url(); ?>assets/node_modules/register-steps/jquery.easing.min.js"></script>
     <script src="<?= base_url(); ?>assets/node_modules/register-steps/register-init.js"></script>
     <!-- jQuery file upload -->
     <script src="<?= base_url(); ?>assets/node_modules/dropify/dist/js/dropify.min.js"></script>
+    <script src="<?= base_url(); ?>assets/node_modules/switchery/dist/switchery.min.js"></script>
 
     <!-- js pages files -->
     <script src="<?= base_url(); ?>/assets/node_modules/toast-master/js/jquery.toast.js"></script>

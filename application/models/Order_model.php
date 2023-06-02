@@ -7,17 +7,17 @@ class Order_model extends CI_Model
     {
         parent::__construct();
     }
-    public function get_orders($where)
+    public function get_data($where, $table)
     {
         if ($where) {
             $this->db->select('*');
-            $this->db->from('tbl_orders_services');
+            $this->db->from($table);
             $this->db->where($where);
             $query = $this->db->get();
             return $query->row();
         }
         $this->db->select('*');
-        $this->db->from('tbl_orders_services');
+        $this->db->from($table);
         return $this->db->get()->result();
     }
     public function get_inspection($where)
@@ -33,29 +33,36 @@ class Order_model extends CI_Model
         $this->db->from('inspecciones');
         return $this->db->get()->result();
     }
-    public function q($where = null)
+
+    public function get_status($where)
     {
         if ($where) {
-            $this->db->select('user.*');
-            $this->db->select('rol.*');
-            $this->db->select('ran.*');
-            $this->db->select('sts.*');
-            $this->db->from('tbl_users user');
-            $this->db->join('tbl_rol rol', 'rol.id_rol = user.rol', 'LEFT');
-            $this->db->join('tbl_status sts', 'sts.id_status = user.val_user', 'LEFT');
-            $this->db->join('tbl_ranges ran', 'ran.id_range = user.range_user', 'LEFT');
+            $this->db->select('*');
+            $this->db->from('tbl_orders_status');
+            $this->db->where($where);
+            return $this->db->get()->result();
+        }
+    }
+    public function num_status($where)
+    {
+        if ($where) {
+            $this->db->select('*');
+            $this->db->from('tbl_orders_status');
             $this->db->where($where);
             $query = $this->db->get();
-            return $query->row();
+            return $query->num_rows();
         }
-        $this->db->select('user.*');
-        $this->db->select('rol.*');
-        $this->db->select('ran.*');
-        $this->db->select('sts.*');
-        $this->db->from('tbl_users user');
-        $this->db->join('tbl_rol rol', 'rol.id_rol = user.rol', 'LEFT');
-        $this->db->join('tbl_status sts', 'sts.id_status = user.val_user', 'LEFT');
-        $this->db->join('tbl_ranges ran', 'ran.id_range = user.range_user', 'LEFT');
-        return $this->db->get()->result();
+    }
+    public function insert($data, $table)
+    {
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
+    }
+
+    public function update($action, $id, $table)
+    {
+      $this->db->where($id);
+      $this->db->update($table, $action);
+      return $this->db->insert_id();
     }
 }

@@ -6,7 +6,7 @@ class Template {
     function set($name, $value)
     {
         $this->template_data[$name] = $value;
-    }
+    } 
     
     function load($template = '', $view = '' , $view_data = array(), $return = FALSE)
     {               

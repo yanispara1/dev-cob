@@ -11,11 +11,11 @@ class Team_model extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function update($action, $id, $table)
-    {
-        $this->db->where($id);
-        $this->db->update($table, $action);
-        return $this->db->insert_id();
+        public function update($action, $id, $table)
+        {
+            $this->db->where($id);
+            $this->db->update($table, $action);
+            return $this->db->insert_id();
     }
 
     public function get_data($where)

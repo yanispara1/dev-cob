@@ -30,11 +30,11 @@
         <!-- Start Page Content -->
         <!-- ============================================================== -->
         <!-- Row -->
-        <?php
-        $semana = ["1", "2", "3", "4", "5"];
-        $semana2 = ["2", "3", "4", "5", "6",];
-        $resultado = array_diff($semana,$semana2);
-
-        print_r($resultado);
-        ?>
-        <!-- ./Row -->
+        <div class="card">
+            <button class="1" id="btn_1">BTOTON</button>
+    <select name="" id="">
+        <option value="">1</option>
+        <option value="">2</option>
+        <option value="">3</option>
+    </select>
+        </div>  

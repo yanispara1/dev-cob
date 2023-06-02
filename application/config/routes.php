@@ -1,7 +1,7 @@
     <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+    defined('BASEPATH') or exit('No direct script access allowed');
 
-/*
+    /*
 | -------------------------------------------------------------------------
 | URI ROUTING
 | -------------------------------------------------------------------------
@@ -50,103 +50,109 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['default_controller'] = 'site';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+    $route['default_controller'] = 'site';
+    $route['404_override'] = '';
+    $route['translate_uri_dashes'] = FALSE;
 
 
-$route['registrate'] = 'site/register';
-$route['registrarse'] = 'site/insert_register';
-$route['reenviar-correo'] = 'site/resend_mail';
-$route['reception/(:any)'] = 'site/reception/$1';
-$route['confirmar-cuenta/(:any)'] = 'site/check_mail/$1';
-$route['iniciar-sesion'] = 'site/login';
-$route['autenticacion/(:any)'] = 'site/authentication/$1';
-$route['cerrar-session'] = 'site/logout';
-$route['login/(:any)'] = 'site/login/$1';
-$route['token/(:any)'] = 'site/token/$1';
+    $route['registrate'] = 'site/register';
+    $route['registrarse'] = 'site/insert_register';
+    $route['reenviar-correo'] = 'site/resend_mail';
+    $route['reception/(:any)'] = 'site/reception/$1';
+    $route['confirmar-cuenta/(:any)'] = 'site/check_mail/$1';
+    $route['iniciar-sesion'] = 'site/login';
+    $route['autenticacion/(:any)'] = 'site/authentication/$1';
+    $route['cerrar-session'] = 'site/logout';
+    $route['login/(:any)'] = 'site/login/$1';
+    $route['token/(:any)'] = 'site/token/$1';
 
 
 
-/* Router dashboard */
-$route['mi-perfil'] = 'admin/dashboard/profile';
-$route['configuracion'] = 'admin/dashboard/config';
+    /* Router dashboard */
+    $route['mi-perfil'] = 'admin/dashboard/profile';
+    $route['configuracion'] = 'admin/dashboard/config';
 
-/*
+    /*
     /RUTAS DACE
 */
 
-$route['admin'] = 'admin/dashboard';
-$route['formulario-DACE'] = 'admin/dace/formDace';
-$route['guardar-dace'] = 'admin/dace/addForm';
-$route['pdf-dace/(:any)'] = 'admin/dace/pdf_dace/$1';
-$route['lista-DACE'] = 'admin/dace/list';
-$route['editar-DACE/(:any)'] = 'admin/dace/editForm/$1';
+    $route['admin'] = 'admin/dashboard';
+    $route['formulario-DACE'] = 'admin/dace/formDace';
+    $route['guardar-dace'] = 'admin/dace/addForm';
+    $route['pdf-dace/(:any)'] = 'admin/dace/pdf_dace/$1';
+    $route['lista-DACE'] = 'admin/dace/list';
+    $route['editar-DACE/(:any)'] = 'admin/dace/editForm/$1';
 
-/*
+    /*
     /RUTAS DAS
 */
 
-$route['Das/universidad'] = 'admin/das/university';
-$route['guardar-registro-universidad'] = 'admin/das/addUniversity';
-$route['das/pdf-universidad/(:any)'] = 'admin/das/pdf_university/$1';
-$route['das/editar-solicitud/(:any)'] = 'admin/das/editUniversity/$1';
-$route['editar-solicitud-universidad'] = 'admin/das/editUni';
-$route['eliminar-solicitud-universidad'] = 'admin/das/deleteUni';
+    $route['Das/universidad'] = 'admin/das/university';
+    $route['guardar-registro-universidad'] = 'admin/das/addUniversity';
+    $route['das/pdf-universidad/(:any)'] = 'admin/das/pdf_university/$1';
+    $route['das/editar-solicitud/(:any)'] = 'admin/das/editUniversity/$1';
+    $route['editar-solicitud-universidad'] = 'admin/das/editUni';
+    $route['eliminar-solicitud-universidad'] = 'admin/das/deleteUni';
 
 
-$route['Das/Instituto'] = 'admin/das/institute';
-$route['guardar-registro-instituto'] = 'admin/das/addInstitute';
-$route['das/pdf-instituto/(:any)'] = 'admin/das/pdf_institute/$1';
-$route['editar-solicitud-instituto'] = 'admin/das/editIns';
-$route['das/editar-solicitud-instituto/(:any)'] = 'admin/das/editInstituto/$1';
-$route['eliminar-solicitud-instituto'] = 'admin/das/deleteIns';
+    $route['Das/Instituto'] = 'admin/das/institute';
+    $route['guardar-registro-instituto'] = 'admin/das/addInstitute';
+    $route['das/pdf-instituto/(:any)'] = 'admin/das/pdf_institute/$1';
+    $route['editar-solicitud-instituto'] = 'admin/das/editIns';
+    $route['das/editar-solicitud-instituto/(:any)'] = 'admin/das/editInstituto/$1';
+    $route['eliminar-solicitud-instituto'] = 'admin/das/deleteIns';
 
 
-$route['Das/Britanico'] = 'admin/das/britanico';
-$route['guardar-registro-britanico'] = 'admin/das/addBritanico';
-$route['das/pdf-britanico/(:any)'] = 'admin/das/pdf_britanico/$1';
-$route['das/editar-solicitud-britanico/(:any)'] = 'admin/das/editBritanico/$1';
-$route['editar-solicitud-britanico'] = 'admin/das/editBri';
-$route['eliminar-solicitud-britanico'] = 'admin/das/deleteBri';
+    $route['Das/Britanico'] = 'admin/das/britanico';
+    $route['guardar-registro-britanico'] = 'admin/das/addBritanico';
+    $route['das/pdf-britanico/(:any)'] = 'admin/das/pdf_britanico/$1';
+    $route['das/editar-solicitud-britanico/(:any)'] = 'admin/das/editBritanico/$1';
+    $route['editar-solicitud-britanico'] = 'admin/das/editBri';
+    $route['eliminar-solicitud-britanico'] = 'admin/das/deleteBri';
 
-
-/*
+    /*
+    /ROUTES CGI
+*/
+    $route['admin/datos-adicionales-cgi'] = 'admin/cgi';
+    /*
     /ROUTES BE
 */
 
-$route['be/admin'] = 'be/dashboard';
-$route['be/usuarios'] = 'be/users';
-$route['be/resolucion/(:any)'] = 'be/dashboard/resolution/$1';
-$route['email'] = 'be/dashboard/example';
-$route['be/departamentos'] = 'be/team';
-$route['be/mi-equipo'] = 'be/team/solo';
-$route['be/secciones'] = 'be/team/indexOffice';
-$route['be/oficinas'] = 'be/office';
+    $route['be/admin'] = 'be/dashboard';
+    $route['be/usuarios'] = 'be/users';
+    $route['be/resolucion/(:any)'] = 'be/dashboard/resolution/$1';
+    $route['email'] = 'be/dashboard/example';
+    $route['be/departamentos'] = 'be/team';
+    $route['be/mi-equipo'] = 'be/team/solo';
+    $route['be/secciones'] = 'be/team/indexOffice';
+    $route['be/oficinas'] = 'be/office';
 
 
 
-$route['Das/Lista'] = 'admin/das';
-
-/*
+    /*
     /ROUTES BE CORRESPONDENCE
 */
 
-$route['be/correspondecias-recibidas'] = 'be/correspondence/received';
-$route['be/correspondecias-remitidas'] = 'be/correspondence/forwarded';
-$route['be/archivos-adjuntos'] = 'be/correspondence/driveFrwrd';
-$route['be/archivos-adjuntos-recibido'] = 'be/correspondence/driveRcvd';
-$route['be/descargar'] = 'be/correspondence/donwload';
-$route['be/ver-decreto/(:any)'] = 'be/correspondence/viewPDFDecree/$1';
+    $route['be/correspondecias-recibidas'] = 'be/correspondence/received';
+    $route['be/correspondecias-remitidas'] = 'be/correspondence/forwarded';
+    $route['be/archivos-adjuntos'] = 'be/correspondence/driveFrwrd';
+    $route['be/archivos-adjuntos-recibido'] = 'be/correspondence/driveRcvd';
+    $route['be/descargar'] = 'be/correspondence/donwload';
+    $route['be/ver-decreto/(:any)'] = 'be/correspondence/viewPDFDecree/$1';
 
-/*
+    /*
     /ROUTES BE ORDERS
 */
-$route['be/ordenes-de-servicio'] = 'be/orders/orders';
-$route['be/inspeciones-tecnicas'] = 'be/orders/inspection';
+    $route['be/ordenes-de-servicio'] = 'be/orders/orders';
+    $route['be/inspeciones-tecnicas'] = 'be/orders/inspection';
 
-/*
+    /*
     /ROUTES BE ORDERS
 */
-$route['COPERE/agregar-personal'] = 'copere/staff/formStaff';
+    $route['COPERE/agregar-personal'] = 'copere/staff/formStaff';
 
+    /*
+    KOREKENKE
+*/
+    $route['Consulta'] = 'korekenke/consulta';
+    $route['enviar-consulta'] = 'korekenke/consulta/enviar';

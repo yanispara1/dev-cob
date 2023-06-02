@@ -28,7 +28,7 @@ class Site extends CI_Controller
 		} else {
 			$this->load->view('login2');
 		}
-	}	
+	}
 
 	public function verifyPass()
 	{
@@ -40,9 +40,8 @@ class Site extends CI_Controller
 		if ($rowData->password == null) {
 			$this->Admin_model->update(array('password' => $pass), $rowData->id_user, 'tbl_users');
 			$jsonData['password'] = $pass;
-		}else{
-		$jsonData['password'] = $rowData->password;
-
+		} else {
+			$jsonData['password'] = $rowData->password;
 		}
 
 		$jsonData['phone_user'] = $rowData->phone_user;
@@ -79,7 +78,8 @@ class Site extends CI_Controller
 				'img_signature' => $rowData->signature_user,
 				'img_dni' => $rowData->dni_image_user,
 				'img_cip' => $rowData->cip_image_user,
-				'core' => $rowData->core
+				'core' => $rowData->core,
+				'user_cgi' => $rowData->cgi_status
 			);
 			$this->session->set_userdata($data);
 
@@ -111,7 +111,8 @@ class Site extends CI_Controller
 				'img_signature' => $rowData->signature_user,
 				'img_dni' => $rowData->dni_image_user,
 				'img_cip' => $rowData->cip_image_user,
-				'core' => $rowData->core
+				'core' => $rowData->core,
+				'user_cgi' => $rowData->cgi_status
 
 			);
 			$this->session->set_userdata($data);
@@ -136,8 +137,12 @@ class Site extends CI_Controller
 	{
 		$cip = $this->encryption->encrypt($this->input->post('cip'));
 		$encrypt_cip = md5($this->input->post('cip'));
-
-
+		$cgi = "";
+		if ($this->input->post('switch_cgi') == true) {
+			$cgi = 1;
+		} else {
+			$cgi = 0;
+		}
 		$rowData = $this->Admin_model->auth_user_login(array('rol' => '2', 'cip_user' => $cip));
 
 		if (empty($rowData)) {
@@ -157,8 +162,8 @@ class Site extends CI_Controller
 				'val_user' => "1",
 				'range_user' => $this->input->post('range_user'),
 				'signature_user' => "assets/images/no-photo.jpg",
-				'img_user' => "assets/images/no-image.png"
-
+				'img_user' => "assets/images/no-image.png",
+				'cgi_status' => $cgi
 			);
 
 			$data = $this->security->xss_clean($data);
