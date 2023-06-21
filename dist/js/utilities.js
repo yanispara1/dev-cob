@@ -175,7 +175,7 @@ function get_date(i) {
 		default:
 			break;
 	}
-	return dia + " de " + mes+ " de " + año
+	return dia + " de " + mes + " de " + año;
 }
 $.fn.button = function (action) {
 	if (action === "loading" && this.data("loading-text")) {

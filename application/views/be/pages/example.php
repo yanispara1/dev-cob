@@ -31,10 +31,5 @@
         <!-- ============================================================== -->
         <!-- Row -->
         <div class="card">
-            <button class="1" id="btn_1">BTOTON</button>
-    <select name="" id="">
-        <option value="">1</option>
-        <option value="">2</option>
-        <option value="">3</option>
-    </select>
+            <input type="file" name="file" id="file" value="hola">
         </div>  

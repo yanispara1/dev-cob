@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="content-panel">
-                            <form id="send_frwd" enctype="multipart/form-data">
+                            <form id="send_personal">
                                 <div class="card" id="data_fam">
                                     <div class="card-header text-white bg-info">
                                         <b>Datos Personales</b>
@@ -45,25 +45,25 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="tb-i">Nombres <code>*</code></label>
-                                                    <input type="text" class="form-control" required name="n_staff" id="tb_ds" placeholder="Ingrese Nombres">
+                                                    <input type="text" class="form-control input_txt" name="n_staff" id="n_staff" placeholder="Ingrese Nombres">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Apellidos <code>*</code></label>
-                                                    <input type="text" class="form-control" required name="ls_staff" id="tb_rp" placeholder="Ingrese Apellidos">
+                                                    <input type="text" class="form-control input_txt" name="ls_staff" id="ls_staff" placeholder="Ingrese Apellidos">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">CIP <code>*</code></label>
-                                                    <input type="text" class="form-control" required name="cip" id="cip" placeholder="Ingrese CIP">
+                                                    <input type="text" class="form-control input_numb" name="cip" id="cip" placeholder="Ingrese CIP">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">DNI <code>*</code></label>
-                                                    <input type="text" class="form-control" required name="cip" id="cip" placeholder="Ingrese DNI">
+                                                    <input type="text" class="form-control input_numb" maxlength="8" name="dni" id="dni" placeholder="Ingrese DNI">
                                                 </div>
                                             </div>
                                         </div>
@@ -71,19 +71,19 @@
                                             <div class="col-md-4">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Lugar de Nacimiento <code>*</code></label>
-                                                    <input type="text" class="form-control" required name="n_staff" id="tb_ds" placeholder="Ingrese Lugar de Nacimiento">
+                                                    <input type="text" class="form-control" name="place_birth" id="place_birth" placeholder="Ingrese Lugar de Nacimiento">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Fecha de Nacimiento <code>*</code></label>
-                                                    <input type="date" class="form-control" required name="birth_date" id="birth_date" placeholder="">
+                                                    <input type="date" class="form-control" name="date_birth" id="date_birth" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Dirección Domiciliaria <code>*</code></label>
-                                                    <input type="text" class="form-control" required name="home_address" id="home_address" placeholder="Ingrese Dirección Domiciliaria">
+                                                    <input type="text" class="form-control" name="home_address" id="home_address" placeholder="Ingrese Dirección Domiciliaria">
                                                 </div>
                                             </div>
                                         </div>
@@ -91,20 +91,21 @@
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Celular Titular <code>*</code></label>
-                                                    <input type="text" class="form-control" required name="cell_holder" id="cell_holder" placeholder="Ingrese Celular Titular">
+                                                    <input type="text" class="form-control input_numb" name="cell_holder" id="cell_holder" placeholder="Ingrese Celular Titular">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Celular de Emergencia </label>
-                                                    <input type="text" class="form-control" required name="cell_holder" id="cell_holder" placeholder="Ingrese Celular de Emergencia">
+                                                    <input type="text" class="form-control input_numb" name="emergency_cell" id="emergency_cell" placeholder="Ingrese Celular de Emergencia">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
-                                                    <label for="tb-i">Estado Civil <code>*</code></label>
+                                                    <label for="tb-i">Estado Civil <code>*</code>
+                                                    </label>
                                                     <select name="civil_status" id="civil_status" class="form-control form-select">
-                                                        <option>--Estado Civil--</option>
+                                                        <option value="">--Estado Civil--</option>
                                                         <option value="Solteros">Solteros</option>
                                                         <option value="Casados">Casados</option>
                                                         <option value="Viudos">Viudos</option>
@@ -117,7 +118,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Número de Hijos</label>
-                                                    <input type="text" class="form-control" required name="cell_holder" id="cell_holder" placeholder="Ingrese N° de Hijos">
+                                                    <input type="text" class="form-control input_numb" name="number_children" id="number_children" maxlength="1" placeholder="Ingrese N° de Hijos">
                                                 </div>
                                             </div>
                                         </div>
@@ -139,7 +140,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="condition_staff">Condición</label>
-                                                    <select id="condition_staff" class="form-control form-select" >
+                                                    <select id="condition_staff" name="condition_staff" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
                                                         <option value="">--Condición--</option>
                                                         <option value="Contratado">Contratado</option>
                                                         <option value="Nombrado">Nombrado</option>
@@ -149,19 +150,19 @@
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Fecha de Ingreso Contratado :</label>
-                                                    <input type="date" class="form-control" required name="date_contracted" id="date_contracted" placeholder="">
+                                                    <input type="date" class="form-control" name="date_contracted" id="date_contracted" placeholder="">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Fecha de Ingreso Nombrado :</label>
-                                                    <input type="date" class="form-control" required name="date_named" id="date_named" placeholder="Ingrese Fecha de Ingreso Nombrado">
+                                                    <input type="date" class="form-control" name="date_named" id="date_named" placeholder="Ingrese Fecha de Ingreso Nombrado">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="tb-i">Fecha Ultimo Ascenso :</label>
-                                                    <input type="date" class="form-control" required name="date_ascent" id="date_ascent" placeholder="">
+                                                    <input type="date" class="form-control" name="date_ascent" id="date_ascent" placeholder="">
                                                 </div>
                                             </div>
 
@@ -170,21 +171,21 @@
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="grade_staff">Grado</label>
-                                                    <select id="grade_staff" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
+                                                    <select id="grade_staff" name="grade_staff" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="unit_staff">Unidad Origen</label>
-                                                    <select id="unit_staff" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
+                                                    <select id="unit_staff" name="unit_staff" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="group_occup">Grupo Ocupacional</label>
-                                                    <select id="group_occup" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
+                                                    <select id="group_occup" name="group_occup" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
                                                         <option value="">--Grupo Ocupacional--</option>
                                                         <option value="AUXILIAR">AUXILIAR</option>
                                                         <option value="TÉCNICO">TÉCNICO</option>
@@ -196,8 +197,8 @@
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="speciality">Especialidad</label>
-                                                    <select id="speciality" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
-                                                        <option value="">--Especialidad--</option>
+                                                    <select id="speciality" name="speciality" class="form-control form-select" style="width: 100%; height:36px;position:fixed">
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -206,7 +207,79 @@
                                             <div class="col-md-3">
                                                 <div class="form-group mb-3">
                                                     <label for="position">Puesto</label>
-                                                    <input type="text" class="form-control" required name="position" id="position" placeholder="Ingrese Puesto">
+                                                    <input type="text" class="form-control" name="position" id="position" placeholder="Ingrese Puesto">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" id="">
+                                    <div class="card-header text-white bg-info">
+                                        <b>Tres Utimos Lugares de Trabajos</b>
+                                        <div class="card-actions">
+                                            <a class="text-white" data-action="collapse"><i class="ti-minus"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body collapse show" id="">
+                                        <h3 class="card-title">Lugares donde Trabajó </h3>
+                                        <hr>
+                                        <div class="row p-t-20">
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Lugar donde trabajó :</label>
+                                                    <input type="text" class="form-control" name="workplace[]" id="workplace" placeholder="Lugar donde trabajó">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Fecha de Inicio:</label>
+                                                    <input type="date" class="form-control" name="start_date[]" id="start_date" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Fecha de Fin:</label>
+                                                    <input type="date" class="form-control" name="finish_date[]" id="finish_date" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-t-20">
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Lugar donde trabajó :</label>
+                                                    <input type="text" class="form-control" name="workplace[]" id="workplace" placeholder="Lugar donde trabajó">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Fecha de Inicio:</label>
+                                                    <input type="date" class="form-control" name="start_date[]" id="start_date" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Fecha de Fin:</label>
+                                                    <input type="date" class="form-control" name="finish_date[]" id="finish_date" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-t-20">
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Lugar donde trabajó :</label>
+                                                    <input type="text" class="form-control" name="workplace[]" id="workplace" placeholder="Lugar donde trabajó">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Fecha de Inicio:</label>
+                                                    <input type="date" class="form-control" name="start_date[]" id="start_date" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group mb-3">
+                                                    <label for="tb-i">Fecha de Fin:</label>
+                                                    <input type="date" class="form-control" name="finish_date[]" id="finish_date" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
@@ -214,7 +287,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="offset-sm-10 col-md-2">
-                                        <button type="submit" class="btn waves-effect waves-light w-100 btn-success text-white" id="btn_frwrd">ENVIAR</button>
+                                        <button type="submit" class="btn waves-effect waves-light w-100 btn-success text-white" id="btn_send">Guardar Personal</button>
                                     </div>
                                 </div>
                             </form>

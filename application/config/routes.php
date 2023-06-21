@@ -149,7 +149,9 @@
     /*
     /ROUTES BE ORDERS
 */
-    $route['COPERE/agregar-personal'] = 'copere/staff/formStaff';
+    $route['be/agregar-personal-civil'] = 'be/staff/formStaff';
+    $route['be/lista-personal-civil'] = 'be/staff';
+    $route['be/editar-personal-civil/(:any)'] = 'be/staff/edit_personal/$1';
 
     /*
     KOREKENKE

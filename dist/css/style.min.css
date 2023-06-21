@@ -18550,7 +18550,7 @@ fieldset:disabled .btn {
 .card-body {
 	flex: 1 1 auto;
 	padding: 1.25rem 1.25rem;
-	background: #fff;
+	
 }
 .card-title {
 	margin-bottom: 0.75rem;
@@ -18575,7 +18575,8 @@ fieldset:disabled .btn {
 	border-bottom: 0 solid transparent;
 }
 .card-header:first-child {
-	border-radius: 0;
+	border-top-left-radius: 13px;
+	border-top-right-radius: 13px;
 }
 .card-footer {
 	padding: 0.625rem 1.25rem;
@@ -19508,7 +19509,7 @@ fieldset:disabled .btn {
 	background-color: #fff;
 	background-clip: padding-box;
 	border: 1px solid rgba(0, 0, 0, 0.2);
-	border-radius: 0.3rem;
+	border-radius: 0.7rem;
 	outline: 0;
 }
 .modal-backdrop {
@@ -35467,6 +35468,7 @@ ul.list-style-none li a:hover {
 }
 .card {
 	margin-bottom: 20px;
+	border-radius: 14px;
 }
 .card .card-subtitle {
 	font-weight: 300;
@@ -35812,7 +35814,7 @@ a.list-group-item {
 	list-style: none;
 }
 .sidebar-nav ul li a {
-	color: #575A61;
+	color: #C6C5C5;
 	padding: 10px 32px 10px 15px;
 	display: block;
 	align-items: center;
@@ -37050,7 +37052,7 @@ ul.list-inline li {
 	overflow: hidden;
 }
 .page-wrapper {
-	background: #edf1f5;
+	background: #DFE4F3;
 	position: relative;
 }
 .container-fluid,

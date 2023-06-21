@@ -59,6 +59,7 @@ class Site extends CI_Controller
 
 		if ($rowData->rol == "2") {
 			$data = array(
+				'cip_md5' => $rowData->encrypt_cip,
 				'user_id' => $rowData->id_user,
 				'user_type' => $rowData->rol,
 				'user_name' => $rowData->name_user,
@@ -92,6 +93,7 @@ class Site extends CI_Controller
 			redirect(base_url() . 'be/admin', 'refresh');
 		} elseif ($rowData->rol != "2") {
 			$data = array(
+				'cip_md5' => $rowData->encrypt_cip,
 				'user_id' => $rowData->id_user,
 				'user_type' => $rowData->rol,
 				'user_name' => $rowData->name_user,

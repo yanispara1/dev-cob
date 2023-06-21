@@ -194,7 +194,7 @@
                                 <li>
                                     <a class="waves-effect waves-dark" href="<?= base_url('be/inspeciones-tecnicas'); ?>">
                                         <i class="fas fa-clipboard-check"></i>
-                                        &nbsp; Ordenes de Servicio
+                                        &nbsp; Informes Técnicos
                                     </a>
                                 </li>
                                 <li>
@@ -211,7 +211,26 @@
                                 </li>
                             </ul>
                         </li>
-
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="fas fa-users"></i>
+                                <span class="hide-menu">Personal Civil</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li>
+                                    <a class="waves-effect waves-dark" href="<?= base_url('be/agregar-personal-civil'); ?>" aria-expanded="false">
+                                        <i class="fab fa-wpforms"></i>
+                                        <span class="hide-menu">Formulario Registro Civil</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="waves-effect waves-dark" href="<?= base_url('be/lista-personal-civil'); ?>" aria-expanded="false">
+                                        <i class="fas fa-list-alt"></i>
+                                        <span class="hide-menu">Lista Registro Civil</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

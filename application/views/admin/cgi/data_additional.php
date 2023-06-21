@@ -17,7 +17,7 @@
                 <div class="d-flex justify-content-end align-items-center">
                     <ol class="breadcrumb justify-content-end">
                         <li class="breadcrumb-item">
-                            <a href="<?= base_url(); ?>">Inicio</a>
+                            <a href="<?= base_url(); ?>">Inicio </a>
                         </li>
                         <li class="breadcrumb-item active">Datos Adicionales</li>
                     </ol>
@@ -36,25 +36,25 @@
                     <div class="card-body">
                         <div class="card">
                             <div class="card-header text-white bg-info">
-                                <a class="text-white" data-action="collapse"><b>DATOS GENERALES</b>
+                                <a class="text-white" data-action="collapse"><b>DATOS GENERALES </b>
                                     <div class="card-actions">
-                                        <i class="ti-minus"></i>
+                                        <i id="icon_general" class="ti-minus"></i>
                                     </div>
                                 </a>
                             </div>
-                            <div class="card-body collapse show">
+                            <div id="div_general" class="card-body collapse show">
                                 <form id="general_data">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="form-label">Telefono Casa</label>
-                                                <input name="home_phone" type="text" class="form-control" placeholder="Ingresar Telefono Casa" value="">
+                                                <input name="home_phone" id="home_phone" type="text" class="form-control" placeholder="Ingresar Telefono Casa" value="">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label class="form-label">Fecha de Nacimiento</label>
-                                                <input name="home_phone" type="date" class="form-control">
+                                                <input name="birthdate" id="birthdate" type="date" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -157,7 +157,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-xs-12">
-                                            <button type="submit" class="btn btn-success float-end  btn-rounded text-white">
+                                            <button id="btn_general" type="submit" class="btn btn-success float-end  btn-rounded text-white">
                                                 Guardar datos generales
                                             </button>
                                         </div>
@@ -177,53 +177,64 @@
                             <div class="card-header text-white bg-info">
                                 <a class="text-white" data-action="collapse"><b>MOTIVO DE INVALIDEZ</b>
                                     <div class="card-actions">
-                                        <i class="ti-plus"></i>
+                                        <i id="icon_reason" class="ti-minus"></i>
                                     </div>
                                 </a>
                             </div>
-                            <div class="card-body collapse">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Evento</label>
-                                            <select name="events_ej" id="events_ej" class="form-control form-select">
-                                                <option>--Eventos--</option>
-                                                <option value="Conflicto de Cenepa">Conflicto de Cenepa</option>
-                                                <option value="Acciones de Terrorismo">Acciones de Terrorismo</option>
-                                                <option value="Cordillera del Cóndor">Cordillera del Cóndor</option>
-                                                <option value="Cuanición">Cuanición</option>
-                                                <option value="Campaña de 1933">Campaña de 1933</option>
-                                                <option value="Campaña de 1941">Campaña de 1941</option>
-                                            </select>
+                            <div id="div_reason" class="card-body collapse show">
+                                <form id="disability_reason">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Evento</label>
+                                                <select name="events_ej" id="events_ej" class="form-control form-select">
+                                                    <option>--Eventos--</option>
+                                                    <option value="Conflicto de Cenepa">Conflicto de Cenepa</option>
+                                                    <option value="Acciones de Terrorismo">Acciones de Terrorismo</option>
+                                                    <option value="Cordillera del Cóndor">Cordillera del Cóndor</option>
+                                                    <option value="Cuanición">Cuanición</option>
+                                                    <option value="Campaña de 1933">Campaña de 1933</option>
+                                                    <option value="Campaña de 1941">Campaña de 1941</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Fecha de Invalidez </label><a class="mytooltip text-end" href="javascript:void(0)">
+                                                    <i class="fas fa-info-circle"></i><span class="tooltip-content5"><span class="tooltip-text3"><span class="tooltip-inner2">Howdy, Ben!<br />
+                                                                There are 13 unread messages in your inbox.</span></span></span></a>
+                                                <input type="date" class="form-control" name="invalidate" id="invalidate">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Lugar de Accidente</label>
+                                                <input type="text" class="form-control" name="accident_site" id="accident_site" placeholder="Lugar de Accidente">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Fecha de Invalidez</label>
-                                            <input type="date" class="form-control" name="invalidate" id="invalidate" placeholder="Causal">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Causal</label>
+                                                <textarea type="text" class="form-control" name="tb_ca" id="tb_ca" placeholder="Causal" style="overflow: hidden;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Diagnóstico</label>
+                                                <textarea type="text" class="form-control" name="tb_di" id="tb_di" placeholder="Diagnóstico" style="overflow: hidden;"></textarea>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Lugar de Accidente</label>
-                                            <input type="text" class="form-control" name="accident_site" id="accident_site" placeholder="Lugar de Accidente">
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <button id="btn_reason" type="submit" class="btn btn-success float-end  btn-rounded text-white">
+                                                Guardar Motivo de Invalidez
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Causal</label>
-                                            <textarea type="text" class="form-control" name="tb_ca" id="tb_ca" placeholder="Causal" style="overflow: hidden;"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Diagnóstico</label>
-                                            <textarea type="text" class="form-control" name="tb_ca" id="tb_ca" placeholder="Diagnóstico" style="overflow: hidden;"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -238,46 +249,55 @@
                             <div class="card-header text-white bg-info">
                                 <a class="text-white" data-action="collapse"><b>REQUERIMIENTOS DEL DISCAPACITADO</b>
                                     <div class="card-actions">
-                                        <i class="ti-plus"></i>
+                                        <i id="icon_require" class="ti-minus"></i>
                                     </div>
                                 </a>
                             </div>
-                            <div class="card-body collapse">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Ubigeo Req. de atención</label>
-                                            <select name="ubigeo_atencion" id="ubigeo_atencion" class="select2 form-control form-select">
-                                            </select>
+                            <div id="div_require" class="card-body collapse show">
+                                <form id="require_disability">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Ubigeo Req. de atención</label>
+                                                <select name="ubigeo_atencion" id="ubigeo_atencion" class="form-control form-select">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Centro Hospitalario</label>
+                                                <input type="text" class="form-control" name="hospital" id="hospital" placeholder="Ingrese Centro Hospitalario">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Requiere de Sillas de Ruedas</label>
+                                                <input type="text" class="form-control" name="wheelchair" id="wheelchair" placeholder="Lugar de Accidente">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Centro Hospitalario</label>
-                                            <input type="text" class="form-control" name="hospital" id="hospital" placeholder="Ingrese Centro Hospitalario">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Región Militar (RRMM)</label>
+                                                <input type="text" class="form-control" name="rrmm" id="rrmm" placeholder="Ingresar Región Militar">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Prótesis</label>
+                                                <input type="text" class="form-control" name="prosthesis" id="prosthesis" placeholder="Ingresar prótesis que utiliza">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Requiere de Sillas de Ruedas</label>
-                                            <input type="text" class="form-control" name="wheelchair" id="wheelchair" placeholder="Lugar de Accidente">
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <button id="btn_require" type="submit" class="btn btn-success float-end  btn-rounded text-white">
+                                                Guardar Requerimientos
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Región Militar (RRMM)</label>
-                                            <input type="text" class="form-control" name="rrmm" id="rrmm" placeholder="Ingresar Región Militar">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Prótesis</label>
-                                            <input type="text" class="form-control" name="prosthesis" id="prosthesis" placeholder="Ingresar prótesis que utiliza">
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -292,11 +312,12 @@
                             <div class="card-header text-white bg-info">
                                 <a class="text-white" data-action="collapse"> <b>COMPOSICION FAMILIAR</b>
                                     <div class="card-actions">
-                                        <i class="ti-plus"></i>
+                                        <i id="icon_family" class="ti-plus"></i>
                                     </div>
                                 </a>
                             </div>
-                            <div class="card-body collapse">
+                            <div id="div_family" class="card-body collapse show">
+                                <form id="family_composition"></form>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
@@ -323,7 +344,13 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <button id="btn_require" type="submit" class="btn btn-success float-end  btn-rounded text-white">
+                                                Guardar Requerimientos
+                                            </button>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
