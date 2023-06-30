@@ -63,8 +63,8 @@
                                                         <th><?= $row->name_specialty ?></th>
                                                         <th>
                                                             <a onclick="background(<?= $row->id_staff ?>)" target="_blank" class="btn btn-primary waves-effect waves-light" type="button" title="Mostrar PDF"><i class="fas fa-notes-medical"></i> </a>
-                                                            <a href="<?= base_url('be/editar-personal-civil/'.$row->id_staff ); ?>" target="_blank" class="btn btn-warning waves-effect waves-light" type="button" title="Mostrar PDF"><i class="far fa-edit"></i> </a>&nbsp;
-                                                            <a href="<?= base_url(); ?>" target="_blank" class="btn btn-danger waves-effect waves-light" type="button" title="Mostrar PDF"><i class="fas fa-file-pdf"></i> </a>
+                                                            <a href="<?= base_url('be/editar-personal-civil/' . $row->id_staff); ?>" target="_blank" class="btn btn-warning waves-effect waves-light" type="button" title="Mostrar PDF"><i class="far fa-edit"></i> </a>&nbsp;
+                                                            <a href="<?= base_url('be/perfil-personal/'.$row->id_staff ); ?>" target="_blank" class="btn btn-danger waves-effect waves-light" type="button" title="Mostrar PDF"><i class="fas fa-file-pdf"></i> </a>
                                                         </th>
                                                     </tr>
                                                 <?php
@@ -84,8 +84,11 @@
         <div id="mdl_status" class="modal zoomIn animated" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered modal-lg">
                 <div class="modal-content">
-                    <div class="modal-body">
+                    <div class="modal-header">
                         <h3 class="card-title">Antecedentes Medicos / sanciones :</h3>
+                        <button type="button" class="btn-close" onclick="close()" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
                         <form id="form_bck" enctype="multipart/form-data">
                             <div class="row">
                                 <input type="hidden" id="id_pr" name="id_pr">

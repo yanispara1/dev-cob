@@ -98,6 +98,13 @@ $(function () {
 		e.preventDefault();
 		close();
 	});
+	$(".btn-close").on("click", (e) => {
+		close();
+		let table = $("#data-background").DataTable();
+		table.destroy();
+	$("#mdl_status").modal("hide");
+
+	});
 });
 
 function background(id) {
@@ -122,7 +129,11 @@ function background(id) {
 				data: "doc_bck",
 				fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
 					$(nTd).html(
-						"<a href='" + oData.doc_bck + "'>" + oData.doc_bck + "</a>"
+						"<a target='_blank' href='assets/images/bck_images/" +
+							oData.doc_bck +
+							"'>" +
+							oData.doc_bck +
+							"</a>"
 					);
 				},
 			},

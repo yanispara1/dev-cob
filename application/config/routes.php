@@ -152,6 +152,7 @@
     $route['be/agregar-personal-civil'] = 'be/staff/formStaff';
     $route['be/lista-personal-civil'] = 'be/staff';
     $route['be/editar-personal-civil/(:any)'] = 'be/staff/edit_personal/$1';
+    $route['be/perfil-personal/(:any)'] = 'be/staff/single_personal/$1';
 
     /*
     KOREKENKE

@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <div class="content-panel">
                             <form id="send_personal">
-                                <input type="hidden" value="<?=$id?>" id="id_staff">
+                                <input type="hidden" value="<?= $id ?>" id="id_staff">
                                 <div class="card" id="data_fam">
                                     <div class="card-header text-white bg-info">
                                         <b>Datos Personales</b>
@@ -69,7 +69,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row p-t-20">
                                             <div class="col-md-4">
                                                 <div class="form-group mb-3">
@@ -108,12 +108,12 @@
                                                     <label for="tb-i">Estado Civil <code>*</code>
                                                     </label>
                                                     <select name="civil_status" id="civil_status" class="form-control form-select">
-                                                        <option value="Solteros">Solteros</option>
-                                                        <option value="Casados">Casados</option>
-                                                        <option value="Viudos">Viudos</option>
-                                                        <option value="Divorciados">Divorciados</option>
-                                                        <option value="Separados">Separados</option>
-                                                        <option value="Convivientes">Convivientes</option>
+                                                        <option value="Soltero">Soltero</option>
+                                                        <option value="Casado">Casado</option>
+                                                        <option value="Viudo">Viudo</option>
+                                                        <option value="Divorciado">Divorciado</option>
+                                                        <option value="Separado">Separado</option>
+                                                        <option value="Conviviente">Conviviente</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -226,24 +226,24 @@
                                         <?php
                                         foreach ($jobs as $key => $job) {
                                         ?>
-                                        <input type="hidden" name="id_jobbs[]" value="<?=$job->id_jobb?>"> 
+                                            <input type="hidden" name="id_jobbs[]" value="<?= $job->id_jobb ?>">
                                             <div class="row p-t-20">
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
                                                         <label for="tb-i">Lugar donde trabajó :</label>
-                                                        <input type="text" class="form-control" name="workplace[]" id="workplace" placeholder="Lugar donde trabajó" value="<?=$job->name_jobb?>">
+                                                        <input type="text" class="form-control" name="workplace[]" id="workplace" placeholder="Lugar donde trabajó" value="<?= $job->name_jobb ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group mb-3">
                                                         <label for="tb-i">Fecha de Inicio:</label>
-                                                        <input type="date" class="form-control" name="start_date[]" id="start_date" placeholder="" value="<?=$job->start_jobb?>">
+                                                        <input type="date" class="form-control" name="start_date[]" id="start_date" placeholder="" value="<?= $job->start_jobb ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group mb-3">
                                                         <label for="tb-i">Fecha de Fin:</label>
-                                                        <input type="date" class="form-control" name="finish_date[]" id="finish_date" placeholder="" value="<?=$job->finalized_jobb?>">
+                                                        <input type="date" class="form-control" name="finish_date[]" id="finish_date" placeholder="" value="<?= $job->finalized_jobb ?>">
                                                     </div>
                                                 </div>
                                             </div>

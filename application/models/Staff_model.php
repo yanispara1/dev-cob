@@ -10,9 +10,13 @@ class Staff_model extends CI_Model
 
     public function update($action, $table, $where)
     {
-        $this->db->where($where);
-        $this->db->update($table, $action);
+        $this->db->update($table, $action, $where);
         return $this->db->insert_id();
+    }
+    public function update_staff($data, $id)
+    {
+        $this->db->where('id_staff', $id);
+        $this->db->update('tbl_staff', $data);
     }
 
     public function get_staff()
@@ -38,7 +42,7 @@ class Staff_model extends CI_Model
         $this->db->join('tbl_rol r', 'r.id_rol = p.unit_staff', 'LEFT');
         $this->db->join('tbl_specialty s', 's.id_specialty = p.specialty_staff', 'LEFT');
         $this->db->where($where);
-        return $this->db->get()->result();
+        return $this->db->get()->row();
     }
 
     public function get_data($table, $where)

@@ -106,12 +106,12 @@
                                                     </label>
                                                     <select name="civil_status" id="civil_status" class="form-control form-select">
                                                         <option value="">--Estado Civil--</option>
-                                                        <option value="Solteros">Solteros</option>
-                                                        <option value="Casados">Casados</option>
-                                                        <option value="Viudos">Viudos</option>
-                                                        <option value="Divorciados">Divorciados</option>
-                                                        <option value="Separados">Separados</option>
-                                                        <option value="Convivientes">Convivientes</option>
+                                                        <option value="Soltero">Soltero</option>
+                                                        <option value="Casado">Casado</option>
+                                                        <option value="Viudo">Viudo</option>
+                                                        <option value="Divorciado">Divorciado</option>
+                                                        <option value="Separado">Separado</option>
+                                                        <option value="Conviviente">Conviviente</option>
                                                     </select>
                                                 </div>
                                             </div>

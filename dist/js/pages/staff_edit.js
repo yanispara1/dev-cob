@@ -86,7 +86,7 @@ $(function () {
 				$("#cell_holder").val(row.cell_holder);
 				$("#civil_status > option[value=" + row.status_staff + "]").attr(
 					"selected",
-					"selected"
+					"true"
 				);
 				$("#number_children").val(row.sons_staff);
 				$("#condition_staff > option[value=" + row.condition_staff + "]").attr(
@@ -129,12 +129,13 @@ $(function () {
 		$("#btn_send").attr("disabled", "disabled");
 		$("#btn_send").html("Cargando...");
 		$.ajax({
-			url: mybase_url + "be/staff/edt_personal",
+			url: mybase_url + "be/staff/gp_personal",
 			method: "post",
 			dataType: "json",
 			data: $("#send_personal").serialize(),
 		})
 			.done((i) => {
+				console.log(i.last);
 				successMsg(
 					"Personal Civil Editado",
 					"Personal civil editado corretamente",
@@ -146,7 +147,7 @@ $(function () {
 				$("#btn_send").removeAttr("disabled");
 				$("#btn_send").html("Guardar Personal");
 			})
-			.fail((e) => {
+			.fail((err) => {
 				console.log(err.responseText);
 				successMsg(
 					"Error",

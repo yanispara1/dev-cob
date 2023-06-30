@@ -74,7 +74,6 @@ class Staff extends CI_Controller
             'ocupation_staff' => $this->input->post('group_occup'),
             'specialty_staff' => $this->input->post('speciality'),
             'position_staff' => $this->input->post('position'),
-            'condition_staff' => $this->input->post('position'),
         );
         $last_id = $this->Staff_model->insert($data, 'tbl_staff');
 
@@ -274,19 +273,19 @@ class Staff extends CI_Controller
     public function data_personal()
     {
         $id = $this->input->post('id');
-        $row = $this->Staff_model->get_staff_row(array('p.id_staff' => $id));
+        $row = $this->Staff_model->get_staff(array('p.id_staff' => $id));
         $jsonData['row'] = $row;
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
     }
-    public function edt_personal()
+    public function gp_personal()
     {
         $id = $this->input->post('id_staff');
         $workplace = $this->input->post('workplace');
         $start_date = $this->input->post('start_date');
         $finish_date = $this->input->post('finish_date');
         $id_jobb = $this->input->post('id_jobbs');
-        
+
         $data = array(
             'name_staff' => $this->input->post('n_staff'),
             'lastname_staff' => $this->input->post('ls_staff'),
@@ -307,11 +306,10 @@ class Staff extends CI_Controller
             'unit_staff' => $this->input->post('unit_staff'),
             'ocupation_staff' => $this->input->post('group_occup'),
             'specialty_staff' => $this->input->post('speciality'),
-            'position_staff' => $this->input->post('position'),
-            'condition_staff' => $this->input->post('position'),
+            'position_staff' => $this->input->post('position')
         );
 
-        $last_id = $this->Staff_model->update($data, 'tbl_staff', array('id_staff' => $id));
+        $lsat_id = $this->Staff_model->update($data, 'tbl_staff',$id);
 
         for ($i = 0; $i < count($workplace); $i++) {
             $jobbs = array(
@@ -323,8 +321,15 @@ class Staff extends CI_Controller
         }
 
         $jsonData['data'] = $data;
+        $jsonData['last'] = $lsat_id;
 
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
+    }
+    public function single_personal($id)
+    {
+        $data['row'] = $this->Staff_model->get_staff_row(array('p.id_staff' => $id));
+        $data['jobs']  = $this->Staff_model->get_jobs(array('id_personal' => $id));
+        $this->load->view('copere/staff/pdf', $data);
     }
 }

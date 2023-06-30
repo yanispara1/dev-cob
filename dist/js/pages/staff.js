@@ -1,7 +1,9 @@
 $(function () {
 
 
-	$("#civil_status, #condition_staff, #group_occup").select2();
+	$("#civil_status").select2();
+	$("#condition_staff").select2();
+	$("#group_occup").select2();
 	$("#grade_staff").select2({
 		placeholder: "Buscar Grado",
 		minimumInputLength: 1,
