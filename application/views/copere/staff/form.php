@@ -126,6 +126,58 @@
 
                                     </div>
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="card" id="data_ingr3">
+    <div class="card-header text-white bg-info">
+        <b id="titleCard2">II. Familiares Directos Del Aportante</b>
+        <div class="card-actions">
+            <a class="text-white" data-action="collapse"><i class="ti-minus"></i></a>
+        </div>
+    </div>
+    <div class="card-body collapse show">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="card">
+                <div class="card-body" id = "resultado2">
+                <div class="input-group-append mb-4">
+                    <button class="btn btn-success text-white" type="button" onclick="relatives_fields();">
+                            <i class="fa fa-plus">Adicionar Familiares Director</i>
+                    </button>
+                </div>
+               
+                                                    
+
+				
+				    <div id="relatives_fields">
+
+                </div>
+        </div>
+
+																										
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
                                 <div class="card" id="data_fam">
                                     <div class="card-header text-white bg-info">
                                         <b>Datos de Servicio</b>

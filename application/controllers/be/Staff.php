@@ -38,7 +38,9 @@ class Staff extends CI_Controller
             '<script src="' . base_url() . 'assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>',
             '<script src="' . base_url() . 'assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>',
             '<script src="' . base_url() . 'assets/node_modules/select2/dist/js/select2.full.min.js"></script>',
-            '<script src="' . base_url() . 'dist/js/pages/staff.js"></script>'
+            '<script src="' . base_url() . 'dist/js/pages/staff.js"></script>',
+            '<script src="' . base_url() . 'assets/node_modules/dff/dff.js" type="text/javascript"></script>'
+
 
         );
 
@@ -77,7 +79,8 @@ class Staff extends CI_Controller
         );
         $last_id = $this->Staff_model->insert($data, 'tbl_staff');
 
-        for ($i = 0; $i < count($workplace); $i++) {
+        for ($i = 0; $i < count($workplace); $i++) 
+        {
             $jobbs = array(
                 'name_jobb' => $workplace[$i],
                 'start_jobb' => $start_date[$i],
@@ -85,6 +88,21 @@ class Staff extends CI_Controller
                 'id_personal' => $last_id
             );
             $this->Staff_model->insert($jobbs, 'tbl_staff_jobs');
+        }
+     if ($this->input->post("name_relative") != null)
+     {
+ 
+        for ($x = 0; $x < count($this->input->post("name_relative")); $x++) {
+            $relatives=array
+            (
+                'name_relative'=>$this->input->post('name_relative',true)[$x],  
+                'lastName_relative'=>$this->input->post('lastName_relative',true)[$x], 
+                'date_birth_relative'=>$this->input->post('date_birth_relative',true)[$x],  
+                'CCIIFFS'=>$this->input->post('CCIIFFS',true)[$x],
+                'dni'=>$this->input->post('dni',true)[$x],
+            );
+            $this->Staff_model->insert($relatives, 'tbl_relatives');
+        }
         }
 
         $jsonData['data'] = $data;
