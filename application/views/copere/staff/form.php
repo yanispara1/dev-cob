@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="content-panel">
-                            <form id="send_personal">
+                        <form action="<?php echo base_url();?>be/staff/up_personal" id="send_personal2" method="post" enctype="multipart/form-data">
                                 <div class="card" id="data_fam">
                                     <div class="card-header text-white bg-info">
                                         <b>Datos Personales</b>
@@ -163,12 +163,86 @@
 				
 				    <div id="relatives_fields">
 
-                </div>
+                    </div>
         </div>
 
 																										
     </div>
-</div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+<div class="card" id="data_ingr5">
+    <div class="card-header text-white bg-info">
+        <b id="titleCard2">Vacaciones</b>
+        <div class="card-actions">
+            <a class="text-white" data-action="collapse"><i class="ti-minus"></i></a>
+        </div>
+    </div>
+    <div class="card-body collapse show">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="card">
+                <div class="row card-body" id = "resultado3">
+
+                <div class="input-group-append mb-4">
+                    <button class="btn btn-success text-white" type="button" onclick="vacation_fields();">
+                            <i class="fa fa-plus">Adicionar Vacacionesr</i>
+                    </button>
+                </div>
+             
+
+
+                
+
+
+                <input name="id_vacation" id="id_vacation" type="hidden"   value="1" >
+                 
+                <div class="col-md-3">    
+                    <div class="form-group">        
+                        <label class="form-label">Fecha de Inicio</label>        
+                        <input name="start__vacation" id="start__vacation" type="date" class="form-control" placeholder="" value="" > 
+                    </div>
+                </div> 
+                <div class="col-md-2">    
+                    <div class="form-group">        
+                        <label class="form-label"> Cantidad de Dias</label>       
+                        <input name="quantity_day" id="quantity_day" type="number" class="form-control" placeholder="" value="" > 
+                    </div>
+                </div>
+                <div class="col-md-4">    
+                    <div class="form-group">        
+                        <label class="form-label"> MOTIVO</label>        
+                        <input name="reason" id="reason" type="text" class="form-control" placeholder="" value="" > 
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">    
+                    <div class="form-group">        
+                        <label class="form-label"> Destino</label>        
+                        <input name="destination" id="destination" type="text" class="form-control" placeholder="" value="" > 
+                    </div>
+                </div>
+
+
+                <div id="vacation_fields">
+                
+                
+            </div>
+         
+            
+
+																										
+        </div>
+        </div>
+        </div>
+        </div></div></div>
 
 
 

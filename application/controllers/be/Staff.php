@@ -9,6 +9,7 @@ class Staff extends CI_Controller
         parent::__construct();
         check_login_user();
         $this->load->model('Staff_model');
+        $this->load->model('Vacation_model');
     }
     public function index()
     {
@@ -85,29 +86,129 @@ class Staff extends CI_Controller
                 'name_jobb' => $workplace[$i],
                 'start_jobb' => $start_date[$i],
                 'finalized_jobb' => $finish_date[$i],
-                'id_personal' => $last_id
+                'id_personal' =>  $last_id
             );
-            $this->Staff_model->insert($jobbs, 'tbl_staff_jobs');
+           // $this->Staff_model->insert($jobbs, 'tbl_staff_jobs');
         }
-     if ($this->input->post("name_relative") != null)
-     {
+        if ($this->input->post("name_relative") != null)
+        {
+                      
  
-        for ($x = 0; $x < count($this->input->post("name_relative")); $x++) {
-            $relatives=array
-            (
-                'name_relative'=>$this->input->post('name_relative',true)[$x],  
-                'lastName_relative'=>$this->input->post('lastName_relative',true)[$x], 
-                'date_birth_relative'=>$this->input->post('date_birth_relative',true)[$x],  
-                'CCIIFFS'=>$this->input->post('CCIIFFS',true)[$x],
-                'dni'=>$this->input->post('dni',true)[$x],
-            );
-            $this->Staff_model->insert($relatives, 'tbl_relatives');
-        }
+            for ($x = 0; $x < count($this->input->post("name_relative")); $x++) 
+            {
+           
+                if ($_FILES['relative_support']['name'][$x] != "")
+                {
+               // $j++;
+                    $filename = date('dmYhis') . '_' . rand(0, 99999) . "." . pathinfo($_FILES['relative_support']['name'][$x], PATHINFO_EXTENSION);
+                    
+                
+                    $directorio = 'assets/images/soportes/';
+                        copy($_FILES["relative_support"]["tmp_name"][$x],$directorio."".$filename);
+
+                            $relatives=array
+                            (
+                                'name_relative'=>$this->input->post('name_relative',true)[$x],  
+                                'lastName_relative'=>$this->input->post('lastName_relative',true)[$x], 
+                                'date_birth_relative'=>$this->input->post('date_birth_relative',true)[$x],  
+                                'CCIIFFS'=>$this->input->post('CCIIFFS',true)[$x],
+                                'dni'=>$this->input->post('dni_relative',true)[$x],
+                                'dni_personal'=>$this->input->post('dni'),
+                                'relative_support'=>$directorio."".$filename,
+                            );
+                    } else{
+
+
+                        $relatives=array
+                        (
+                            'name_relative'=>$this->input->post('name_relative',true)[$x],  
+                            'lastName_relative'=>$this->input->post('lastName_relative',true)[$x], 
+                            'date_birth_relative'=>$this->input->post('date_birth_relative',true)[$x],  
+                            'CCIIFFS'=>$this->input->post('CCIIFFS',true)[$x],
+                            'dni'=>$this->input->post('dni_relative',true)[$x],
+                            'dni_personal'=>$this->input->post('dni'),
+                            
+                        );
+
+                    }
+               
+                    $this->Staff_model->insert($relatives, 'tbl_relatives');
+            }
         }
 
         $jsonData['data'] = $data;
         header('Content-type: application/json; charset=utf-8');
-        echo json_encode($jsonData);
+        //echo json_encode($jsonData);
+      //  echo $this->input->post('start__vacation');
+
+       // echo $this->input->post('quantity_day')."cantidad Dias  ";
+       
+
+        $cantidad = $this->input->post('quantity_day') -1;
+        $start__vacation = $this->input->post('start__vacation');
+        $dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
+        $fecha = date('N', strtotime($start__vacation));
+
+        //echo $fecha." -> Numero del dia de la semana//////";
+        $fecha = date('Y-m-d', strtotime($start__vacation));
+       // echo $fecha."->Fecha Actual";
+
+        $vacation = $this->Vacation_model->sumar('tbl_vacation', 'days_computed');
+        $dias_con = $vacation->days_computed+1;
+      //  echo $start__vacation."cantidad Dias acumulados???????????";
+
+      // echo date("N",strtotime($start__vacation."+".$cantidad ." days"))."-> fin de vacacions  "; 
+        $end_vacation = date("Y-m-d",strtotime($start__vacation."+".$cantidad ." days")); 
+       
+        $j = 0;
+
+
+
+        $con_fines = 0;
+       
+        $fecha_fin_semana = "";
+        $date_wekend = "";
+        for ($i = $dias_con ; $i <= $dias_con + $cantidad;$i++ ) 
+        {
+            
+                
+            $j ++;
+          
+
+            if( $i== 1 || $i== 7 || $i== 8 ||   $i== 14 || $i== 15 || $i== 21  || $i== 22 ||  $i== 28 || $i== 29  ){
+                 $con_fines++;               
+                $dias_con++;  
+                $date_wekend = $date_wekend.  " / ".date('d-M-Y', strtotime($start__vacation."+".$j ." days"));            
+                              
+            }
+
+          //  $fecha = date('d-M-Y', strtotime($start__vacation."+".$j ." days"));
+
+          // echo $fecha;
+        }
+
+
+        $vacation=array
+        (   
+            'reason'=>$this->input->post('reason',true),  
+            'quantity_day'=>$this->input->post('quantity_day',true), 
+            'start__vacation'=>$this->input->post('start__vacation',true),  
+            'end_vacation'=>$end_vacation,
+            'destination'=>$this->input->post('destination',true),
+            'days_computed'=>$j,
+            'weekend'=>   $con_fines ,
+            'date_wekend'=> $date_wekend,
+            'dni_personal'=>0,
+        );
+
+
+      
+        $last_id = $this->Staff_model->insert($vacation, 'tbl_vacation');
+      /*  foreach($vacation as $vaca){
+            echo $vaca->id;
+        }
+        */
+        redirect(base_url()."be/staff/");
     }
 
     public function data_table()

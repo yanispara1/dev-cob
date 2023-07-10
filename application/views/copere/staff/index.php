@@ -62,7 +62,7 @@
                                                         <th><?= $row->name_grade_staff ?></th>
                                                         <th><?= $row->name_specialty ?></th>
                                                         <th>
-                                                            <a onclick="background(<?= $row->id_staff ?>)" target="_blank" class="btn btn-primary waves-effect waves-light" type="button" title="Mostrar PDF"><i class="fas fa-notes-medical"></i> </a>
+                                                            <a onclick="background(<?= $row->id_staff ?>)" target="_blank" class="btn btn-primary waves-effect waves-light" type="button" title="Aregar Antecedentes"><i class="fas fa-notes-medical"></i> </a>
                                                             <a href="<?= base_url('be/editar-personal-civil/' . $row->id_staff); ?>" target="_blank" class="btn btn-warning waves-effect waves-light" type="button" title="Mostrar PDF"><i class="far fa-edit"></i> </a>&nbsp;
                                                             <a href="<?= base_url('be/perfil-personal/'.$row->id_staff ); ?>" target="_blank" class="btn btn-danger waves-effect waves-light" type="button" title="Mostrar PDF"><i class="fas fa-file-pdf"></i> </a>
                                                         </th>

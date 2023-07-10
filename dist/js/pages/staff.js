@@ -71,11 +71,13 @@ $(function () {
 		e.preventDefault();
 		$("#btn_send").attr("disabled", "disabled");
 		$("#btn_send").html("Cargando...");
+		var formData = new FormData(this);
+		formData.append("dato", "valor");
 		$.ajax({
 			url: "staff/up_personal",
 			method: "post",
 			dataType: "json",
-			data: $("#send_personal").serialize(),
+			data: formData,
 		})
 			.done((i) => {
 				successMsg(
