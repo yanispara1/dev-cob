@@ -231,6 +231,14 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li>
+                                <a class="waves-effect waves-dark" href="<?= base_url('be/vacaciones'); ?>" aria-expanded="false">
+                                    <i class="fas fa-users"></i>
+                                    <span class="hide-menu">Vacaciones</span>
+                                </a>
+                            </li>
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

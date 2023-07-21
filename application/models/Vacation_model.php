@@ -26,7 +26,11 @@ class Vacation_model extends CI_Model
     return $updatedId;
   }
 
-
+  public function update2($action, $table, $where)
+  {
+      $this->db->update($table, $action, $where);
+      return $this->db->insert_id();
+  }
 
   public function sumar($table,$campo)
   {   
@@ -37,6 +41,37 @@ class Vacation_model extends CI_Model
 
   }
 
+
+
+  public function get_data($table, $where)
+  {
+      if ($where) {
+          $this->db->select('*');
+          $this->db->from($table);
+          $this->db->where($where);
+          $query = $this->db->get();
+          return $query->result();
+      }
+      $this->db->select('*');
+      $this->db->from($table);
+      return $this->db->get()->result();
+  }
+
+  public function delete($table, $id, $colum)
+  {
+      $this->db->select('*');
+      $this->db->from($table);
+      $this->db->where($colum, $id);
+      $this->db->limit(1);
+      $query = $this->db->get();
+      if ($query->num_rows() == 1) {
+          $this->db->where($colum, $id);
+          $this->db->delete($table);
+          return true;
+      } else {
+          return false;
+      }
+  }
 
 
 }

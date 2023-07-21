@@ -159,3 +159,9 @@
 */
     $route['Consulta'] = 'korekenke/consulta';
     $route['enviar-consulta'] = 'korekenke/consulta/enviar';
+
+    /*
+   Vacaciones
+*/
+    $route['be/vacaciones'] = 'be/vacations';
+   
