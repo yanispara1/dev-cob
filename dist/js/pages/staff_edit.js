@@ -84,6 +84,7 @@ $(function () {
 				$("#date_birth").val(row.birthday_staff);
 				$("#home_address").val(row.address);
 				$("#cell_holder").val(row.cell_holder);
+				$("#emergency_cell").val(row.emergency_cell);
 				$("#civil_status > option[value=" + row.status_staff + "]").attr(
 					"selected",
 					"true"

@@ -154,7 +154,7 @@
                 <div class="card-body" id = "resultado2">
                 <div class="input-group-append mb-4">
                     <button class="btn btn-success text-white" type="button" onclick="relatives_fields();">
-                            <i class="fa fa-plus">Adicionar Familiares Director</i>
+                            <i class="fa fa-plus">Adicionar Familiares Directos</i>
                     </button>
                 </div>
                
@@ -201,35 +201,7 @@
                 
 
 
-                <input name="id_vacation" id="id_vacation" type="hidden"   value="1" >
-                 
-                <div class="col-md-3">    
-                    <div class="form-group">        
-                        <label class="form-label">Fecha de Inicio</label>        
-                        <input name="start__vacation" id="start__vacation" type="date" class="form-control" placeholder="" value="" > 
-                    </div>
-                </div> 
-                <div class="col-md-2">    
-                    <div class="form-group">        
-                        <label class="form-label"> Cantidad de Dias</label>       
-                        <input name="quantity_day" id="quantity_day" type="number" class="form-control" placeholder="" value="" > 
-                    </div>
-                </div>
-                <div class="col-md-4">    
-                    <div class="form-group">        
-                        <label class="form-label"> MOTIVO</label>        
-                        <input name="reason" id="reason" type="text" class="form-control" placeholder="" value="" > 
-                    </div>
-                </div>
-
-
-                <div class="col-md-3">    
-                    <div class="form-group">        
-                        <label class="form-label"> Destino</label>        
-                        <input name="destination" id="destination" type="text" class="form-control" placeholder="" value="" > 
-                    </div>
-                </div>
-
+               
 
                 <div id="vacation_fields">
                 

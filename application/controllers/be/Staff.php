@@ -78,7 +78,7 @@ class Staff extends CI_Controller
             'specialty_staff' => $this->input->post('speciality'),
             'position_staff' => $this->input->post('position'),
         );
-        $last_id = $this->Staff_model->insert($data, 'tbl_staff');
+         $last_id = $this->Staff_model->insert($data, 'tbl_staff');
 
         for ($i = 0; $i < count($workplace); $i++) 
         {
@@ -86,9 +86,9 @@ class Staff extends CI_Controller
                 'name_jobb' => $workplace[$i],
                 'start_jobb' => $start_date[$i],
                 'finalized_jobb' => $finish_date[$i],
-                'id_personal' =>  $last_id
+                'id_personal' => $last_id
             );
-           // $this->Staff_model->insert($jobbs, 'tbl_staff_jobs');
+            $this->Staff_model->insert($jobbs, 'tbl_staff_jobs');
         }
         if ($this->input->post("name_relative") != null)
         {
@@ -114,6 +114,8 @@ class Staff extends CI_Controller
                                 'CCIIFFS'=>$this->input->post('CCIIFFS',true)[$x],
                                 'dni'=>$this->input->post('dni_relative',true)[$x],
                                 'dni_personal'=>$this->input->post('dni'),
+                                'id_personal' => $last_id,
+                                
                                 'relative_support'=>$directorio."".$filename,
                             );
                     } else{
@@ -127,6 +129,7 @@ class Staff extends CI_Controller
                             'CCIIFFS'=>$this->input->post('CCIIFFS',true)[$x],
                             'dni'=>$this->input->post('dni_relative',true)[$x],
                             'dni_personal'=>$this->input->post('dni'),
+                            'id_personal' => $last_id
                             
                         );
 
@@ -142,68 +145,100 @@ class Staff extends CI_Controller
       //  echo $this->input->post('start__vacation');
 
        // echo $this->input->post('quantity_day')."cantidad Dias  ";
-       
+       $dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
+       if ($this->input->post("start_vacation") != null)
+       {
+                     
 
-        $cantidad = $this->input->post('quantity_day') -1;
-        $start__vacation = $this->input->post('start__vacation');
-        $dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
-        $fecha = date('N', strtotime($start__vacation));
+           for ($x = 0; $x < count($this->input->post("start_vacation")); $x++) 
+           {
+          
+              
+
+                $cantidad = $this->input->post('quantity_day')[$x] -1;
+                $start__vacation = $this->input->post('start_vacation')[$x];
+                $fecha = date('N', strtotime($start__vacation));
+                $fecha = date('Y-m-d', strtotime($start__vacation));
+                $vacation = $this->Vacation_model->sumar('tbl_vacation', 'days_computed');
+                $dias_con = $vacation->days_computed+1;
+                $end_vacation = date("Y-m-d",strtotime($start__vacation."+".$cantidad ." days")); 
+       
+                $j = 0;
+                $con_fines = 0;
+       
+                $fecha_fin_semana = "";
+                $date_wekend = "";
+                for ($i = $dias_con ; $i <= $dias_con + $cantidad;$i++ ) 
+                {
+                    
+                        
+                    $j ++;
+                  
+        
+                    if( $i== 1 || $i== 7 || $i== 8 ||   $i== 14 || $i== 15 || $i== 21  || $i== 22 ||  $i== 28 || $i== 29  ){
+                         $con_fines++;               
+                        $dias_con++;  
+                               
+                        if($i== 1){
+                            $date_wekend = $date_wekend.  "  ".date('d-M-Y', strtotime($start__vacation."-".$j ." days"));            
+                        
+                        }else{
+                            $date_wekend = $date_wekend.  " / ".date('d-M-Y', strtotime($start__vacation."+".$j ." days"));            
+                        
+                        }
+                    }
+
+
+            
+        
+                  //  $fecha = date('d-M-Y', strtotime($start__vacation."+".$j ." days"));
+        
+                  // echo $fecha;
+                }
+
+
+                        
+                $vacation=array
+                (   
+                    'reason'=>$this->input->post('reason',true)[$x],  
+                    'quantity_day'=>$this->input->post('quantity_day',true)[$x], 
+                    'start__vacation'=>$start__vacation, 
+                    'end_vacation'=>$end_vacation,
+                    'destination'=>$this->input->post('destination',true)[$x],
+                    'days_computed'=>$j,
+                    'weekend'=>   $con_fines ,
+                    'date_wekend'=> $date_wekend,
+                    'dni_personal'=>$this->input->post('dni')[$x],
+                    'id_personal' => $last_id,
+                    'days_used' => $vacation->days_computed + $j
+                );
+
+
+
+$last_id2 = $this->Staff_model->insert($vacation, 'tbl_vacation');
+               
+            }
+        }
+
+   
+      
 
         //echo $fecha." -> Numero del dia de la semana//////";
-        $fecha = date('Y-m-d', strtotime($start__vacation));
+       
        // echo $fecha."->Fecha Actual";
 
-        $vacation = $this->Vacation_model->sumar('tbl_vacation', 'days_computed');
-        $dias_con = $vacation->days_computed+1;
+
       //  echo $start__vacation."cantidad Dias acumulados???????????";
 
       // echo date("N",strtotime($start__vacation."+".$cantidad ." days"))."-> fin de vacacions  "; 
-        $end_vacation = date("Y-m-d",strtotime($start__vacation."+".$cantidad ." days")); 
-       
-        $j = 0;
-
-
-
-        $con_fines = 0;
-       
-        $fecha_fin_semana = "";
-        $date_wekend = "";
-        for ($i = $dias_con ; $i <= $dias_con + $cantidad;$i++ ) 
-        {
-            
-                
-            $j ++;
-          
-
-            if( $i== 1 || $i== 7 || $i== 8 ||   $i== 14 || $i== 15 || $i== 21  || $i== 22 ||  $i== 28 || $i== 29  ){
-                 $con_fines++;               
-                $dias_con++;  
-                $date_wekend = $date_wekend.  " / ".date('d-M-Y', strtotime($start__vacation."+".$j ." days"));            
-                              
-            }
-
-          //  $fecha = date('d-M-Y', strtotime($start__vacation."+".$j ." days"));
-
-          // echo $fecha;
-        }
-
-
-        $vacation=array
-        (   
-            'reason'=>$this->input->post('reason',true),  
-            'quantity_day'=>$this->input->post('quantity_day',true), 
-            'start__vacation'=>$this->input->post('start__vacation',true),  
-            'end_vacation'=>$end_vacation,
-            'destination'=>$this->input->post('destination',true),
-            'days_computed'=>$j,
-            'weekend'=>   $con_fines ,
-            'date_wekend'=> $date_wekend,
-            'dni_personal'=>0,
-        );
-
-
       
-        $last_id = $this->Staff_model->insert($vacation, 'tbl_vacation');
+
+
+
+       
+      
+
+
       /*  foreach($vacation as $vaca){
             echo $vaca->id;
         }
@@ -380,19 +415,48 @@ class Staff extends CI_Controller
             '<script src="' . base_url() . 'assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>',
             '<script src="' . base_url() . 'assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>',
             '<script src="' . base_url() . 'assets/node_modules/select2/dist/js/select2.full.min.js"></script>',
-            '<script src="' . base_url() . 'dist/js/pages/staff_edit.js"></script>'
+            '<script src="' . base_url() . 'dist/js/pages/staff_edit.js"></script>',
+            '<script src="' . base_url() . 'assets/node_modules/dff/dff.js" type="text/javascript"></script>'
+
 
         );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         $rows = $this->Staff_model->get_jobs(array('id_personal' => $id));
+        $relatives = $this->Staff_model->get_relatives(array('id_personal' => $id));
         $data['jobs'] = $rows;
         $data['id'] = $id;
         $data['title'] = 'Editar Personal';
+
+        $relatives = $this->Staff_model->get_relatives(array('id_personal' => $id));
+        $data['relatives'] = $relatives;
+
+     
+        
         $this->template->load('be/template', 'copere/staff/edit', $data);
     }
     public function data_personal()
     {
         $id = $this->input->post('id');
-        $row = $this->Staff_model->get_staff(array('p.id_staff' => $id));
+        $row = $this->Staff_model->get_staffId(array('p.id_staff' => $id));
         $jsonData['row'] = $row;
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);
@@ -428,7 +492,7 @@ class Staff extends CI_Controller
             'position_staff' => $this->input->post('position')
         );
 
-        $lsat_id = $this->Staff_model->update($data, 'tbl_staff',$id);
+        $lsat_id = $this->Staff_model->update($data, 'tbl_staff', array('id_staff' => $id));
 
         for ($i = 0; $i < count($workplace); $i++) {
             $jobbs = array(
@@ -441,6 +505,95 @@ class Staff extends CI_Controller
 
         $jsonData['data'] = $data;
         $jsonData['last'] = $lsat_id;
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if ($this->input->post("id_relative") != null)
+        {
+                     
+ 
+            for ($x = 0; $x < count($this->input->post("id_relative")); $x++) 
+            {
+                     
+                     
+
+          
+
+
+                        $relatives=array
+                        (
+                            'name_relative'=>$this->input->post('name_relative',true)[$x],  
+                            'lastName_relative'=>$this->input->post('lastName_relative',true)[$x], 
+                            'date_birth_relative'=>$this->input->post('date_birth_relative',true)[$x],  
+                            'CCIIFFS'=>$this->input->post('CCIIFFS',true)[$x],
+                            'dni'=>$this->input->post('dni_relative',true)[$x],
+                            'dni_personal'=>$this->input->post('dni'),
+                            'relation'=>$this->input->post('relation')[$x],
+                           
+                           
+                            
+                        );
+
+                    
+
+                    if($this->input->post('id_relative',true)[$x] == 1){
+                       $this->Staff_model->insert($relatives, 'tbl_relatives');
+                    }else{
+                     
+                        $this->Staff_model->update($relatives, 'tbl_relatives', array('id' => $this->input->post('id_relative',true)[$x]));
+                        //  $this->Staff_model->insert($relatives, 'tbl_relatives');
+                      
+                    }
+               
+                   
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         header('Content-type: application/json; charset=utf-8');
         echo json_encode($jsonData);

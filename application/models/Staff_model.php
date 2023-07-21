@@ -31,6 +31,24 @@ class Staff_model extends CI_Model
         $this->db->join('tbl_specialty s', 's.id_specialty = p.specialty_staff', 'LEFT');
         return $this->db->get()->result();
     }
+
+
+
+
+    public function get_staffId($where)
+    {
+        $this->db->select('p.*');
+        $this->db->select('g.*');
+        $this->db->select('r.*');
+        $this->db->select('s.*');
+        $this->db->from('tbl_staff p');
+        $this->db->join('tbl_staff_grade g', 'g.id_staff_grade = p.grade_staff', 'LEFT');
+        $this->db->join('tbl_rol r', 'r.id_rol = p.unit_staff', 'LEFT');
+        $this->db->join('tbl_specialty s', 's.id_specialty = p.specialty_staff', 'LEFT');
+        $this->db->where($where);
+      //  return $this->db->get()->row();
+        return $this->db->get()->result();
+    }
     public function get_staff_row($where)
     {
         $this->db->select('p.*');
@@ -119,6 +137,18 @@ class Staff_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('tbl_staff_jobs');
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+
+
+    public function get_relatives($where)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_relatives');
         $this->db->where($where);
         $query = $this->db->get();
         return $query->result();

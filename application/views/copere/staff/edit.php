@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <div class="content-panel">
                             <form id="send_personal">
-                                <input type="hidden" value="<?= $id ?>" id="id_staff">
+                                <input type="hidden" value="<?= $id ?>" id="id_staff" name="id_staff">
                                 <div class="card" id="data_fam">
                                     <div class="card-header text-white bg-info">
                                         <b>Datos Personales</b>
@@ -41,7 +41,7 @@
                                     </div>
                                     <input type="hidden" id="id" value="<?= $id ?>">
                                     <div class="card-body collapse show" id="frwd_form">
-                                        <h3 class="card-title">Datos Personales </h3>
+                                        <h3 class="card-title">Datos Personales  <?= $id ?></h3>
                                         <hr>
                                         <div class="row p-t-20">
                                             <div class="col-md-4">
@@ -223,6 +223,10 @@
                                     <div class="card-body collapse show" id="">
                                         <h3 class="card-title">Lugares donde Trabajó </h3>
                                         <hr>
+
+
+                                  
+                                        
                                         <?php
                                         foreach ($jobs as $key => $job) {
                                         ?>
@@ -251,6 +255,121 @@
 
                                     </div>
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="card" id="">
+                                    <div class="card-header text-white bg-info">
+                                        <b>Familiares Directos</b>
+                                        <div class="card-actions">
+                                            <a class="text-white" data-action="collapse"><i class="ti-minus"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body collapse show" id="">
+                                        <h3 class="card-title">Familiares Directos</h3>
+                                        <hr>
+
+
+                                        <div class="card-body" id = "resultado2">
+                                        <div class="input-group-append mb-4">
+                                            <button class="btn btn-success text-white" type="button" onclick="relatives_fields();">
+                                                    <i class="fa fa-plus">Adicionar Familiares Directos</i>
+                                            </button>
+                                        </div>
+
+                                        <div id="relatives_fields">
+
+                                        </div>
+                                        
+                                        <?php
+                                        foreach ($relatives as $key => $relative) {
+                                        ?>
+                                            <input name="id_relative[0]" id="id_relative[0]" type="hidden"   value="<?= $relative->id ?>" >
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Nombres Familiar <?= $relative->id ?></label> 
+                                                        <input type="text" class="form-control" id="name_relative" name="name_relative[]" value="<?= $relative->name_relative ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Apellidos    Familiar</label> 
+                                                        <input type="text" class="form-control" id="lastName_relative" name="lastName_relative[]" value="<?= $relative->lastName_relative ?>" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Parentesco</label>        
+                                                        <select name="relation[]" id="relation" class="department m-b-10 form-control form-select" style="width: 100%">            
+                                                            <option value="<?= $relative->relation ?>"><?= $relative->relation ?></option>            
+                                                            <option value="Hijo">Hijo (a)</option>            
+                                                            <option value="Esposo">Esposo (a)</option>            
+                                                            <option value="Hermano">Hermano (a)</option>
+                                                        <select>     
+
+                                                    </div>
+                                                </div>    
+                                                <div class="col-md-2">    
+                                                    <div class="form-group">        
+                                                        <label class="form-label">Nacimiento</label>        
+                                                        <input name="date_birth_relative[]" id="date_birth_relative" type="date" class="form-control" placeholder="" value="<?= $relative->date_birth_relative ?>" > 
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-2">    
+                                                    <div class="form-group">        
+                                                        <label class="form-label"> CCIIFFS</label>        
+                                                        <input name="CCIIFFS[]" id="CCIIFFS" type="text" class="form-control" placeholder="" value="<?= $relative->CCIIFFS ?>" > 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">    
+                                                    <div class="form-group">        
+                                                        <label class="form-label"> DNI</label>        
+                                                        <input name="dni_relative[]" id="dni_relative" type="text" class="form-control" placeholder="" value="<?= $relative->dni ?>" > 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <input type="file" id="relative_support[]" name="relative_support[]">
+                                                        <label for="file-2" id="file-2-preview">Agrear soporte</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1"><div class="form-group">
+                                                    <label class="form-label">Remover</label>
+                                                    <br><button class="btn btn-danger" type="button" onclick="remove_relatives_fields(' + room2 + ');"> <i class="fa fa-minus"></i> </button>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        <?php  } ?>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="row">
                                     <div class="offset-sm-10 col-md-2">
                                         <button type="submit" class="btn waves-effect waves-light w-100 btn-success text-white" id="btn_send">Guardar Personal</button>
