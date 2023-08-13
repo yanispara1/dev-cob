@@ -74,4 +74,53 @@ class Vacation_model extends CI_Model
   }
 
 
+
+  public function get()
+  {
+    $this->db->select('v.*');
+    $this->db->select('u.*');
+      $this->db->from('tbl_vacation v');
+      $this->db->join('tbl_users u', 'u.id_user = v.id_user', 'LEFT');
+      return $this->db->get()->result();
+  }
+
+  public function get_id($where)
+  {
+    $this->db->select('v.*');
+    $this->db->select('u.*');
+    $this->db->select('r.*');
+    $this->db->from('tbl_vacation v');
+    $this->db->join('tbl_users u', 'u.id_user = v.id_user', 'LEFT');
+    $this->db->join('tbl_ranges r', 'r.id_range = u.range_user', 'LEFT');
+   // $this->db->where($where);
+    return $this->db->get()->row();
+  }
+
+
+
+  public function dataDriveRcvd($where)
+  {
+
+      $this->db->select('*');
+    
+      $this->db->from('tbl_vacation_rcvd ');
+     
+      $this->db->where('rcvd_id', $where);
+      return $this->db->get()->result();
+  }
+
+
+
+  public function getFilesRcvd($limit, $where)
+  {
+      $this->db->select("*");
+      $this->db->from("tbl_vacation_rcvd");
+      $this->db->where("rcvd_id", $where);
+      $this->db->order_by('rcvd_id', "DESC");
+      $this->db->limit($limit);
+      return $this->db->get()->result();
+  }
+
+
+
 }

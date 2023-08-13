@@ -162,6 +162,10 @@
 
     /*
    Vacaciones
+    public function single_vacacion($id)
 */
-    $route['be/vacaciones'] = 'be/vacations';
+$route['be/vacaciones'] = 'be/vacations';
+
+$route['Reporte-Vacacion/(:any)'] = 'be/vacations/single_vacacion//$1';
+$route['be/archivos-vacaciones-recibido'] = 'be/vacations/driveRcvd';
    

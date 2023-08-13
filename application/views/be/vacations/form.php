@@ -8,7 +8,7 @@
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h4 class="text-themecolor">Registro de Personal Civil</h4>
+                <h4 class="text-themecolor">Solicitud de Vacaciones</h4>
             </div>
             <div class="col-md-7 align-self-center text-end">
                 <div class="d-flex justify-content-end align-items-center">
@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="content-panel">
-                        <form action="<?php echo base_url();?>be/vacations/up_personal" id="send_personal2" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo base_url();?>be/vacations/up_vacaion" id="send_personal2" method="post" enctype="multipart/form-data">
                                 
 
 
@@ -62,6 +62,7 @@
                             <div class="card"  id="resultado2">
                                 
                                     <?php
+                                        $status = "";
                                         foreach ($vacations as $key => $vacation) 
                                         {
                                         ?>
@@ -71,8 +72,8 @@
                                         
                                                 <div class="col-md-3">
                                                     <div class="form-group"> 
-                                                        <label class="form-label">Fecha de Inicio</label>
-                                                        <input name="start_vacation[]" id="start_vacatio[]" type="date" class="form-control" placeholder="" value="<?= $vacation->start__vacation ?>" > 
+                                                        <label class="form-label">Fecha de Inicio   </label>
+                                                        <input name="start_vacation[]" id="start_vacatio[]" type="date" class="form-control" placeholder="" value="<?= $vacation->start__vacation ?>"  > 
                                                     </div>
                                                 </div>    
                                                 <div class="col-md-2">
@@ -95,13 +96,18 @@
                                                 </div> 
                                                 <div class="col-md-5">
                                                     <div class="form-group">
-                                                        <input type="file" id="photo_support[]" name="photo_support[]">
+                                                        <input type="file" id="photo_support[]" name="photo_support[]"> 
                                                         <label for="file-2" id="file-2-preview">Agrear soporte</label>
                                                     </div>
                                                 </div>
+                                                <?php if ($vacation->status) {
+                                                    ?>
+
+
+                                                <?php } ?>
                                                 <div class="col-md-1">
                                                     <div class="form-group">
-                                                        <label class="form-label"><?= base_url('be/vacations/delete/'.$vacation->id.''); ?></label>
+                                                        <label class="form-label">Eliminar</label>
                                                         <br>
                                                         <button class="btn btn-warning" type="button" onclick="eliminar('<?= base_url('be/vacations/delete/'.$vacation->id.''); ?>');"> 
                                                                 <i class="fa fa-minus"></i> 

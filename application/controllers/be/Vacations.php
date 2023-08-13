@@ -10,8 +10,27 @@ class Vacations extends CI_Controller
         check_login_user();
         $this->load->model('Staff_model');
         $this->load->model('Vacation_model');
+        $this->load->model('Correspondence_model');
     }
+
+
+
     public function index()
+    {
+        $data['links'] = array();
+        $data['scripts'] = array(
+            '<script src="' . base_url() . 'dist/js/pages/staff_list.js"></script>'
+        );
+
+        $data['rows'] = $this->Vacation_model->get();
+
+        $data['title'] = 'Ordenes de Vacaciones';
+        $this->template->load('be/template', 'be/vacations/index', $data);
+    }
+
+
+
+    public function add()
     {
         $data['links'] = array(
             '<link href="' . base_url() . 'assets/node_modules/select2/dist/css/select2.min.css" rel="stylesheet">',
@@ -39,34 +58,8 @@ class Vacations extends CI_Controller
         $this->template->load('be/template', 'be/vacations/form', $data);
     }
 
-    public function formStaff()
-    {
-        $data['links'] = array(
-            '<link href="' . base_url() . 'assets/node_modules/select2/dist/css/select2.min.css" rel="stylesheet">',
-            '<link href="' . base_url() . 'assets/node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">',
-            '<link href="' . base_url() . 'assets/node_modules/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">',
-            '<link href="' . base_url() . 'dist/css/pages/stylish-tooltip.css" rel="stylesheet">',
-            '<link href="' . base_url() . 'assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">',
-
-        );
-        $data['scripts'] = array(
-            '<script src="' . base_url() . 'assets/node_modules/moment/moment.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/select2/dist/js/select2.full.min.js"></script>',
-            '<script src="' . base_url() . 'dist/js/pages/staff.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/dff/dff.js" type="text/javascript"></script>'
-
-
-        );
-
-        $data['grades'] = $this->Staff_model->get_data('tbl_staff_grade', null);
-        $data['teams'] = $this->Staff_model->get_data('tbl_rol', null);
-        $data['specialties'] = $this->Staff_model->get_data('tbl_specialty', null);
-        $data['title'] = 'Agregar Personal';
-        $this->template->load('be/template', 'copere/vacations/form', $data);
-    }
-    public function up_personal()
+   
+    public function up_vacaion()
     {
  
     
@@ -88,9 +81,7 @@ class Vacations extends CI_Controller
                 $dia_semama = date('N', strtotime($start__vacation));
 
                 $fecha = date('Y-m-d', strtotime($start__vacation));
-                $vacation1 = $this->Vacation_model->sumar('tbl_vacation', 'weekend');
-                $vacation2 = $this->Vacation_model->sumar('tbl_vacation', 'days_computed');
-                $dias_con = $vacation1->weekend + $vacation2->days_computed ;
+               
                 $end_vacation = date("Y-m-d",strtotime($start__vacation."+".$cantidad ." days"));
                 $end_dia_semama = date("N",strtotime($start__vacation."+".$cantidad ." days")); 
 
@@ -110,7 +101,7 @@ class Vacations extends CI_Controller
                 $suiche = 0;
                 $suiche2 = 0; 
                 $suiche3 = 0; 
-                for ($i = $dias_con ; $i <= $dias_con + $cantidad;$i++ ) 
+                for ($i = 0 ; $i <= $cantidad;$i++ ) 
                 {
                    
                     
@@ -142,7 +133,7 @@ class Vacations extends CI_Controller
                       $contadorDia+2;
                       $suiche3 = 1;
                       if( $suiche2 == 1){
-                          $contadorDia--;
+                          $contadorDia-2;
                       }
 
                       $cantidad++;
@@ -157,6 +148,10 @@ class Vacations extends CI_Controller
                         }
                         $cantidad++;
                     }else if ($dia_semana == 1){
+                        if ($i == 0){
+
+                            $start__vacation = date("Y-m-d",strtotime($start__vacation."- 2  days"));
+                        }
                         $date_wekend = $date_wekend.  "  ".$fecha_aumentada; 
                         $contadorDia++;
                         $suiche = 1;
@@ -223,13 +218,14 @@ class Vacations extends CI_Controller
                     copy($_FILES["photo_support"]["tmp_name"][$x],$directorio."".$filename);
                     $directorio =  $directorio."".$filename;
                 }
-
+                $f = $k;
+                $f ++;
                 $vacation=array
                 (   
                     'reason'=>$this->input->post('reason',true)[$x],  
                     'quantity_day'=>$this->input->post('quantity_day',true)[$x], 
                     'start__vacation'=>$start__vacation, 
-                    'end_vacation'=>$end_vacation,
+                    'end_vacation'=> $end_vacation = date("Y-m-d",strtotime($start__vacation."+".$f ." days")),
                     'destination'=>$this->input->post('destination',true)[$x],
                     'days_computed'=>$k,
                     'weekend'=>   $contadorDia ,
@@ -246,7 +242,13 @@ class Vacations extends CI_Controller
 
             if ($this->input->post('id_vacation',true)[$x] == "1"){
                 $qy = $this->Vacation_model->insert($vacation,"tbl_vacation" );
+            }else{
+
+                $qy = $this->Vacation_model->update2($vacation,"tbl_vacation",array('id' => $this->input->post('id_vacation',true)[$x]) );
             }
+
+
+
                
             }
         }
@@ -260,7 +262,7 @@ class Vacations extends CI_Controller
         echo $vaca->id;
         }
         */
-        redirect(base_url()."be/vacations/");
+        redirect(base_url()."be/vacations/add");
             }
 
     public function data_table()
@@ -348,273 +350,12 @@ class Vacations extends CI_Controller
             echo json_encode($jsonData);
         }
     }
-    public function data_grade()
-    {
-        $result = $this->Staff_model->get_select(array('name_grade_staff' => $_GET['q']), 'tbl_staff_grade');
-        if ($result != null) {
-            foreach ($result as $row) {
-                $id = $row->id_staff_grade;
-                $text = $row->name_grade_staff;
-                $data[] = array('id' => $id, 'text' => $text);
-            }
-        } else {
-            $data[] = array('id' => 0, 'text' => 'No se encontro Grado');
-        }
-        echo json_encode($data);
-    }
-    public function data_specialty()
-    {
-        $result = $this->Staff_model->get_select(array('name_specialty' => $_GET['q']), 'tbl_specialty');
-        if ($result != null) {
-            foreach ($result as $row) {
-                $id = $row->id_specialty;
-                $text = $row->name_specialty;
-                $data[] = array('id' => $id, 'text' => $text);
-            }
-        } else {
-            $data[] = array('id' => 0, 'text' => 'No se encontro Especialidad');
-        }
-        echo json_encode($data);
-    }
-    public function data_origin()
-    {
-        $result = $this->Staff_model->get_origim($_GET['q'], 'tbl_rol');
-        if ($result != null) {
-            foreach ($result as $row) {
-                if ($row->id_rol == "0" || $row->id_rol == "1" || $row->id_rol == "2") {
-                } else {
-                    $id = $row->id_rol;
-                    $text = $row->name_rol;
-                    $data[] = array('id' => $id, 'text' => $text);
-                }
-            }
-        } else {
-            $data[] = array('id' => 0, 'text' => 'No se encontro Unidad de Origen');
-        }
-        echo json_encode($data);
-    }
-    public function get_bck()
-    {
-        $id = $this->input->post('id');
-        $result = $this->Staff_model->get_data_table('tbl_background', array('id_bck' => $id));
 
-        $jsonData['data'] = $result;
-        header('Content-type: application/json; charset=utf-8');
-        echo json_encode($jsonData);
-    }
-    public function delete_bck()
-    {
-        $id = $this->input->post('id');
-        $row = $this->Staff_model->get_data_table('tbl_background', array('id_bck' => $id), 'row');
-        unlink('assets/images/bck_images/' . $row->doc_bck);
-
-        $q = $this->Staff_model->delete('tbl_background', $id, 'id_bck');
-        if ($q) {
-            $jsonData['rsp'] = true;
-        }
-        $jsonData['img'] = $row->doc_bck;
-        header('Content-type: application/json; charset=utf-8');
-        echo json_encode($jsonData);
-    }
-
-    public function edit_personal($id)
-    {
-        $data['links'] = array(
-            '<link href="' . base_url() . 'assets/node_modules/select2/dist/css/select2.min.css" rel="stylesheet">',
-            '<link href="' . base_url() . 'assets/node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">',
-            '<link href="' . base_url() . 'assets/node_modules/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">',
-            '<link href="' . base_url() . 'dist/css/pages/stylish-tooltip.css" rel="stylesheet">',
-            '<link href="' . base_url() . 'assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">',
-
-        );
-        $data['scripts'] = array(
-            '<script src="' . base_url() . 'assets/node_modules/moment/moment.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/select2/dist/js/select2.full.min.js"></script>',
-            '<script src="' . base_url() . 'dist/js/pages/staff_edit.js"></script>',
-            '<script src="' . base_url() . 'assets/node_modules/dff/dff.js" type="text/javascript"></script>'
-
-
-        );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        $rows = $this->Staff_model->get_jobs(array('id_personal' => $id));
-        $relatives = $this->Staff_model->get_relatives(array('id_personal' => $id));
-        $data['jobs'] = $rows;
-        $data['id'] = $id;
-        $data['title'] = 'Editar Personal';
-
-        $relatives = $this->Staff_model->get_relatives(array('id_personal' => $id));
-        $data['relatives'] = $relatives;
-
-     
-        
-        $this->template->load('be/template', 'copere/staff/edit', $data);
-    }
-    public function data_personal()
-    {
-        $id = $this->input->post('id');
-        $row = $this->Staff_model->get_staffId(array('p.id_staff' => $id));
-        $jsonData['row'] = $row;
-        header('Content-type: application/json; charset=utf-8');
-        echo json_encode($jsonData);
-    }
-    public function gp_personal()
-    {
-        $id = $this->input->post('id_staff');
-        $workplace = $this->input->post('workplace');
-        $start_date = $this->input->post('start_date');
-        $finish_date = $this->input->post('finish_date');
-        $id_jobb = $this->input->post('id_jobbs');
-
-        $data = array(
-            'name_staff' => $this->input->post('n_staff'),
-            'lastname_staff' => $this->input->post('ls_staff'),
-            'cip_staff' => $this->input->post('cip'),
-            'dni_staff' => $this->input->post('dni'),
-            'place_staff' => $this->input->post('place_birth'),
-            'birthday_staff' => $this->input->post('date_birth'),
-            'address' => $this->input->post('home_address'),
-            'cell_holder' => $this->input->post('cell_holder'),
-            'emergency_cell' => $this->input->post('emergency_cell'),
-            'status_staff' => $this->input->post('civil_status'),
-            'sons_staff' => $this->input->post('number_children'),
-            'condition_staff' => $this->input->post('condition_staff'),
-            'hired_staff' => $this->input->post('date_contracted'),
-            'named_staff' => $this->input->post('date_named'),
-            'ascent_staff' => $this->input->post('date_ascent'),
-            'grade_staff' => $this->input->post('grade_staff'),
-            'unit_staff' => $this->input->post('unit_staff'),
-            'ocupation_staff' => $this->input->post('group_occup'),
-            'specialty_staff' => $this->input->post('speciality'),
-            'position_staff' => $this->input->post('position')
-        );
-
-        $lsat_id = $this->Staff_model->update($data, 'tbl_staff', array('id_staff' => $id));
-
-        for ($i = 0; $i < count($workplace); $i++) {
-            $jobbs = array(
-                'name_jobb' => $workplace[$i],
-                'start_jobb' => $start_date[$i],
-                'finalized_jobb' => $finish_date[$i],
-            );
-            $this->Staff_model->update($jobbs, 'tbl_staff_jobs', array('id_jobb' => $id_jobb[$i]));
-        }
-
-        $jsonData['data'] = $data;
-        $jsonData['last'] = $lsat_id;
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if ($this->input->post("id_relative") != null)
-        {
-                     
  
-            for ($x = 0; $x < count($this->input->post("id_relative")); $x++) 
-            {
-                     
-                     
+ 
 
-          
+   
 
-
-                        $relatives=array
-                        (
-                            'name_relative'=>$this->input->post('name_relative',true)[$x],  
-                            'lastName_relative'=>$this->input->post('lastName_relative',true)[$x], 
-                            'date_birth_relative'=>$this->input->post('date_birth_relative',true)[$x],  
-                            'CCIIFFS'=>$this->input->post('CCIIFFS',true)[$x],
-                            'dni'=>$this->input->post('dni_relative',true)[$x],
-                            'dni_personal'=>$this->input->post('dni'),
-                            'relation'=>$this->input->post('relation')[$x],
-                           
-                           
-                            
-                        );
-
-                    
-
-                    if($this->input->post('id_relative',true)[$x] == 1){
-                       $this->Staff_model->insert($relatives, 'tbl_relatives');
-                    }else{
-                     
-                        $this->Staff_model->update($relatives, 'tbl_relatives', array('id' => $this->input->post('id_relative',true)[$x]));
-                        //  $this->Staff_model->insert($relatives, 'tbl_relatives');
-                      
-                    }
-               
-                   
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        header('Content-type: application/json; charset=utf-8');
-        echo json_encode($jsonData);
-    }
     public function delete($id=null)
     {
 
@@ -635,6 +376,97 @@ class Vacations extends CI_Controller
        
     }
 
+
+
+    public function single_vacacion($id)
+    {
+        $data['row'] = $this->Vacation_model->get_id(array('id' => $id));
+    // var_dump($data['row']);
+        $this->load->view('be/vacations/pdf', $data);
+    }
+
+
+
+    public function driveRcvd()
+    {
+        $data['title'] = 'Archivos Adjuntos Recibidos';
+        $data['rows'] = $this->Vacation_model->dataDriveRcvd($_GET['id']);
+        $data['id'] = $_GET['id'];
+
+        $data['links'] = array(
+            '<link href="' . base_url() . 'dist/css/pages/drive.css" rel="stylesheet">',
+            '<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">'
+        );
+        $data['scripts'] = array(
+            '<script src="' . base_url() . 'dist/js/pages/vacation_rcvd.js"></script>'
+
+        );
+
+        $this->template->load('be/template', 'be/vacations/drive_rcvd', $data);
+    }
+
+
+
+    public function saveFilesRcvd()
+    {
+        $id = $_POST['id_rcvd'];
+        $conteo = count($_FILES["archivos"]["name"]);
+        $path = "assets/files/receivedVacation/" . $id;
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        for ($i = 0; $i < $conteo; $i++) {
+            $ubicacionTemporal = $_FILES["archivos"]["tmp_name"][$i];
+            $nombreArchivo = $_FILES["archivos"]["name"][$i];
+            $extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
+            // Renombrar archivo
+            $nuevoNombre = sprintf("%s_%d.%s", uniqid(), $i, $extension);
+            // Mover del temporal al directorio actual
+            move_uploaded_file($ubicacionTemporal, "$path/$nuevoNombre");
+            $data = array(
+                "rcvd_id" => $id,
+                "name_rcvd" => $nuevoNombre,
+                "ext_rcvd_d" => $extension,
+            );
+            $this->Correspondence_model->insert($data, 'tbl_vacation_rcvd');
+        }
+        // Responder al cliente
+        echo json_encode($id);
+    }
+
+
+    function viewFilesRcvd()
+    {
+        $limit = $this->input->post('amount');
+        $id = $this->input->post('id');
+
+        $jsonData['rows'] = $this->Vacation_model->getFilesRcvd($limit, $id);
+
+        header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsonData);
+    }
+
+
+
+    public function deleteFileRcvd()
+    {
+        $jsonData = array();
+        $id = $this->input->post('id');
+        $id_rcvd = $this->input->post('id_rcvd');
+        $name = $this->input->post('name_rcvd');
+        $qy = $this->Correspondence_model->delete('tbl_vacation_rcvd', $id, 'id_file_rcvd ');
+
+
+        if ($qy == true) {
+            unlink('assets/files/receivedVacation/' . $id_rcvd . '/' . $name);
+            $jsonData['rsp'] = 200;
+        } else {
+            $jsonData['rsp'] = 400;
+        }
+        header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsonData);
+    }
 }
 
 

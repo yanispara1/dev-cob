@@ -259,7 +259,7 @@
                                         <th style="min-width: 100px;">CLASE</th>
                                         <th style="min-width: 100px;">INDICATIVO</th>
                                         <th style="min-width: 100px;">FECHA</th>
-                                        <th style="min-width: 100px;">CLASIF. </th>
+                                        <th style="min-width: 100px;">CLASIF.. </th>
                                         <th style="min-width: 200px;">ASUNTO</th>
                                         <th style="min-width: 100px;">RECIBIDO POR</th>
                                         <?php if ($type_user == true) { ?>

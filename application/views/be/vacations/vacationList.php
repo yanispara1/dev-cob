@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-1">
                     <div class="form-group">
-                        <label class="form-label"><?= base_url('be/vacations/delete/'.$vacation->id.''); ?></label>
+                        <label class="form-label">Eliminar</label>
                         <br>
                         <button class="btn btn-warning" type="button" onclick="eliminar('<?= base_url('be/vacations/delete/'.$vacation->id.''); ?>');"> 
                                 <i class="fa fa-minus"></i> 
